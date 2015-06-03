@@ -45,15 +45,39 @@ module.exports = {
 			css: [
 				//'public/lib/bootstrap/dist/css/bootstrap.css',
 				//'public/lib/bootstrap/dist/css/bootstrap-theme.css',
-				'public/lib/openshift/dist/css/main.css',
+				'public/lib/angular-toastr/dist/angular-toastr.css',
+				'public/lib/angular-ui-grid/ui-grid.css',
+				'public/lib/angular-ui-select/dist/select.css',
+				'public/lib/angular-xeditable/dist/css/xeditable.css',
+				'public/lib/openshift/dist/css/main.css'
 			],
 			js: [
 				'public/lib/angular/angular.js',
-				'public/lib/angular-resource/angular-resource.js',
 				'public/lib/angular-animate/angular-animate.js',
+				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
+				'public/lib/angular-file-upload/angular-file-upload.js',
+				'public/lib/angular-input-masks/angular-input-masks.js',
+				'public/lib/angular-messages/angular-messages.js',
+				'public/lib/angular-sanitize/angular-sanitize.js',
+				'public/lib/angular-toastr/dist/angular-toastr.tpls.js',
+				'public/lib/angular-ui-grid/ui-grid.js',
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
+				'public/lib/angular-ui-select/dist/select.js',
+				'public/lib/angular-ui-select-utils/dist/select.utils.js',
 				'public/lib/angular-ui-utils/ui-utils.js',
-				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js'
+				'public/lib/angular-xeditable/dist/js/xeditable.js',
+				'public/lib/ng-autofocus/dist/ng-autofocus.js',
+				'public/lib/restangular/dist/restangular.js',
+				'public/lib/sg-cooperativa/dist/sg-cooperativa.js',
+				'public/lib/sg-iso3166/dist/sg-iso3166.js',
+				'public/lib/sg-iso4217/dist/sg-iso4217.js',
+				'public/lib/sg-persona/dist/sg-persona.js',
+				'public/lib/sg-producto/dist/sg-producto.js',
+				'public/lib/sg-rrhh/dist/sg-rrhh.js',
+				'public/lib/sg-socio/dist/sg-socio.js',
+				'public/lib/sg-ubigeo/dist/sg-ubigeo.js',
+				'public/lib/sg-utils/dist/sg-utils.js',
+				'public/lib/underscore/underscore.js'
 			]
 		},
 		css: [
