@@ -10,6 +10,7 @@ var ApplicationConfiguration = (function() {
 		'ng-autofocus',
 		'ngMessages',
 		'ngSanitize',
+		'ncy-angular-breadcrumb',
 		'restangular',
 		'sg-cooperativa',
 		'sg-iso3166',

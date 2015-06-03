@@ -34,20 +34,28 @@ angular.module('persona').config(['$stateProvider',
 			})
 			.state('persona.home', {
 				url: '/home',
-				templateUrl: '/modules/persona/views/index.html'
+				templateUrl: '/modules/persona/views/index.html',
+				ncyBreadcrumb: {
+					label: 'persona.home'
+				}
 			})
 			.state('persona.app', {
 				url: '/app',
-				templateUrl: '/modules/persona/views/app.html'
+				templateUrl: '/modules/persona/views/app.html',
+				ncyBreadcrumb: {
+					label: 'Home'
+				}
 			})
 
 			.state('persona.app.personas', {
 				url: '/personas',
-				template: '<div ui-view></div>'
+				template: '<div ui-view></div>',
+				abstract: true
 			})
 			.state('persona.app.administracion', {
 				url: '/administracion',
-				template: '<div ui-view></div>'
+				template: '<div ui-view></div>',
+				abstract: true
 			})
 
 			//tipoDocumento
@@ -59,6 +67,9 @@ angular.module('persona').config(['$stateProvider',
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
 						return checkUserRole('ver-documentos', $q, $timeout, $http, $location, Auth);
 					}
+				},
+				ncyBreadcrumb: {
+					label: 'Buscar documento'
 				}
 			})
 			.state('persona.app.administracion.crearTipoDocumento', {
@@ -69,6 +80,9 @@ angular.module('persona').config(['$stateProvider',
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
 						return checkUserRole('ver-documentos', $q, $timeout, $http, $location, Auth);
 					}
+				},
+				ncyBreadcrumb: {
+					label: 'Crear documento'
 				}
 			})
 			.state('persona.app.administracion.editarTipoDocumento', {
@@ -82,7 +96,10 @@ angular.module('persona').config(['$stateProvider',
 						return SGTipoDocumento.$find($stateParams.id);
 					}
 				},
-				controller: 'Persona.TipoDocumento.EditarTipoDocumentoController'
+				controller: 'Persona.TipoDocumento.EditarTipoDocumentoController',
+				ncyBreadcrumb: {
+					label: 'Editar documento'
+				}
 			})
 
 			//Personas

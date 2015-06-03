@@ -56,6 +56,7 @@ module.exports = {
 				'public/lib/angular/angular.js',
 				'public/lib/angular-animate/angular-animate.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
+				'public/lib/angular-breadcrumb/dist/angular-breadcrumb.js',
 				'public/lib/angular-file-upload/angular-file-upload.js',
 				'public/lib/angular-input-masks/angular-input-masks.js',
 				'public/lib/angular-messages/angular-messages.js',
