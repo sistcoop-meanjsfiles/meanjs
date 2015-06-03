@@ -1,0 +1,62 @@
+<form name="form" data-ng-submit="submit()" sg-read-only="!access.administrarPersonas" novalidate>
+
+    <div>
+        <h4><strong>Datos adicionales</strong></h4>
+        <sg-ubigeo data-ng-model="view.persona.ubigeo"></sg-ubigeo>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="form-group" data-ng-class="{ 'has-error' : form.direccion.$invalid && (form.direccion.$touched || form.$submitted)}">
+                    <label>Direcci&oacute;n</label>
+                    <input name="direccion" type="text" data-ng-model="view.persona.direccion" data-ng-maxlength="70" class="form-control" capitalize />
+                    <div data-ng-messages="form.direccion.$error" data-ng-if="form.direccion.$touched || form.$submitted">
+                        <div class="has-error" data-ng-message="maxlength">Maximo 70 Caracteres.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group" data-ng-class="{ 'has-error' : form.referencia.$invalid && (form.referencia.$touched || form.$submitted)}">
+                    <label>Referencia</label>
+                    <input name="referencia" type="text" data-ng-model="view.persona.referencia" data-ng-maxlength="70" class="form-control" capitalize />
+                    <div data-ng-messages="form.referencia.$error" data-ng-if="form.referencia.$touched || form.$submitted">
+                        <div class="has-error" data-ng-message="maxlength">Maximo 70 Caracteres.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="form-group" data-ng-class="{ 'has-error' : form.telefono.$invalid && (form.telefono.$touched || form.$submitted)}">
+                    <label>Telefono</label>
+                    <input name="telefono" type="text" data-ng-model="view.persona.telefono" data-ng-maxlength="20" class="form-control" />
+                    <div data-ng-messages="form.telefono.$error" data-ng-if="form.telefono.$touched || form.$submitted">
+                        <div class="has-error" data-ng-message="maxlength">Maximo 20 Caracteres.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group" data-ng-class="{ 'has-error' : form.celular.$invalid && (form.celular.$touched || form.$submitted)}">
+                    <label>Celular</label>
+                    <input name="celular" type="text" data-ng-model="view.persona.celular" data-ng-maxlength="20" class="form-control" />
+                    <div data-ng-messages="form.celular.$error" data-ng-if="form.celular.$touched || form.$submitted">
+                        <div class="has-error" data-ng-message="maxlength">Maximo 20 Caracteres.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group" data-ng-class="{ 'has-error' : form.email.$invalid && (form.email.$touched || form.$submitted)}">
+                    <label>Email</label>
+                    <input name="email" type="email" data-ng-model="view.persona.email" data-ng-maxlength="70" class="form-control" />
+                    <div data-ng-messages="form.email.$error" data-ng-if="form.email.$touched || form.$submitted">
+                        <div class="has-error" data-ng-message="email">Email Incorrecto.</div>
+                        <div class="has-error" data-ng-message="maxlength">Maximo 70 Caracteres.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p>
+            <button type="submit" class="btn btn-primary" ladda="control.block" data-style="expand-right">Guardar</button>
+            <button type="button" class="btn btn-default" ui-sref="^">Cancelar</button>
+        </p>
+    </div>
+
+</form>

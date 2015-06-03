@@ -1,0 +1,43 @@
+<div class="modal-header">
+    <h3 class="modal-title">Selecciona una foto para la persona</h3>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3" ng-hide="uploader.queue.length" style="margin-top: 30px; margin-bottom: 30px;">
+            <div style="text-align: center;">
+                <img src="persona/assets/img/upload.png"/>
+            </div>
+            <div style="text-align: center;">
+                <h3 style="color: #aaa;">
+                    Arrastra una foto aqui.
+                </h3>
+                <h4 style="color: #aaa;">
+                    - o bien -
+                </h4>
+            </div>
+        </div>
+        <div class="col-md-6 col-md-offset-3" ng-show="uploader.queue.length" style="margin-top: 30px; margin-bottom: 30px;">
+            <div style="text-align: center;">
+                <li ng-repeat="item in uploader.queue">
+                    <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }">
+                        <canvas width="177.86458333333331" height="100"></canvas>
+                    </div>
+                    <button class="btn btn-primary" ng-click="item.upload()">Subir</button>
+                </li>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div style="text-align: center;">
+                <span class="btn btn-default fileinput-button">
+                    <input type="file" nv-file-select uploader="uploader" options="{Object}" filters="{String}">
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" data-ng-click="ok()">Guardar</button>
+    <button class="btn btn-default" data-ng-click="cancel()">Cancelar</button>
+</div>

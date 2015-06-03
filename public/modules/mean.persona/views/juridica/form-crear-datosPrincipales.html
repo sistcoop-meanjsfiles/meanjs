@@ -1,0 +1,136 @@
+<div>
+    <h4><strong>Datos personales</strong></h4>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group" data-ng-class="{ 'has-error' : form.pais.$invalid && (form.pais.$touched || form.$submitted)}">
+                <label>Nacionalidad </label>
+                <div class="input-group">
+                    <span data-ng-bind="combo.selected.pais ? combo.selected.pais.alpha3Code : 'NA'" class="input-group-addon"></span>
+                    <ui-select name="pais" data-ng-model="combo.selected.pais" autofocus required>
+                        <ui-select-autoload pk-name="alpha3Code" comparator="view.persona.codigoPais" ignore-case="true"></ui-select-autoload>
+                        <ui-select-match placeholder="Seleccione">{{$select.selected.fullNameEn}}</ui-select-match>
+                        <ui-select-choices repeat="item in combo.pais | filter: $select.search">
+                            <div data-ng-bind-html="item.fullNameEn | highlight: $select.search"></div>
+                            <small data-ng-bind-html="item.alpha3Code | highlight: $select.search"></small>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div data-ng-messages="form.pais.$error" data-ng-if="form.pais.$touched || form.$submitted">
+                    <div class="has-error" data-ng-message="required">Ingrese nacionalidad.</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group" data-ng-class="{ 'has-error' : form.tipoDocumento.$invalid && (form.tipoDocumento.$touched || form.$submitted)}">
+                <label>Tipo documento</label>
+                <ui-select name="tipoDocumento" data-ng-model="combo.selected.tipoDocumento" theme="bootstrap" required>
+                    <ui-select-autoload pk-name="abreviatura" comparator="view.persona.tipoDocumento" ignore-case="true"></ui-select-autoload>
+                    <ui-select-match placeholder="Seleccione">{{$select.selected.abreviatura}}</ui-select-match>
+                    <ui-select-choices repeat="item in combo.tipoDocumento | filter: $select.search">
+                        <div data-ng-bind-html="item.abreviatura | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+                <div data-ng-messages="form.tipoDocumento.$error" data-ng-if="form.tipoDocumento.$touched || form.$submitted">
+                    <div class="has-error" data-ng-message="required">Ingrese documento.</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4" data-ng-class="{ 'has-error' : form.numeroDocumento.$invalid && (form.numeroDocumento.$dirty || form.numeroDocumento.$touched || form.$submitted)}">
+            <div class="form-group">
+                <label>N&uacute;mero documento</label>
+                <div class="input-group">
+                    <input type="text" name="numeroDocumento" data-ng-model="view.persona.numeroDocumento" ui-keypress="{13:'checkPersona($event)'}" data-ng-pattern="/^[0-9]+$/" data-ng-minlength="combo.selected.tipoDocumento.cantidadCaracteres" data-ng-maxlength="combo.selected.tipoDocumento.cantidadCaracteres" class="form-control" required/>
+                    <span class="input-group-btn"><button type="button" data-ng-click="checkPersona()" tooltip="Check" tooltip-trigger="mouseenter" tooltip-placement="bottom" class="btn btn-default"><span class="glyphicon glyphicon-check"></span></button></span>
+                </div>
+                <div data-ng-messages="form.numeroDocumento.$error" data-ng-if="form.numeroDocumento.$dirty || form.numeroDocumento.$touched || form.$submitted">
+                    <div class="has-error" data-ng-message="required">Ingrese numero documento.</div>
+                    <div class="has-error" data-ng-message="minlength">Debe tener <span data-ng-bind="combo.selected.tipoDocumento.cantidadCaracteres"></span> digitos.</div>
+                    <div class="has-error" data-ng-message="maxlength">Debe tener <span data-ng-bind="combo.selected.tipoDocumento.cantidadCaracteres"></span> digitos.</div>
+                    <div class="has-error" data-ng-message="pattern">Numero invalido.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group" data-ng-class="{ 'has-error' : form.razonSocial.$invalid && (form.razonSocial.$touched || form.$submitted)}">
+                <label>Razon social</label>
+                <input name="razonSocial" type="text" data-ng-model="view.persona.razonSocial" data-ng-minlength="1" data-ng-maxlength="60" class="form-control" capitalize required/>
+                <div data-ng-messages="form.razonSocial.$error" data-ng-if="form.razonSocial.$touched || form.$submitted">
+                    <div class="has-error" data-ng-message="required">Ingrese razon social.</div>
+                    <div class="has-error" data-ng-message="minlength">Ingrese razon social.</div>
+                    <div class="has-error" data-ng-message="maxlength">Maximo 60 caracteres.</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group" data-ng-class="{ 'has-error' : form.nombreComercial.$invalid && (form.nombreComercial.$touched || form.$submitted)}">
+                <label>Nombre comercial</label>
+                <input name="nombreComercial" type="text" data-ng-model="view.persona.nombreComercial" data-ng-minlength="1" data-ng-maxlength="60" class="form-control" capitalize/>
+                <div data-ng-messages="form.nombreComercial.$error" data-ng-if="form.apellidoMaterno.$touched || form.$submitted">
+                    <div class="has-error" data-ng-message="required">Ingrese nombre comercial.</div>
+                    <div class="has-error" data-ng-message="minlength">Ingrese nombre comercial.</div>
+                    <div class="has-error" data-ng-message="maxlength">Maximo 60 caracteres.</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group" data-ng-class="{ 'has-error' : form.actividadPrincipal.$invalid && (form.actividadPrincipal.$touched || form.$submitted)}">
+                <label>Actividad principal</label>
+                <input name="actividadPrincipal" type="text" data-ng-model="view.persona.actividadPrincipal" data-ng-minlength="1" data-ng-maxlength="70" class="form-control" capitalize />
+                <div data-ng-messages="form.nombres.$error" data-ng-if="form.nombres.$touched || form.$submitted">
+                    <div class="has-error" data-ng-message="required">Ingrese actividad principal.</div>
+                    <div class="has-error" data-ng-message="minlength">Ingrese actividad principal.</div>
+                    <div class="has-error" data-ng-message="maxlength">Maximo 70 caracteres.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4" data-ng-controller="PersonaDateController">
+            <div class="form-group" data-ng-class="{ 'has-error' : form.fechaConstitucion.$invalid && (form.fechaConstitucion.$touched || form.$submitted)}">
+                <label>Fecha constitucion</label>
+                <div class="input-group">
+                    <input type="text" name="fechaConstitucion" class="form-control" sg-max-date="maxDate" data-ng-model="view.persona.fechaConstitucion" datepicker-popup="dd/MM/yyyy" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" data-ng-required="true" close-text="Close" placeholder="dd/mm/yyyy" required>
+                    <span class="input-group-btn"><button class="btn btn-default" type="button" data-ng-click="open($event)"><span class="glyphicon glyphicon-calendar"></span></button></span>
+                </div>
+                <div data-ng-messages="form.fechaConstitucion.$error" data-ng-if="form.fechaConstitucion.$touched || form.$submitted">
+                    <div class="has-error" data-ng-message="required">Ingrese fecha constitucion.</div>
+                    <div class="has-error" data-ng-message="sgmaxdate">Fecha no valida.</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group" data-ng-class="{ 'has-error' : form.tipoEmpresa.$invalid && (form.tipoEmpresa.$touched || form.$submitted)}">
+                <label>Tipo empresa</label>
+                <ui-select name="tipoEmpresa" data-ng-model="combo.selected.tipoEmpresa" theme="bootstrap" required>
+                    <ui-select-autoload pk-name="denominacion" comparator="view.persona.tipoEmpresa" ignore-case="true"></ui-select-autoload>
+                    <ui-select-match placeholder="Seleccione">{{$select.selected.denominacion}}</ui-select-match>
+                    <ui-select-choices repeat="item in combo.tipoEmpresa | filter: $select.search">
+                        <div data-ng-bind-html="item.denominacion | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+                <div data-ng-messages="form.tipoEmpresa.$error" data-ng-if="form.tipoEmpresa.$touched || form.$submitted">
+                    <div class="has-error" data-ng-message="required">Ingrese tipo empresa.</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group" data-ng-class="{ 'has-error' : form.finLucro.$invalid && (form.finLucro.$touched || form.$submitted)}">
+                <label>Fin lucro</label>
+                <div class="checkbox" style="margin-top:5px;">
+                    <label>
+                        <input type="checkbox" name="finLucro" data-ng-model="view.persona.finLucro" data-ng-init="view.persona.finLucro"> Seleccione si tiene fin de lucro
+                    </label>
+                </div>
+                <div data-ng-messages="form.finLucro.$error" data-ng-if="form.finLucro.$touched || form.$submitted">
+                    <div class="has-error" data-ng-message="required">Ingrese fin de lucro.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p>
+        <button type="button" class="btn btn-default" ui-sref="persona.app.personas.buscarPersonaJuridica">Cancelar</button>
+        <button type="button" class="btn btn-default" data-ng-click="goTabRepresentante()">Siguiente »</button>
+    </p>
+</div>
