@@ -12,6 +12,7 @@
 	"angular-bootstrap": "latest",
 	"angular-ui-utils": "latest",
 	"angular-ui-router": "latest",
+	"keycloak": "1.1.0",
 	"openshift": "https://github.com/sistcoop-bootstrapfiles/openshift.git#master"
   }
 }
