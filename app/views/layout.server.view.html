@@ -47,11 +47,9 @@
 
 <body class="ng-cloak">
 	<nav data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-default navbar-pf"></nav>
-	<section class="content">
-		<section class="container">
-			{% block content %}{% endblock %}
-		</section>
-	</section>
+	<div class="container-fluid">
+		{% block content %}{% endblock %}
+	</div>
 
 	<!--Embedding The User Object-->
 	<script type="text/javascript">
