@@ -25,7 +25,7 @@ angular.element(document).ready(function() {
 
 	var consoleIndex = window.location.href.indexOf('/console');
 	if (consoleIndex == -1) {
-		alert.log('Invalid url.');
+		alert('Invalid url.');
 		return;
 	}
 
@@ -59,7 +59,7 @@ angular.element(document).ready(function() {
 		window.realm = 'sistcoop-default';
 
 	} else {
-		alert.log('Invalid realm.');
+		alert('Invalid realm.');
 		return;
 	}
 

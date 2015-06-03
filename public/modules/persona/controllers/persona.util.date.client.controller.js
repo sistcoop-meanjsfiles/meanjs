@@ -1,7 +1,7 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('persona').controller('PersonaDateController', ['$scope',
+angular.module('persona').controller('Persona.Util.DateController', ['$scope',
     function($scope) {
 
         $scope.opened = false;

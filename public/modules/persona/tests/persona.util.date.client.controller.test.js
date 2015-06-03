@@ -1,10 +1,10 @@
 'use strict';
 
 (function() {
-	// Personacarlos Controller Spec
-	describe('Personacarlos Controller Tests', function() {
+	// Personanaturalbuscar Controller Spec
+	describe('Persona.Util.DateController Controller Tests', function() {
 		// Initialize global variables
-		var PersonacarlosController,
+		var PersonaUtilDateController,
 			scope,
 			$httpBackend,
 			$stateParams,
@@ -44,8 +44,8 @@
 			$httpBackend = _$httpBackend_;
 			$location = _$location_;
 
-			// Initialize the Personacarlos controller.
-			PersonacarlosController = $controller('PersonacarlosController', {
+			// Initialize the Personanaturalbuscar controller.
+			PersonaUtilDateController = $controller('Persona.Util.DateController', {
 				$scope: scope
 			});
 		}));

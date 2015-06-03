@@ -1,12 +1,12 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('persona').controller('Persona.EditarPersonaJuridicaController', function(
-    $scope, $state, personaJuridica, SGPersonaJuridica, toastr){
+angular.module('persona').controller('Persona.Juridica.EditarPersonaJuridicaController',
+	function ($scope, $state, personaJuridica, SGPersonaJuridica, toastr) {
 
-    $scope.view = {
-        persona: personaJuridica
-    };
+		$scope.view = {
+			persona: personaJuridica
+		};
 
-});
+	});
 
