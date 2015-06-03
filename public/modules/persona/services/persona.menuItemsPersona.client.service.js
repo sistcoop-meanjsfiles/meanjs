@@ -93,7 +93,7 @@ angular.module('persona').service('$menuItemsPersona', ['Auth',
 
             if (rolesSession.indexOf('ver-documentos') !== -1) {
                 var administracion = this.addItem('Administracion', '');
-                administracion.addItem('Tipo documento', 'persona.app.administracion.buscarTipoDocumento');
+                administracion.addItem('Tipo documento', 'persona.app.administracion.documento.buscar');
             }
 
             return this;

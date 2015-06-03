@@ -1,8 +1,8 @@
 'use strict';
 
 // Setting up route
-angular.module('persona').config(['$stateProvider',
-	function ($stateProvider) {
+angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
+	function ($stateProvider, $urlRouterProvider) {
 
 		// Check if user has role
 		var checkUserRole = function (role, $q, $timeout, $http, $location, Auth) {
@@ -25,6 +25,9 @@ angular.module('persona').config(['$stateProvider',
 			return deferred.promise;
 		};
 
+		//$urlRouterProvider.when('/persona', '/persona/app');
+		//$urlRouterProvider.when('/persona/app', '/persona/app/personas/buscarPersonaNatural');
+
 		$stateProvider
 			.state('persona', {
 				abstract: true,
@@ -36,15 +39,14 @@ angular.module('persona').config(['$stateProvider',
 				url: '/home',
 				templateUrl: '/modules/persona/views/index.html',
 				ncyBreadcrumb: {
-					label: 'persona.home'
+					label: 'Index'
 				}
 			})
 			.state('persona.app', {
 				url: '/app',
 				templateUrl: '/modules/persona/views/app.html',
-				ncyBreadcrumb: {
-					label: 'Home'
-				}
+				template: '<div ui-view></div>',
+				abstract: true
 			})
 
 			.state('persona.app.personas', {
@@ -59,8 +61,13 @@ angular.module('persona').config(['$stateProvider',
 			})
 
 			//tipoDocumento
-			.state('persona.app.administracion.buscarTipoDocumento', {
-				url: '/buscarTipoDocumentos',
+			.state('persona.app.administracion.documento', {
+				url: '/documentos',
+				template: '<div ui-view></div>',
+				abstract: true
+			})
+			.state('persona.app.administracion.documento.buscar', {
+				url: '/buscar',
 				templateUrl: '/modules/persona/views/tipoDocumento/form-buscar-tipoDocumento.html',
 				controller: 'Persona.TipoDocumento.BuscarTipoDocumentoController',
 				resolve: {
@@ -69,11 +76,11 @@ angular.module('persona').config(['$stateProvider',
 					}
 				},
 				ncyBreadcrumb: {
-					label: 'Buscar documento'
+					label: 'Home'
 				}
 			})
-			.state('persona.app.administracion.crearTipoDocumento', {
-				url: '/tipoDocumento',
+			.state('persona.app.administracion.documento.crear', {
+				url: '/crear',
 				templateUrl: '/modules/persona/views/tipoDocumento/form-crear-tipoDocumento.html',
 				controller: 'Persona.TipoDocumento.CrearTipoDocumentoController',
 				resolve: {
@@ -85,8 +92,8 @@ angular.module('persona').config(['$stateProvider',
 					label: 'Crear documento'
 				}
 			})
-			.state('persona.app.administracion.editarTipoDocumento', {
-				url: '/tipoDocumento/:id',
+			.state('persona.app.administracion.documento.editar', {
+				url: '/editar/:documento',
 				templateUrl: '/modules/persona/views/tipoDocumento/form-editar-tipoDocumento.html',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {

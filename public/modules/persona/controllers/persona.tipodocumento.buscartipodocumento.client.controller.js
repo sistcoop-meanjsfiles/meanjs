@@ -5,7 +5,7 @@ angular.module('persona').controller('Persona.TipoDocumento.BuscarTipoDocumentoC
 	function ($scope, $state, SGTipoDocumento) {
 
 		$scope.nuevo = function () {
-			$state.go('^.crearTipoDocumento');
+			$state.go('^.crear');
 		};
 
 		$scope.filterOptions = {
