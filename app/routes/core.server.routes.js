@@ -3,5 +3,23 @@
 module.exports = function(app) {
 	// Root routing
 	var core = require('../../app/controllers/core.server.controller');
-	app.route('/').get(core.index);
+	/*app.route('/').get(function(req, res) {
+		res.redirect('/master/console');
+	});*/
+
+	app.route('/master/console')
+		.get(function(req, res) {
+			res.render('index_master', {
+				user: req.user || null,
+				request: req
+			});
+		});
+
+	app.route('/sucursales/:sucursal/agencias/:agencia/console')
+		.get(function(req, res) {
+			res.render('index_default', {
+				user: req.user || null,
+				request: req
+			});
+		});
 };
