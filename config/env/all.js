@@ -49,7 +49,8 @@ module.exports = {
 				'public/lib/angular-ui-grid/ui-grid.css',
 				'public/lib/angular-ui-select/dist/select.css',
 				'public/lib/angular-xeditable/dist/css/xeditable.css',
-				'public/lib/openshift/dist/css/main.css'
+				//'public/lib/openshift/dist/css/main.css',
+				'public/lib/patternfly/dist/css/patternfly.css'
 			],
 			js: [
 				'public/lib/angular/angular.js',
