@@ -4,7 +4,34 @@
 var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'mean';
-	var applicationModuleVendorDependencies = ['ngResource', 'ngAnimate', 'ui.router', 'ui.bootstrap', 'ui.utils'];
+	var applicationModuleVendorDependencies = [
+		'angularFileUpload',
+		'ngAnimate',
+		'ng-autofocus',
+		'ngMessages',
+		'ngSanitize',
+		'restangular',
+		'sg-cooperativa',
+		'sg-iso3166',
+		'sg-iso4217',
+		'sg-persona',
+		'sg-producto',
+		'sg-rrhh',
+		'sg-socio',
+		'sg-ubigeo',
+		'sg-utils',
+		'toastr',
+		'ui.bootstrap',
+		'ui.grid',
+		'ui.grid.edit',
+		'ui.grid.selection',
+		'ui.router',
+		'ui.select',
+		'ui.select.utils',
+		'ui.utils',
+		'ui.utils.masks',
+		'xeditable'
+	];
 
 	// Add a new vertical module
 	var registerModule = function(moduleName, dependencies) {
