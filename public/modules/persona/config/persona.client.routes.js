@@ -25,8 +25,6 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 			return deferred.promise;
 		};
 
-		//$urlRouterProvider.when('/persona', '/persona/app');
-		//$urlRouterProvider.when('/persona/app', '/persona/app/personas/buscarPersonaNatural');
 		$urlRouterProvider.when('/persona/app', '/persona/app/personas/naturales');
 
 		$urlRouterProvider.when('/persona/app/administracion/documentos', '/persona/app/administracion/documentos/buscar');
