@@ -1,6 +1,13 @@
 'use strict';
 
 // Configuring the application
+angular.module('config').run(['$rootScope', '$state', '$stateParams',
+		function ($rootScope,   $state,   $stateParams) {
+			$rootScope.$state = $state;
+			$rootScope.$stateParams = $stateParams;
+		}
+	]
+);
 
 angular.module('config').config(function ($provide, sgKeycloakProvider) {
 	sgKeycloakProvider.restUrl = 'http://localhost:8080/auth/admin/realms/sistcoop-default';

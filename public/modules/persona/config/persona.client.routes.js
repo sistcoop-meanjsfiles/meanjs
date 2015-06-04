@@ -46,7 +46,9 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 				url: '/app',
 				templateUrl: '/modules/persona/views/app.html',
 				template: '<div ui-view></div>',
-				abstract: true
+				ncyBreadcrumb: {
+					skip: true // Never display this state in breadcrumb.
+				}
 			})
 
 			.state('persona.app.personas', {
@@ -89,7 +91,8 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 					}
 				},
 				ncyBreadcrumb: {
-					label: 'Crear documento'
+					label: 'Crear documento',
+					parent: 'persona.app.administracion.documento.buscar'
 				}
 			})
 			.state('persona.app.administracion.documento.editar', {

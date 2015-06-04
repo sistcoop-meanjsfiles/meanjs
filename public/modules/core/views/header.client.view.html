@@ -13,13 +13,13 @@
 <div class="collapse navbar-collapse navbar-collapse-1" collapse="!isCollapsed" role="navigation" data-ng-controller="HeaderController">
 
     <ul class="nav navbar-nav navbar-primary">
-        <li data-ng-repeat="item in menu.items | orderBy: 'position'" ng-switch="item.menuItemType" ui-route="{{item.uiRoute}}" class="{{item.menuItemClass}}" ng-class="{active: ($uiRoute)}" dropdown="item.menuItemType === 'dropdown'">
-            <a ng-switch-when="dropdown" class="dropdown-toggle" dropdown-toggle>
+        <li data-ng-repeat="item in menu.items | orderBy: 'position'" ng-switch="item.menuItemType" ui-route="{{item.uiRoute}}" class="{{item.menuItemClass}}" ui-sref-active="active" ng-class="{active:$state.includes(item.uiRoute)}" dropdown="item.menuItemType === 'dropdown'">
+			<a ng-switch-when="dropdown" class="dropdown-toggle" dropdown-toggle>
                 <span data-ng-bind="item.title"></span>
                 <b class="caret"></b>
             </a>
             <ul ng-switch-when="dropdown" class="dropdown-menu">
-				<li data-ng-repeat="subitem in item.items | orderBy: 'position'" data-ng-if="subitem.shouldRender(authentication.user);" ui-route="{{subitem.uiRoute}}" ng-class="{active: $uiRoute}">
+				<li data-ng-repeat="subitem in item.items | orderBy: 'position'" data-ng-if="subitem.shouldRender(authentication.user);" ui-route="{{subitem.uiRoute}}" ui-sref-active="active" ng-class="{active: $uiRoute}">
 					<a href="/#!/{{subitem.link}}" data-ng-bind="subitem.title"></a>
 				</li>
             </ul>
