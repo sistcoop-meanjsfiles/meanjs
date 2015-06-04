@@ -1,0 +1,34 @@
+<form name="form" sg-read-only="!access.administrarTrabajadoresAgencia" class="form-horizontal" novalidate>
+    <div class="form-group">
+        <label class="col-sm-3 control-label">Usuario actual:</label>
+        <div class="col-sm-4">
+            <h3>
+                <span ng-if="view.trabajador.usuario" data-ng-bind="view.trabajador.usuario"></span>
+                <span ng-if="!view.trabajador.usuario">No tiene un usuario asignado</span>
+            </h3>
+        </div>
+    </div>
+    <div class="form-group" ng-class="{ 'has-error' : form.usuario.$invalid && (form.usuario.$touched || form.$submitted)}">
+        <label class="col-sm-3 control-label"><span class="required">*</span> Usuarios disponibles:</label>
+        <div class="col-sm-4">
+            <ui-select name="usuario" ng-model="combo.selected.usuario" ui-autofocus required>
+                <ui-select-autoload pk-name="username" comparator="view.trabajador.usuario"></ui-select-autoload>
+                <ui-select-match placeholder="Seleccione">{{$select.selected.username}}</ui-select-match>
+                <ui-select-choices repeat="item in combo.usuario track by $index"
+                                   refresh="refreshComboUsuario($select.search)"
+                                   refresh-delay="500">
+                    <div ng-bind-html="item.username | highlight: $select.search"></div>
+                </ui-select-choices>
+            </ui-select>
+            <div ng-messages="form.usuario.$error" ng-if="form.usuario.$touched || form.$submitted">
+                <div class="has-error" ng-message="required">Ingrese usuario.</div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button sg-save>Guardar</button>
+            <button sg-cancel ui-sref="^.resumen">Cancelar</button>
+        </div>
+    </div>
+</form>

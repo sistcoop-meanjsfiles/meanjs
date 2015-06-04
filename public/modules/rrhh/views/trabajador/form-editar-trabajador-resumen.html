@@ -1,0 +1,172 @@
+<div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default panel-border panel-shadow">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Datos principales</h3>
+                </div>
+                <div class="panel-body">
+                    <div style="border-bottom: 1px solid #e5e5e5;margin-bottom: 20px;">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <p>T. doc.:&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <p><strong ng-bind="view.trabajador.tipoDocumento"></strong></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <p>Num. doc.:&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <p><strong ng-bind="view.trabajador.numeroDocumento"></strong></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <p>Apellidos:&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <p>
+                                    <strong ng-bind="view.loaded.persona.apellidoPaterno"></strong>&nbsp;
+                                    <strong ng-bind="view.loaded.persona.apellidoMaterno"></strong>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <p>Nombres:&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <p>
+                                    <strong ng-bind="view.loaded.persona.nombres"></strong>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <p>F.nac.:&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>
+                                    <strong ng-bind="view.loaded.persona.fechaNacimiento | date : 'dd/MM/yyyy'"></strong>
+                                </p>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="form-group">
+                                    <p>Sexo:&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <p>
+                                    <strong ng-bind="view.loaded.persona.sexo"></strong>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <p>Estado:&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <p><strong ng-bind="view.trabajador.estado | si_no:'activo' | uppercase"></strong></p>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" ui-sref="^.datosPrincipales" class="btn btn-default">Editar</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default panel-border panel-shadow">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Sucursal</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <p>Denominacion:&nbsp;</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p><strong ng-bind="view.trabajador.agencia.sucursal.denominacion"></strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br/>
+                <div class="panel-heading">
+                    <h3 class="panel-title">Agencia</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <p>Denominacion:&nbsp;</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p><strong ng-bind="view.trabajador.agencia.denominacion"></strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default panel-border panel-shadow">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Acceso al sistema</h3>
+                </div>
+                <div class="panel-body">
+                    <div style="border-bottom: 1px solid #e5e5e5;margin-bottom: 20px;">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <p>Usuario:&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <p><strong ng-bind="view.trabajador.usuario"></strong></p>
+                            </div>
+                        </div>
+                        <div class="row" sg-data-keep="{module: 'ORGANIZACION', rol: ['ADMIN']}">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <p>Roles:&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <p><strong>{{view.loaded.userKeycloak.rolesAssigned.toString()}}</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
