@@ -4,10 +4,6 @@
 angular.module('persona').controller('Persona.TipoDocumento.BuscarTipoDocumentoController',
 	function ($scope, $state, SGTipoDocumento) {
 
-		$scope.nuevo = function () {
-			$state.go('^.crear');
-		};
-
 		$scope.filterOptions = {
 			filterText: undefined,
 			firstResult: 0,
@@ -34,11 +30,12 @@ angular.module('persona').controller('Persona.TipoDocumento.BuscarTipoDocumentoC
 		};
 		$scope.gridActions = {
 			edit: function (row) {
-				$state.go('^.editarTipoDocumento', {id: row.abreviatura});
+				$state.go('^.editar', {documento: row.abreviatura});
 			}
 		};
 
 		$scope.search = function () {
 			$scope.gridOptions.data = SGTipoDocumento.$search($scope.filterOptions).$object;
 		};
+
 	});

@@ -4,10 +4,6 @@
 angular.module('persona').controller('Persona.Juridica.BuscarPersonaJuridicaController',
 	function ($scope, $state, SGPersonaJuridica) {
 
-		$scope.nuevo = function () {
-			$state.go('^.crearPersonaJuridica.datosPrincipales');
-		};
-
 		$scope.filterOptions = {
 			filterText: undefined,
 			offset: 0,

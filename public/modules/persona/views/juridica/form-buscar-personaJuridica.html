@@ -1,30 +1,22 @@
-<div class="bg-light lter b-b wrapper-md">
-    <h1 class="m-n font-thin h3">Personas juridicas</h1>
-</div>
+<h1>Personas juridicas</h1>
 
-<div class="wrapper-md">
-    <div class="panel panel-default">
-        <div class="panel-body">
-            <form name="ctrl.form" data-ng-submit="search()" novalidate>
-                <div class="sg-grid-top-panel">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input type="text" name="filterText" class="form-control" data-ng-model="filterOptions.filterText" placeholder="Razon social" autofocus>
-                                    <span class="input-group-btn"><button class="btn btn-default" type="submit"><i class="fa fa-search text"></i></button></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group pull-right">
-                                <button type="button" data-ng-click="nuevo()" class="btn btn-primary">Nuevo</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <div ui-grid="gridOptions" external-scopes="gridActions" ui-grid-selection class="grid"></div>
-        </div>
-    </div>
-</div>
+<form name="ctrl.form" data-ng-submit="search()" novalidate>
+	<div class="sg-grid-top-panel">
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="form-group">
+					<div class="input-group">
+						<input type="text" name="filterText" class="form-control" data-ng-model="filterOptions.filterText" placeholder="Razon social" autofocus>
+						<span class="input-group-btn"><button class="btn btn-default" type="submit"><i class="fa fa-search text"></i></button></span>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="form-group pull-right">
+					<a href="" ui-sref="^.crear.datosPrincipales" class="btn btn-primary">Nuevo</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+<div ui-grid="gridOptions" external-scopes="gridActions" ui-grid-selection class="grid"></div>

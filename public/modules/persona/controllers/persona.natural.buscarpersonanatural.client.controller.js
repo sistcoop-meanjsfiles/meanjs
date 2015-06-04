@@ -4,10 +4,6 @@
 angular.module('persona').controller('Persona.Natural.BuscarPersonaNaturalController',
 	function ($scope, $state, SGPersonaNatural) {
 
-		$scope.nuevo = function () {
-			$state.go('^.crearPersonaNatural');
-		};
-
 		$scope.filterOptions = {
 			filterText: undefined,
 			firstResult: 0,
