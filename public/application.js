@@ -40,7 +40,7 @@ angular.element(document).ready(function() {
 		sucursal = realm;
 		agencia = realm;
 		keycloak = new Keycloak({
-			url: 'http://localhost:8080/auth',
+			url: 'http://192.168.1.50:8080/auth',
 			realm: 'sistcoop-master',
 			clientId: 'sistcoop'
 		});
@@ -51,7 +51,7 @@ angular.element(document).ready(function() {
 		sucursal = consoleBaseUrl.split('/')[4];
 		agencia = consoleBaseUrl.split('/')[6];
 		keycloak = new Keycloak({
-			url: 'http://localhost:8080/auth',
+			url: 'http://192.168.1.50:8080/auth',
 			realm: 'sistcoop-default',
 			clientId: 'sistcoop'
 		});

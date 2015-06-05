@@ -19,7 +19,7 @@
     "angular-ui-utils": "latest",
     "angular-xeditable": "latest",
     "bootstrap": "latest",
-    "keycloak": "1.1.0",
+    "keycloak": "1.2.0.Final",
     "kubernetes-label-selector": "latest",
     "messenger": "latest",
     "ng-autofocus": "latest",
@@ -36,6 +36,6 @@
     "sg-utils": "https://github.com/sistcoop-angularjsfiles/sg-utils.git#master",
     "sistcoop": "https://github.com/sistcoop/sistcoop-js-bower.git#master",
     "underscore": "latest",
-    "angular-breadcrumb": "~0.4.0"
+    "angular-breadcrumb": "latest"
   }
 }
