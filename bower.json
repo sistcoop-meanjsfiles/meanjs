@@ -36,6 +36,7 @@
     "sg-utils": "https://github.com/sistcoop-angularjsfiles/sg-utils.git#master",
     "sistcoop": "https://github.com/sistcoop/sistcoop-js-bower.git#master",
     "underscore": "latest",
-    "angular-breadcrumb": "latest"
+    "angular-breadcrumb": "latest",
+    "patternfly": "latest"
   }
 }
