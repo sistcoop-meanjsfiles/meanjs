@@ -19,7 +19,7 @@ angular.module('persona').controller('Persona.TipoDocumento.CrearTipoDocumentoCo
 			$scope.view.tipoDocumento.$save().then(
 				function (response) {
 					toastr.success('Tipo documento creado');
-					$state.go('^.editarTipoDocumento', {id: $scope.view.tipoDocumento.abreviatura});
+					$state.go('^.editar', {documento: $scope.view.tipoDocumento.abreviatura});
 				},
 				function error(err) {
 					toastr.error(err.data.message);
