@@ -31,7 +31,7 @@ angular.module('persona').controller('Persona.Natural.BuscarPersonaNaturalContro
 		};
 		$scope.gridActions = {
 			edit: function (row) {
-				$state.go('^.editarPersonaNatural.resumen', {id: row.id});
+				$state.go('^.editar.resumen', {personaNatural: row.id});
 			}
 		};
 

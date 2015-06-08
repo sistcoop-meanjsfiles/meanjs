@@ -60,7 +60,7 @@
     </div>
     <div class="form-group" data-ng-class="{ 'has-error' : form.fechanacimiento.$invalid && form.$submitted }">
         <label class="col-sm-2 control-label">Fecha nacimiento:</label>
-        <div class="col-sm-2" data-ng-controller="PersonaDateController">
+        <div class="col-sm-2" data-ng-controller="Persona.Util.DateController">
             <div class="input-group">
                 <input type="text" name="fechanacimiento" class="form-control" sg-max-date="maxDate" data-ng-model="view.persona.fechaNacimiento" datepicker-popup="dd/MM/yyyy" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" data-ng-required="true" close-text="Close" placeholder="dd/mm/yyyy" required>
                 <span class="input-group-btn"><button class="btn btn-default" type="button" data-ng-click="open($event)"><span class="glyphicon glyphicon-calendar"></span></button></span>
@@ -73,7 +73,7 @@
     </div>
     <div class="form-group" data-ng-class="{ 'has-error' : form.sexo.$invalid && form.$submitted }">
         <label class="col-sm-2 control-label">Sexo:</label>
-        <div class="col-sm-2" data-ng-controller="PersonaDateController">
+        <div class="col-sm-2">
             <ui-select name="sexo" data-ng-model="combo.selected.sexo" ng-disabled="!access.administrarPersonas" required>
                 <ui-select-match placeholder="Seleccione">{{$select.selected.denominacion}}</ui-select-match>
                 <ui-select-autoload pk-name="denominacion" comparator="view.persona.sexo" ignore-case="true"></ui-select-autoload>
@@ -88,7 +88,7 @@
     </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">Estado civil <span class="optional">(opcional)</span>:</label>
-        <div class="col-sm-2" data-ng-controller="PersonaDateController">
+        <div class="col-sm-2">
             <ui-select data-ng-model="combo.selected.estadoCivil" ng-disabled="!access.administrarPersonas">
                 <ui-select-autoload pk-name="denominacion" comparator="view.persona.estadoCivil" ignore-case="true"></ui-select-autoload>
                 <ui-select-match placeholder="Seleccione">{{$select.selected.denominacion}}</ui-select-match>

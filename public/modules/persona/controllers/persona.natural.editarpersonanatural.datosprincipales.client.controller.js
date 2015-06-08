@@ -22,7 +22,7 @@ angular.module('persona').controller('Persona.Natural.EditarPersonaNatural.Datos
 		$scope.save = function () {
 			$scope.view.persona.$save().then(
 				function (response) {
-					toastr.success('Persona actualizada', 'Success');
+					toastr.success('Persona actualizada');
 					$scope.view.personaDB = angular.copy($scope.view.persona);
 				},
 				function error(err) {

@@ -32,6 +32,8 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 		$urlRouterProvider.when('/persona/app/personas/naturales', '/persona/app/personas/naturales/buscar');
 		$urlRouterProvider.when('/persona/app/personas/juridicas', '/persona/app/personas/juridicas/buscar');
 
+		$urlRouterProvider.when('/persona/app/personas/naturales/editar/:personaNatural', '/persona/app/personas/naturales/editar/:personaNatural/resumen');
+
 		$stateProvider
 			.state('persona', {
 				abstract: true,
@@ -160,7 +162,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 						return checkUserRole('ver-personas', $q, $timeout, $http, $location, Auth);
 					},
 					personaNatural: function ($state, $stateParams, SGPersonaNatural) {
-						return SGPersonaNatural.$find($stateParams.id);
+						return SGPersonaNatural.$find($stateParams.personaNatural);
 					}
 				},
 				controller: 'Persona.Natural.EditarPersonaNaturalController',
@@ -178,7 +180,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 					}
 				},
 				ncyBreadcrumb: {
-					label: 'Resumen'
+					skip: true // Never display this state in breadcrumb.
 				}
 			}).state('persona.app.persona.natural.editar.datosPrincipales', {
 				url: '/datosPrincipales',

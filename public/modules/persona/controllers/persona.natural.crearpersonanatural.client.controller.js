@@ -49,8 +49,8 @@ angular.module('persona').controller('Persona.Natural.CrearPersonaNaturalControl
 			var save = function () {
 				$scope.view.persona.$save().then(
 					function (response) {
-						toastr.success('Persona creada', 'Success');
-						$state.go('^.editarPersonaNatural.resumen', {id: response.id});
+						toastr.success('Persona creada');
+						$state.go('^.editar.resumen', {personaNatural: response.id});
 					},
 					function error(err) {
 						toastr.error(err.data.message);
