@@ -5,7 +5,6 @@ var ApplicationConfiguration = (function() {
 	// Init module configuration options
 	var applicationModuleName = 'mean';
 	var applicationModuleVendorDependencies = [
-		'angularFileUpload',
 		'ngAnimate',
 		'ng-autofocus',
 		'ngMessages',
@@ -31,7 +30,8 @@ var ApplicationConfiguration = (function() {
 		'ui.select.utils',
 		'ui.utils',
 		'ui.utils.masks',
-		'xeditable'
+		'xeditable',
+		'ngFileUpload'
 	];
 
 	// Add a new vertical module

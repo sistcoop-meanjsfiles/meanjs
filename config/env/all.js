@@ -57,7 +57,6 @@ module.exports = {
 				'public/lib/angular-animate/angular-animate.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/angular-breadcrumb/dist/angular-breadcrumb.js',
-				'public/lib/angular-file-upload/angular-file-upload.js',
 				'public/lib/angular-input-masks/angular-input-masks.js',
 				'public/lib/angular-messages/angular-messages.js',
 				'public/lib/angular-sanitize/angular-sanitize.js',
@@ -79,7 +78,8 @@ module.exports = {
 				'public/lib/sg-socio/dist/sg-socio.js',
 				'public/lib/sg-ubigeo/dist/sg-ubigeo.js',
 				'public/lib/sg-utils/dist/sg-utils.js',
-				'public/lib/underscore/underscore.js'
+				'public/lib/underscore/underscore.js',
+				'public/lib/ng-file-upload/ng-file-upload-all.js'
 			]
 		},
 		css: [

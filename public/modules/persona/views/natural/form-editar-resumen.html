@@ -9,7 +9,8 @@
                     <div style="border-bottom: 1px solid #e5e5e5;margin-bottom: 20px;">
                         <div class="row">
                             <div class="col-sm-4">
-                                <img src="persona/assets/img/photo.png" alt="..." class="img-circle">
+                                <img ng-if="view.persona.urlFoto" ng-src="{{view.persona.urlFoto}}" alt="Foto" height="130" class="img-circle">
+								<img ng-if="!view.persona.urlFoto" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Foto" height="130" class="img-circle">
                             </div>
                             <div class="col-sm-8">
                                 <div class="row">

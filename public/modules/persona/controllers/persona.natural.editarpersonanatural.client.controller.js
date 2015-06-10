@@ -18,8 +18,8 @@ angular.module('persona').controller('Persona.Natural.EditarPersonaNaturalContro
 
 			var modalInstance = $modal.open({
 				animation: true,
-				templateUrl: 'persona/views/natural/form-editar-cambiarFoto.html',
-				controller: 'Persona.EditarPersonaNatural.CambiarFotoModalController',
+				templateUrl: '/modules/persona/views/natural/form-editar-cambiarFoto.html',
+				controller: 'Persona.Natural.EditarPersonaNatural.CambiarFotoModalController',
 				size: 'lg',
 				resolve: {
 					personaNatural: function () {
@@ -29,7 +29,7 @@ angular.module('persona').controller('Persona.Natural.EditarPersonaNaturalContro
 			});
 
 			modalInstance.result.then(function (selectedItem) {
-				$scope.selected = selectedItem;
+				//$scope.selected = selectedItem;
 			}, function () {
 			});
 
