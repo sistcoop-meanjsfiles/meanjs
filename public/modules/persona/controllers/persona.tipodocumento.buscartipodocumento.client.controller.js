@@ -7,7 +7,8 @@ angular.module('persona').controller('Persona.TipoDocumento.BuscarTipoDocumentoC
 		$scope.filterOptions = {
 			filterText: undefined,
 			firstResult: 0,
-			maxResults: 10
+			maxResults: 10,
+			estado: true
 		};
 
 		$scope.gridOptions = {

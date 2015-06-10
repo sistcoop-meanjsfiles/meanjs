@@ -40,23 +40,23 @@ angular.element(document).ready(function() {
 		sucursal = realm;
 		agencia = realm;
 		keycloak = new Keycloak({
-			url: 'https://keycloak-softgreen.rhcloud.com/auth',
-			realm: 'sistcoop-master',
+			url: 'http://192.168.1.50:8080/auth',
+			realm: 'sistcoop',
 			clientId: 'sistcoop'
 		});
 
-		window.realm = 'sistcoop-master';
+		window.realm = 'sistcoop';
 
 	} else if(realm === 'sucursales'){
 		sucursal = consoleBaseUrl.split('/')[4];
 		agencia = consoleBaseUrl.split('/')[6];
 		keycloak = new Keycloak({
-			url: 'https://keycloak-softgreen.rhcloud.com/auth',
-			realm: 'sistcoop-default',
+			url: 'http://192.168.1.50:8080/auth',
+			realm: 'sistcoop',
 			clientId: 'sistcoop'
 		});
 
-		window.realm = 'sistcoop-default';
+		window.realm = 'sistcoop';
 
 	} else {
 		alert('Invalid realm.');

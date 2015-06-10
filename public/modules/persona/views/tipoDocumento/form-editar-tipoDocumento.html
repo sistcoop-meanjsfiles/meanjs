@@ -1,6 +1,6 @@
 <div ncy-breadcrumb></div>
 
-<h1>Editar tipo documento</h1>
+<h1>Editar tipo documento <strong><span data-ng-bind="view.tipoDocumento.abreviatura"></span></strong></h1>
 
 <div class="panel panel-default">
     <div class="panel-body">
@@ -20,12 +20,6 @@
                     <div data-ng-messages="form.tipoPersona.$error" data-ng-if="form.$submitted">
                         <div class="has-error" data-ng-message="required">Ingrese tipo persona.</div>
                     </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Abreviatura:</label>
-                <div class="col-sm-3">
-                    <h4><span data-ng-bind="view.tipoDocumento.abreviatura"></span></h4>
                 </div>
             </div>
             <div class="form-group" data-ng-class="{ 'has-error' : form.denominacion.$invalid && form.$submitted }">
