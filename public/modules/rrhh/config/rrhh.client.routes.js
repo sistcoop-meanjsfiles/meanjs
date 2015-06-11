@@ -51,6 +51,8 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 		$urlRouterProvider.when('/rrhh/app', '/rrhh/app/organizacion/sucursales');
 
 		$urlRouterProvider.when('/rrhh/app/organizacion/sucursales', '/rrhh/app/organizacion/sucursales/buscar');
+
+		$urlRouterProvider.when('/rrhh/app/organizacion/sucursales/editar/:sucursal', '/rrhh/app/organizacion/sucursales/editar/:sucursal/resumen');
 		$urlRouterProvider.when('/rrhh/app/organizacion/sucursales/editar/:sucursal/agencias', '/rrhh/app/organizacion/sucursales/editar/:sucursal/agencias/buscar');
 
 		$urlRouterProvider.when('/rrhh/app/rrhh/trabajadores', '/rrhh/app/rrhh/trabajadores/buscar');
