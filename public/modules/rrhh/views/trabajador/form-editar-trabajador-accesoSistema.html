@@ -9,7 +9,7 @@
 			<div class="col-sm-3">
 				<input type="text" data-ng-model="view.trabajador.usuario" class="form-control" placeholder="No asignado" disabled/>
 			</div>
-			<div class="col-sm-3">
+			<div class="col-sm-3" data-ng-if="view.trabajador.usuario">
 				<button type="button" data-ng-click="desvincular()" class="btn btn-default">Desvincular usuario</button>
 			</div>
 		</div>

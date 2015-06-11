@@ -32,7 +32,7 @@ angular.module('rrhh').controller('Rrhh.Trabajador.EditarTrabajador.AccesoSistem
 
 		$scope.desvincular = function () {
 			SGDialog.confirm('Desvincular', 'Estas seguro de quitar el usuario para el trabajador?', function () {
-				$scope.view.trabajador.$setUsuario(null).then(
+				$scope.view.trabajador.$setUsuario(undefined).then(
 					function (response) {
 						toastr.success('Trabajador actualizado');
 						$scope.view.trabajador.usuario = undefined;
