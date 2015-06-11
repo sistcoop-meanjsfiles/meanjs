@@ -18,7 +18,7 @@ angular.module('rrhh').controller('Rrhh.Sucursal.Agencia.BuscarAgenciaController
 		$scope.loadAgencias();
 
 		$scope.edit = function (row) {
-			$state.go('^.editarAgencia', {agencia: row.denominacion});
+			$state.go('^.editar', {agencia: row.denominacion});
 		};
 
 		$scope.remove = function (row) {

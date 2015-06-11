@@ -150,7 +150,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 					}
 				},
 				ncyBreadcrumb: {
-					label: 'Resumen'
+					skip: true // Never display this state in breadcrumb.
 				}
 			})
 			.state('rrhh.app.organizacion.sucursal.editar.datosPrincipales', {
@@ -163,7 +163,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 					}
 				},
 				ncyBreadcrumb: {
-					label: 'DatosPrincipales'
+					label: 'Datos principales'
 				}
 			})
 

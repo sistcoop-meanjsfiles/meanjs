@@ -50,7 +50,6 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 			})
 			.state('persona.app', {
 				url: '/app',
-				templateUrl: '/modules/persona/views/app.html',
 				template: '<div ui-view></div>',
 				ncyBreadcrumb: {
 					skip: true // Never display this state in breadcrumb.

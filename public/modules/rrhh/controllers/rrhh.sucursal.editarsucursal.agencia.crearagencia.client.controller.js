@@ -14,7 +14,7 @@ angular.module('rrhh').controller('Rrhh.Sucursal.Agencia.CrearAgenciaController'
 			$scope.view.sucursal.$addAgencia($scope.view.agencia).then(
 				function (response) {
 					toastr.success('Agencia creada satisfactoriamente');
-					$state.go('^.editarAgencia', {agencia: $scope.view.agencia.denominacion});
+					$state.go('^.editar', {agencia: $scope.view.agencia.denominacion});
 				},
 				function error(err) {
 					toastr.error(err.data.message);

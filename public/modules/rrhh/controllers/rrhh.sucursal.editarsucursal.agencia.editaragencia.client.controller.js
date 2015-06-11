@@ -15,7 +15,7 @@ angular.module('rrhh').controller('Rrhh.Sucursal.Agencia.EditarAgenciaController
 			$scope.view.sucursal.$updateAgencia($scope.view.agenciaDB.denominacion, $scope.view.agencia).then(
 				function (response) {
 					toastr.success('Agencia actualizada');
-					$state.go('^.editarAgencia', {agencia: $scope.view.agencia.denominacion});
+					$state.go('^.editar', {agencia: $scope.view.agencia.denominacion});
 				},
 				function error(err) {
 					toastr.error(err.data.message);
