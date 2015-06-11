@@ -57,6 +57,8 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 
 		$urlRouterProvider.when('/rrhh/app/rrhh/trabajadores', '/rrhh/app/rrhh/trabajadores/buscar');
 
+		$urlRouterProvider.when('/rrhh/app/rrhh/trabajadores/editar/:trabajador', '/rrhh/app/rrhh/trabajadores/editar/:trabajador/resumen');
+
 		$stateProvider
 			.state('rrhh', {
 				abstract: true,
@@ -278,7 +280,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 						return checkUserRole('ver-trabajadores', $q, $timeout, $http, $location, Auth);
 					},
 					trabajador: function ($state, $stateParams, SGTrabajador) {
-						return SGTrabajador.$find($stateParams.idTrabajador);
+						return SGTrabajador.$find($stateParams.trabajador);
 					}
 				},
 				controller: 'Rrhh.Trabajador.EditarTrabajadorController',
@@ -325,7 +327,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 				controller: 'Rrhh.Trabajador.EditarTrabajador.AccesoSistemaController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
-						return checkUserRole('administrar-trabajadores-agencia', $q, $timeout, $http, $location, Auth);
+						return checkUserRole('ver-trabajadores', $q, $timeout, $http, $location, Auth);
 					}
 				},
 				ncyBreadcrumb: {

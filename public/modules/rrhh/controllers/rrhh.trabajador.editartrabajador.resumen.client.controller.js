@@ -19,13 +19,15 @@ angular.module('rrhh').controller('Rrhh.Trabajador.EditarTrabajador.ResumenContr
 		$scope.loadUsuario = function () {
 			//Usuario de keycloak, para sacar roles
 			var usuario = $scope.view.trabajador.usuario;
-			SGUsuarioKeycloak.$realmRoles(usuario).then(function (response) {
-				for (var i = 0; i < response.length; i++) {
-					$scope.view.loaded.userKeycloak.rolesAssigned.push(response[i].name);
-				}
-			});
+			if(usuario){
+				SGUsuarioKeycloak.$realmRoles(usuario).then(function (response) {
+					for (var i = 0; i < response.length; i++) {
+						$scope.view.loaded.userKeycloak.rolesAssigned.push(response[i].name);
+					}
+				});
+			}
 		};
-		//$scope.loadUsuario();
+		$scope.loadUsuario();
 
 		$scope.combo = {
 			sucursal: undefined,

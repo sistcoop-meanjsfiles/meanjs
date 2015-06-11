@@ -73,13 +73,9 @@ angular.module('rrhh').controller('Rrhh.Trabajador.BuscarTrabajadorController',
 			}
 		};
 
-		$scope.nuevo = function () {
-			$state.go('^.crearTrabajador');
-		};
-
 		$scope.gridActions = {
 			edit: function (row) {
-				$state.go('^.editarTrabajador.resumen', {idTrabajador: row.id});
+				$state.go('^.editar', {trabajador: row.id});
 			}
 		};
 

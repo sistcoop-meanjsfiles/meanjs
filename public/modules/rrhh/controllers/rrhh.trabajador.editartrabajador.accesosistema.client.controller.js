@@ -31,17 +31,17 @@ angular.module('rrhh').controller('Rrhh.Trabajador.EditarTrabajador.AccesoSistem
 		};
 
 		$scope.desvincular = function () {
-			/*SGDialog.confirm('Desvincular', 'Estas seguro de quitar el usuario para el trabajador?', function () {
-				SGTrabajadorUsuario.$remove($scope.view.loaded.trabajadorUsuario.id).then(
+			SGDialog.confirm('Desvincular', 'Estas seguro de quitar el usuario para el trabajador?', function () {
+				$scope.view.trabajador.$setUsuario(null).then(
 					function (response) {
 						toastr.success('Trabajador actualizado');
-						$scope.view.loaded.trabajadorUsuario = undefined;
+						$scope.view.trabajador.usuario = undefined;
 					},
 					function error(err) {
 						toastr.error(err.data.message);
 					}
 				);
-			});*/
+			});
 		};
 
 		$scope.save = function () {

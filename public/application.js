@@ -13,7 +13,7 @@ angular.module(ApplicationConfiguration.applicationModuleName).config(['$locatio
 window.auth = {};
 window.auth.sistcoop = {};
 
-window.realm;
+window.realm = {};
 
 //Then define the init function for starting up the application
 angular.element(document).ready(function() {
@@ -32,36 +32,26 @@ angular.element(document).ready(function() {
 	var consoleBaseUrl = window.location.href;
 	consoleBaseUrl = consoleBaseUrl.substring(0, consoleBaseUrl.indexOf('/console'));
 
-	window.realm = consoleBaseUrl.split('/')[3];
+	window.realm.name = consoleBaseUrl.split('/')[3];
 	var sucursal;
 	var agencia;
 	var keycloak;
-	if(realm === 'master') {
-		sucursal = realm;
-		agencia = realm;
-		keycloak = new Keycloak({
-			url: 'http://192.168.1.50:8080/auth',
-			realm: 'sistcoop',
-			clientId: 'sistcoop'
-		});
-
-		window.realm = 'sistcoop';
-
+	if(realm.name === 'master') {
+		sucursal = realm.name;
+		agencia = realm.name;
 	} else if(realm === 'sucursales'){
 		sucursal = consoleBaseUrl.split('/')[4];
 		agencia = consoleBaseUrl.split('/')[6];
-		keycloak = new Keycloak({
-			url: 'http://192.168.1.50:8080/auth',
-			realm: 'sistcoop',
-			clientId: 'sistcoop'
-		});
-
-		window.realm = 'sistcoop';
-
 	} else {
 		alert('Invalid realm.');
 		return;
 	}
+
+	keycloak = new Keycloak({
+		url: 'http://192.168.1.50:8080/auth',
+		realm: 'sistcoop',
+		clientId: 'sistcoop'
+	});
 
 	keycloak.init({onLoad: 'login-required'}).success(function () {
 
@@ -79,6 +69,9 @@ angular.element(document).ready(function() {
 			angular.module('mean').factory('Auth', function () {
 				return auth;
 			});
+
+			window.realm.name = keycloak.realm;
+			window.realm.authServerUrl = keycloak.authServerUrl;
 			angular.module('mean').constant('REALM', window.realm);
 
 			//Then init the app

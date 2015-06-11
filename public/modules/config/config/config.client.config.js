@@ -9,8 +9,8 @@ angular.module('config').run(['$rootScope', '$state', '$stateParams',
 	]
 );
 
-angular.module('config').config(function ($provide, sgKeycloakProvider) {
-	sgKeycloakProvider.restUrl = 'http://localhost:8080/auth/admin/realms/sistcoop-default';
+angular.module('mean').config(function ($provide, sgKeycloakProvider, REALM) {
+	sgKeycloakProvider.restUrl = REALM.authServerUrl + '/admin/realms/' + REALM.name;
 });
 
 angular.module('config').config(function (sgIso3166Provider) {

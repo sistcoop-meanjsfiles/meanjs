@@ -2,28 +2,22 @@
 
 <h1>Crear sucursal</h1>
 
-<div class="panel panel-default">
-    <div class="panel-body">
-
-        <form name="form" sg-read-only="!access.administrarSucursales" class="form-horizontal" novalidate>
-            <div class="form-group" ng-class="{ 'has-error' : form.denominacion.$invalid && form.denominacion.$dirty}">
-                <label class="col-sm-2 control-label"><span class="required">*</span> Denominacion:</label>
-                <div class="col-sm-4">
-                    <input type="text" name="denominacion" ng-model="view.sucursal.denominacion" sg-denominacion-sucursal-validate ng-maxlength="60" class="form-control" autofocus required/>
-                    <div ng-messages="form.denominacion.$error" ng-if="form.denominacion.$dirty">
-                        <div class="has-error" ng-message="required">Ingrese denominacion.</div>
-                        <div class="has-error" ng-message="maxlength">Maximo 60 caracteres.</div>
-                        <div class="has-error" ng-message="disponible">Denominacion no disponible.</div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button sg-save>Guardar</button>
-                    <button sg-cancel ui-sref="^.buscar">Cancelar</button>
-                </div>
-            </div>
-        </form>
-
-    </div>
-</div>
+<form name="form" sg-read-only="!access.administrarSucursales" class="form-horizontal" novalidate>
+	<div class="form-group" ng-class="{ 'has-error' : form.denominacion.$invalid && form.denominacion.$dirty}">
+		<label class="col-sm-2 control-label"><span class="required">*</span> Denominacion:</label>
+		<div class="col-sm-4">
+			<input type="text" name="denominacion" ng-model="view.sucursal.denominacion" sg-denominacion-sucursal-validate ng-maxlength="60" class="form-control" autofocus required/>
+			<div ng-messages="form.denominacion.$error" ng-if="form.denominacion.$dirty">
+				<div class="has-error" ng-message="required">Ingrese denominacion.</div>
+				<div class="has-error" ng-message="maxlength">Maximo 60 caracteres.</div>
+				<div class="has-error" ng-message="disponible">Denominacion no disponible.</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button sg-save>Guardar</button>
+			<button sg-cancel ui-sref="^.buscar">Cancelar</button>
+		</div>
+	</div>
+</form>

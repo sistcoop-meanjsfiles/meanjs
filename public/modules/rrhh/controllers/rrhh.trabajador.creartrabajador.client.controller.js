@@ -81,7 +81,7 @@ angular.module('rrhh').controller('Rrhh.Trabajador.CrearTrabajadorController',
 			trabajador.$save().then(
 				function (response) {
 					toastr.success('Trabajador creado');
-					$state.go('^.editarTrabajador.resumen', {idTrabajador: response.id});
+					$state.go('^.editar.resumen', {trabajador: response.id});
 				},
 				function error(err) {
 					toastr.error(err.data.message);
