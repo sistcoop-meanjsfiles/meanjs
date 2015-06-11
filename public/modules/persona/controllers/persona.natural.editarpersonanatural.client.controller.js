@@ -14,25 +14,4 @@ angular.module('persona').controller('Persona.Natural.EditarPersonaNaturalContro
 			});
 		};
 
-		$scope.openCambiarFotoModal = function () {
-
-			var modalInstance = $modal.open({
-				animation: true,
-				templateUrl: '/modules/persona/views/natural/form-editar-cambiarFoto.html',
-				controller: 'Persona.Natural.EditarPersonaNatural.CambiarFotoModalController',
-				size: 'lg',
-				resolve: {
-					personaNatural: function () {
-						return $scope.view.persona;
-					}
-				}
-			});
-
-			modalInstance.result.then(function (selectedItem) {
-				//$scope.selected = selectedItem;
-			}, function () {
-			});
-
-		};
-
 	});
