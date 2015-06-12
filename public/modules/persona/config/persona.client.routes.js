@@ -33,6 +33,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 		$urlRouterProvider.when('/persona/app/personas/juridicas', '/persona/app/personas/juridicas/buscar');
 
 		$urlRouterProvider.when('/persona/app/personas/naturales/editar/:personaNatural', '/persona/app/personas/naturales/editar/:personaNatural/resumen');
+		$urlRouterProvider.when('/persona/app/personas/juridicas/editar/:personaJuridica', '/persona/app/personas/juridicas/editar/:personaJuridica/resumen');
 
 		$stateProvider
 			.state('persona', {

@@ -30,7 +30,7 @@ angular.module('persona').controller('Persona.Juridica.CrearPersonaJuridicaContr
 			tipoEmpresa: undefined
 		};
 
-		$scope.checkPersona = function ($event) {
+		$scope.check = function ($event) {
 			if (!angular.isUndefined($event))
 				$event.preventDefault();
 			if (!angular.isUndefined($scope.combo.selected.tipoDocumento) && !angular.isUndefined($scope.view.persona.numeroDocumento)) {
@@ -46,7 +46,7 @@ angular.module('persona').controller('Persona.Juridica.CrearPersonaJuridicaContr
 
 		$scope.goTabRepresentante = function () {
 			if ($scope.form.$valid) {
-				$state.go('persona.app.personas.crearPersonaJuridica.representante');
+				$state.go('^.representante');
 			} else {
 				$scope.form.$setSubmitted();
 			}
@@ -83,7 +83,7 @@ angular.module('persona').controller('Persona.Juridica.CrearPersonaJuridicaContr
 			$scope.view.persona.$save().then(
 				function (response) {
 					toastr.success('Persona creada', 'Info');
-					$state.go('persona.app.personas.editarPersonaJuridica.resumen', {id: response.id});
+					$state.go('^.^.editar', {personaJuridica: response.id});
 				},
 				function error(err) {
 					toastr.error(err.data.message);

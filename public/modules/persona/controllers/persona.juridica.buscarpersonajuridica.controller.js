@@ -30,7 +30,7 @@ angular.module('persona').controller('Persona.Juridica.BuscarPersonaJuridicaCont
 		};
 		$scope.gridActions = {
 			edit: function (row) {
-				$state.go('^.editarPersonaJuridica.resumen', {id: row.id});
+				$state.go('^.editar', {personaJuridica: row.id});
 			}
 		};
 
