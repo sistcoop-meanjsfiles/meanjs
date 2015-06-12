@@ -8,33 +8,29 @@ angular.module('rrhh').controller('Rrhh.Trabajador.EditarTrabajador.AccesoSistem
 			trabajador: trabajador
 		};
 
-		$scope.combo = {
-			usuario: undefined
-		};
-		$scope.combo.selected = {
-			usuario: undefined
+		$scope.view = {
+			trabajador: trabajador,
+			usuario: trabajador.usuario
 		};
 
-		$scope.refreshComboUsuario = function (filterText) {
-			var queryParams = {
-				search: filterText,
-				first: 0,
-				max: 5
-			};
-			if ($scope.combo.usuario) {
-				$scope.combo.usuario = SGUsuarioKeycloak.$search(queryParams).$object;
-			}
-			else {
-				queryParams.search = $scope.view.trabajador.usuario;
-				$scope.combo.usuario = SGUsuarioKeycloak.$search(queryParams).$object;
-			}
+		$scope.combo = {
+			rol: undefined
 		};
+		$scope.combo.selected = {
+			rol: undefined
+		};
+
+		$scope.loadCombo = function () {
+			$scope.combo.rol = SGUsuarioKeycloak.$getRealmLevelRoles();
+		};
+		$scope.loadCombo();
 
 		$scope.desvincular = function () {
 			SGDialog.confirm('Desvincular', 'Estas seguro de quitar el usuario para el trabajador?', function () {
 				$scope.view.trabajador.$setUsuario(undefined).then(
 					function (response) {
 						toastr.success('Trabajador actualizado');
+						$scope.view.usuario = undefined;
 						$scope.view.trabajador.usuario = undefined;
 					},
 					function error(err) {
@@ -42,6 +38,18 @@ angular.module('rrhh').controller('Rrhh.Trabajador.EditarTrabajador.AccesoSistem
 					}
 				);
 			});
+		};
+
+		$scope.setUsuario = function(){
+			$scope.view.trabajador.$setUsuario($scope.view.usuario).then(
+				function (response) {
+					toastr.success('Trabajador actualizado');
+					$scope.view.trabajador.usuario = $scope.view.usuario;
+				},
+				function error(err) {
+					toastr.error(err.data.message);
+				}
+			);
 		};
 
 		$scope.save = function () {

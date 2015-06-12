@@ -36,11 +36,15 @@ angular.module('config').factory('SGUsuarioKeycloak', ['KeycloakRestangular',  f
 		$search: function(queryParams){
 			return KeycloakRestangular.all(url).getList(queryParams);
 		},
-		$roleMappings : function(username){
+		$roleMappings: function(username){
 			return KeycloakRestangular.one(url + '/' + username + '/role-mappings').get();
 		},
-		$realmRoles : function(username){
+		$realmRoles: function(username){
 			return KeycloakRestangular.one(url + '/' + username + '/role-mappings/realm').get();
+		},
+
+		$getRealmLevelRoles: function(){
+			return KeycloakRestangular.all('roles').getList();
 		}
 
 	};
