@@ -48,7 +48,6 @@ angular.module('rrhh').controller('Rrhh.Trabajador.BuscarTrabajadorController',
 				{field: 'persona.apellidoPaterno', displayName: 'A.Paterno'},
 				{field: 'persona.apellidoMaterno', displayName: 'A.Materno'},
 				{field: 'persona.nombres', displayName: 'Nombres'},
-				{field: 'estado', cellFilter: 'si_no : "activo" | uppercase', displayName: 'Estado'},
 				{
 					name: 'edit',
 					displayName: 'Edit',

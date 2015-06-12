@@ -55,7 +55,10 @@ angular.module('rrhh').controller('Rrhh.Trabajador.CrearTrabajadorController',
 					toastr.warning('Persona no encontrada');
 				}
 			});
-			$scope.view.loaded.trabajador = SGTrabajador.$findByTipoNumeroDocumento($scope.combo.selected.tipoDocumento.abreviatura, $scope.view.trabajador.numeroDocumento).$object;
+			$scope.view.loaded.trabajador = SGTrabajador.$findByAtributos({
+				tipoDocumento: $scope.combo.selected.tipoDocumento.abreviatura,
+				numeroDocumento: $scope.view.trabajador.numeroDocumento
+			}).$object;
 		};
 
 		$scope.save = function () {
