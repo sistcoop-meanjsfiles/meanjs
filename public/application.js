@@ -39,7 +39,7 @@ angular.element(document).ready(function() {
 	if(realm.name === 'master') {
 		sucursal = realm.name;
 		agencia = realm.name;
-	} else if(realm === 'sucursales'){
+	} else if(realm.name === 'sucursales'){
 		sucursal = consoleBaseUrl.split('/')[4];
 		agencia = consoleBaseUrl.split('/')[6];
 	} else {
