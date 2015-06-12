@@ -1,0 +1,37 @@
+<form name="form" data-ng-submit="submit()" novalidate>
+
+    <h4><strong>Datos principales</strong> </h4>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Agencia</label>
+                <h4><span ng-bind="view.load.agencia.denominacion"></span></h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Moneda</label>
+                <h4><span ng-bind="view.boveda.moneda"></span></h4>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group" ng-class="{ 'validate-has-error' : form.denominacion.$invalid && (form.denominacion.$touched || form.$submitted)}">
+                <label>Denominacion</label>
+                <input type="text" name="denominacion" ng-model="view.boveda.denominacion" ng-maxlength="60" class="form-control" autofocus required/>
+                <div ng-messages="form.denominacion.$error" ng-if="form.denominacion.$touched || form.$submitted">
+                    <div class="validate-has-error" ng-message="required">Ingrese denominacion.</div>
+                    <div class="validate-has-error" ng-message="maxlength">Maximo 60 caracteres.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p>
+        <button type="submit" class="btn btn-primary" ladda="control.block" data-style="expand-right">Guardar</button>
+        <button type="button" class="btn btn-default" ui-sref="^.resumen">Cancelar</button>
+    </p>
+
+</form>

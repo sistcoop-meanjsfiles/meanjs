@@ -1,0 +1,45 @@
+<div class="bg-light lter b-b wrapper-md">
+    <h1 class="m-n font-thin h3">Editar Boveda</h1>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div>
+
+            <div class="tab-container">
+                <ul class="nav nav-tabs">
+                    <li ui-sref-active="active">
+                        <a href ui-sref=".resumen">
+                            Resumen
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a href ui-sref=".datosPrincipales">
+                            Datos principales
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a href ui-sref=".abrir">
+                            Abrir
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a href ui-sref=".cerrar">
+                            Cerrar
+                        </a>
+                    </li>
+                    <li class="pull-right">
+                        <div class="btn-group">
+                            <button type="button" data-ng-click="desactivar()" class="btn btn-danger">Desactivar</button>
+                        </div>
+                    </li>
+                </ul>
+                <div class="tab-pane">
+                    <br/>
+                    <div ui-view></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
