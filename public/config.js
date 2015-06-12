@@ -31,7 +31,9 @@ var ApplicationConfiguration = (function() {
 		'ui.utils',
 		'ui.utils.masks',
 		'xeditable',
-		'ngFileUpload'
+		'ngFileUpload',
+		'angularSpinner',
+		'angular-ui-view-spinner'
 	];
 
 	// Add a new vertical module

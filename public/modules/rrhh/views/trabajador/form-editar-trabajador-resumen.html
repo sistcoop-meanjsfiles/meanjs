@@ -151,7 +151,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-9">
-                                <p>
+                                <p data-ng-if="view.trabajador.usuario">
 									<strong ng-bind="view.trabajador.usuario"></strong>
 								</p>
 								<p data-ng-if="!view.trabajador.usuario">
@@ -166,7 +166,7 @@
                                 </div>
                             </div>
                             <div class="col-sm-9">
-                                <p>
+                                <p data-ng-if="view.loaded.userKeycloak.rolesAssigned.length">
 									<strong data-ng-bind="view.loaded.userKeycloak.rolesAssigned.toString()"></strong>
 								</p>
 								<p data-ng-if="!view.loaded.userKeycloak.rolesAssigned.length">

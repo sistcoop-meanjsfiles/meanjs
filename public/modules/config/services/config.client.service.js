@@ -25,7 +25,7 @@ angular.module('config').factory('KeycloakRestangular', ['Restangular', 'sgKeycl
 	});
 }]);
 
-angular.module('config').factory('SGUsuarioKeycloak', ['KeycloakRestangular',  function(KeycloakRestangular) {
+angular.module('config').factory('SGUsuarioKeycloak', ['KeycloakRestangular', 'REALM',  function(KeycloakRestangular, REALM) {
 
 	var url = 'users';
 
@@ -45,6 +45,9 @@ angular.module('config').factory('SGUsuarioKeycloak', ['KeycloakRestangular',  f
 
 		$getRealmLevelRoles: function(){
 			return KeycloakRestangular.all('roles').getList();
+		},
+		$getCreateRealmUserUrl: function(){
+			return REALM.authServerUrl + '/admin/' + REALM.name + '/console/#/create/user/' + REALM.name;
 		}
 
 	};

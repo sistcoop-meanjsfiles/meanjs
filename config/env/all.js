@@ -50,7 +50,8 @@ module.exports = {
 				'public/lib/angular-ui-select/dist/select.css',
 				'public/lib/angular-xeditable/dist/css/xeditable.css',
 				//'public/lib/openshift/dist/css/main.css',
-				'public/lib/patternfly/dist/css/patternfly.css'
+				'public/lib/patternfly/dist/css/patternfly.css',
+				'public/lib/angular-ui-view-spinner/src/angular-ui-view-spinner.css'
 			],
 			js: [
 				'public/lib/angular/angular.js',
@@ -79,7 +80,10 @@ module.exports = {
 				'public/lib/sg-ubigeo/dist/sg-ubigeo.js',
 				'public/lib/sg-utils/dist/sg-utils.js',
 				'public/lib/underscore/underscore.js',
-				'public/lib/ng-file-upload/ng-file-upload-all.js'
+				'public/lib/ng-file-upload/ng-file-upload-all.js',
+				'public/lib/spin.js/spin.js',
+				'public/lib/angular-spinner/angular-spinner.js',
+				'public/lib/angular-ui-view-spinner/src/angular-ui-view-spinner.js'
 			]
 		},
 		css: [
