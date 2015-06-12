@@ -283,11 +283,10 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 						if (Auth.authz.hasResourceRole('administrar-trabajadores', moduleName)) {
 							return SGTrabajador.$find($stateParams.trabajador);
 						} else if(Auth.authz.hasResourceRole('administrar-trabajadores-agencia', moduleName)){
-							// Initialize a new promise
 							var deferred = $q.defer();
 							SGTrabajador.$find($stateParams.trabajador).then(function(response){
 								if (Auth.sistcoop.agencia === response.agencia.denominacion && Auth.sistcoop.sucursal === response.agencia.sucursal.denominacion) {
-									$timeout(deferred.resolve);
+									$timeout(deferred.resolve(response));
 								} else {
 									$timeout(deferred.reject);
 								}
