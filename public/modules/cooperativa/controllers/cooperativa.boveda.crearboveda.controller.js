@@ -40,23 +40,21 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.CrearBovedaControll
 		$scope.loadCombo();
 
 
-		$scope.submit = function () {
-			if ($scope.form.$valid) {
+		$scope.save = function () {
 
-				$scope.view.boveda.moneda = $scope.combo.selected.moneda.alphabeticCode;
-				console.log($scope.combo.selected.agencia);
-				$scope.view.boveda.agencia = $scope.combo.selected.agencia.codigo;
+			$scope.view.boveda.moneda = $scope.combo.selected.moneda.alphabeticCode;
+			$scope.view.boveda.agencia = $scope.combo.selected.agencia.codigo;
 
-				$scope.view.boveda.$save().then(
-					function (response) {
-						toastr.success('Boveda creada');
-						$state.go('^.editarBoveda.resumen', {id: response.id});
-					},
-					function error(error) {
-						toastr.error(error.data.message);
-					}
-				);
-			}
+			$scope.view.boveda.$save().then(
+				function (response) {
+					toastr.success('Boveda creada');
+					$state.go('^.editarBoveda.resumen', {id: response.id});
+				},
+				function error(error) {
+					toastr.error(error.data.message);
+				}
+			);
+
 		};
 
 	});

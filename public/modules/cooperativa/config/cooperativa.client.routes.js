@@ -112,6 +112,9 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 					agencias: function ($q, $timeout, $http, $location, Auth, SGSucursal) {
 						return getAgenciasAutorizadasParaAdministrarBovedas($q, $timeout, $http, $location, Auth, SGSucursal);
 					}
+				},
+				ncyBreadcrumb: {
+					label: 'Home'
 				}
 			})
 			.state('cooperativa.app.estructura.boveda.crear', {
@@ -128,6 +131,10 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 					agencias: function ($q, $timeout, $http, $location, Auth, SGSucursal) {
 						return getAgenciasAutorizadasParaAdministrarBovedas($q, $timeout, $http, $location, Auth, SGSucursal);
 					}
+				},
+				ncyBreadcrumb: {
+					label: 'Crear boveda',
+					parent: 'cooperativa.app.estructura.boveda.buscar'
 				}
 			})
 			.state('cooperativa.app.estructura.editarBoveda', {
