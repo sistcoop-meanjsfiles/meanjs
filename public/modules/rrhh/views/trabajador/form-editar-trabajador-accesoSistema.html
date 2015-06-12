@@ -41,7 +41,7 @@
 				<div class="row">
 					<div class="col-md-5">
 						<label class="control-label">Roles disponibles <i class="fa fa-question-circle text-muted ng-scope" tooltip="Roles disponibles en el sistema." tooltip-placement="right"></i></label>
-						<select class="form-control" ng-model="combo.rol" ng-options="r.name for r in combo.rol">
+						<select class="form-control" multiple size="5" ng-multiple="true" data-ng-model="combo.selected.rol" ng-options="r.name for r in combo.rol">
 						</select>
 						<button class="btn btn-default" type="submit" ng-click="addRol()" tooltip="Asociar rol" tooltip-placement="right">
 							Asignar seleccionados <i class="fa fa-angle-double-right"></i>

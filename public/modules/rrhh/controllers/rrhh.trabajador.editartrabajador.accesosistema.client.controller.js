@@ -21,7 +21,9 @@ angular.module('rrhh').controller('Rrhh.Trabajador.EditarTrabajador.AccesoSistem
 		};
 
 		$scope.loadCombo = function () {
-			$scope.combo.rol = SGUsuarioKeycloak.$getRealmLevelRoles();
+			SGUsuarioKeycloak.$getRealmLevelRoles().then(function(response){
+				$scope.combo.rol = response;
+			});
 		};
 		$scope.loadCombo();
 
