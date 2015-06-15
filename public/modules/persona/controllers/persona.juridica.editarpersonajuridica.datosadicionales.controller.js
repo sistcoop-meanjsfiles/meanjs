@@ -8,17 +8,15 @@ angular.module('persona').controller('Persona.Juridica.EditarPersonaJuridica.Dat
 			persona: personaJuridica
 		};
 
-		$scope.submit = function () {
-			if ($scope.form.$valid) {
-				$scope.view.persona.$save().then(
-					function (data) {
-						toastr.success('Persona actualizada');
-					},
-					function error(err) {
-						toastr.error(err.data.message);
-					}
-				);
-			}
+		$scope.save = function () {
+			$scope.view.persona.$save().then(
+				function (data) {
+					toastr.success('Persona actualizada');
+				},
+				function error(err) {
+					toastr.error(err.data.message);
+				}
+			);
 		};
 
 	});
