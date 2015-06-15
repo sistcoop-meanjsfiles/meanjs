@@ -29,4 +29,8 @@ angular.module('persona').controller('Persona.Juridica.EditarPersonaJuridica.Rep
 			}
 		};
 
+		$scope.save = function () {
+			alert('guardando');
+		};
+
 	});
