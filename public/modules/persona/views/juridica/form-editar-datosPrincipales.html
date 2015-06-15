@@ -50,7 +50,7 @@
 		<label class="col-sm-3 control-label">Razon social:</label>
 		<div class="col-sm-3">
 			<input name="razonSocial" type="text" data-ng-model="view.persona.razonSocial" data-ng-minlength="1" data-ng-maxlength="60" class="form-control" capitalize required/>
-			<div data-ng-messages="form.razonSocial.$error" data-ng-if="form.razonSocial.$touched || form.$submitted">
+			<div data-ng-messages="form.razonSocial.$error" data-ng-if="form.$submitted">
 				<div class="has-error" data-ng-message="required">Ingrese razon social.</div>
 				<div class="has-error" data-ng-message="minlength">Ingrese razon social.</div>
 				<div class="has-error" data-ng-message="maxlength">Maximo 60 caracteres.</div>

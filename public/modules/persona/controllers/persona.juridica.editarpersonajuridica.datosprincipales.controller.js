@@ -32,28 +32,26 @@ angular.module('persona').controller('Persona.Juridica.EditarPersonaJuridica.Dat
 			persona: personaJuridica
 		};
 
-		$scope.submit = function () {
-			if ($scope.form.$valid) {
-				var save = function () {
-					$scope.view.persona.$save().then(
-						function (data) {
-							$scope.view.personaDB = angular.copy($scope.view.persona);
-							toastr.success('Persona actualizada');
-						},
-						function error(err) {
-							toastr.error(err.data.message);
-						}
-					);
-				};
-				SGPersonaJuridica.$findByTipoNumeroDocumento($scope.view.persona.tipoDocumento, $scope.view.persona.numeroDocumento).then(function (data) {
-					if (data && data.id === $scope.view.persona.id) {
-						save();
+		$scope.save = function () {
+			var save = function () {
+				$scope.view.persona.$save().then(
+					function (data) {
+						$scope.view.personaDB = angular.copy($scope.view.persona);
+						toastr.success('Persona actualizada');
+					},
+					function error(err) {
+						toastr.error(err.data.message);
 					}
-					else {
-						toastr.warning('Documento de identidad no disponible');
-					}
-				});
-			}
+				);
+			};
+			SGPersonaJuridica.$findByTipoNumeroDocumento($scope.view.persona.tipoDocumento, $scope.view.persona.numeroDocumento).then(function (data) {
+				if (data && data.id === $scope.view.persona.id) {
+					save();
+				}
+				else {
+					toastr.warning('Documento de identidad no disponible');
+				}
+			});
 		};
 
 	});

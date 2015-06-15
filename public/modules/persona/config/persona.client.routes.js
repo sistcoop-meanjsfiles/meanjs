@@ -32,6 +32,8 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 		$urlRouterProvider.when('/persona/app/personas/naturales', '/persona/app/personas/naturales/buscar');
 		$urlRouterProvider.when('/persona/app/personas/juridicas', '/persona/app/personas/juridicas/buscar');
 
+		$urlRouterProvider.when('/persona/app/personas/juridicas/crear', '/persona/app/personas/juridicas/crear/datosPrincipales');
+
 		$urlRouterProvider.when('/persona/app/personas/naturales/editar/:personaNatural', '/persona/app/personas/naturales/editar/:personaNatural/resumen');
 		$urlRouterProvider.when('/persona/app/personas/juridicas/editar/:personaJuridica', '/persona/app/personas/juridicas/editar/:personaJuridica/resumen');
 
@@ -251,7 +253,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 					}
 				},
 				ncyBreadcrumb: {
-					label: 'Datos principales'
+					skip: true // Never display this state in breadcrumb.
 				}
 			}).state('persona.app.persona.juridica.crear.representante', {
 				url: '/representante',
@@ -293,7 +295,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 					}
 				},
 				ncyBreadcrumb: {
-					label: 'Resumen'
+					skip: true // Never display this state in breadcrumb.
 				}
 			}).state('persona.app.persona.juridica.editar.datosPrincipales', {
 				url: '/datosPrincipales',

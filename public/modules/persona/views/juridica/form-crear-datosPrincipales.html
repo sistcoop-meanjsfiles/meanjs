@@ -1,5 +1,5 @@
 <div class="form-group" data-ng-class="{ 'has-error' : form.pais.$invalid && (form.pais.$touched || form.$submitted)}">
-	<label class="col-sm-2 control-label">Nacionalidad:</label>
+	<label class="col-sm-3 control-label">Nacionalidad:</label>
 	<div class="col-sm-3">
 		<div class="input-group">
 			<span data-ng-bind="combo.selected.pais ? combo.selected.pais.alpha3Code : 'NA'" class="input-group-addon"></span>
@@ -18,7 +18,7 @@
 	</div>
 </div>
 <div class="form-group" data-ng-class="{ 'has-error' : (form.tipoDocumento.$invalid || form.numeroDocumento.$invalid ) && (form.tipoDocumento.$dirty || form.numeroDocumento.$dirty || form.$submitted) }">
-	<label class="col-sm-2 control-label">Documento identidad:</label>
+	<label class="col-sm-3 control-label">Documento identidad:</label>
 	<div class="col-sm-2">
 		<ui-select name="tipoDocumento" data-ng-model="combo.selected.tipoDocumento" ng-disabled="!access.administrarPersonas" required>
 			<ui-select-autoload pk-name="abreviatura" comparator="view.persona.tipoDocumento" ignore-case="true"></ui-select-autoload>
@@ -45,7 +45,7 @@
 	</div>
 </div>
 <div class="form-group" data-ng-class="{ 'has-error' : form.razonSocial.$invalid && form.$submitted }">
-	<label class="col-sm-2 control-label">Razon social:</label>
+	<label class="col-sm-3 control-label">Razon social:</label>
 	<div class="col-sm-3">
 		<input name="razonSocial" type="text" data-ng-model="view.persona.razonSocial" data-ng-minlength="1" data-ng-maxlength="60" class="form-control" capitalize required/>
 		<div data-ng-messages="form.razonSocial.$error" data-ng-if="form.razonSocial.$touched || form.$submitted">
@@ -56,7 +56,7 @@
 	</div>
 </div>
 <div class="form-group" data-ng-class="{ 'has-error' : form.nombreComercial.$invalid && form.$submitted }">
-	<label class="col-sm-2 control-label">Nombre comercial <span class="optional">(opcional)</span>:</label>
+	<label class="col-sm-3 control-label">Nombre comercial <span class="optional">(opcional)</span>:</label>
 	<div class="col-sm-3">
 		<input name="nombreComercial" type="text" data-ng-model="view.persona.nombreComercial" data-ng-minlength="1" data-ng-maxlength="60" class="form-control" capitalize/>
 		<div data-ng-messages="form.nombreComercial.$error" data-ng-if="form.$submitted">
@@ -67,7 +67,7 @@
 	</div>
 </div>
 <div class="form-group" data-ng-class="{ 'has-error' : form.actividadPrincipal.$invalid && form.$submitted }">
-	<label class="col-sm-2 control-label">Actividad principal <span class="optional">(opcional)</span>:</label>
+	<label class="col-sm-3 control-label">Actividad principal <span class="optional">(opcional)</span>:</label>
 	<div class="col-sm-3">
 		<input name="actividadPrincipal" type="text" data-ng-model="view.persona.actividadPrincipal" data-ng-minlength="1" data-ng-maxlength="70" class="form-control" capitalize />
 		<div data-ng-messages="form.nombres.$error" data-ng-if="form.$submitted">
@@ -78,7 +78,7 @@
 	</div>
 </div>
 <div class="form-group" data-ng-class="{ 'has-error' : form.fechaConstitucion.$invalid && form.$submitted }">
-	<label class="col-sm-2 control-label">Fecha constitucion:</label>
+	<label class="col-sm-3 control-label">Fecha constitucion:</label>
 	<div class="col-sm-2" data-ng-controller="Persona.Util.DateController">
 		<div class="input-group">
 			<input type="text" name="fechaConstitucion" class="form-control" sg-max-date="maxDate" data-ng-model="view.persona.fechaConstitucion" datepicker-popup="dd/MM/yyyy" is-open="opened" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" data-ng-required="true" close-text="Close" placeholder="dd/mm/yyyy" required>
@@ -91,7 +91,7 @@
 	</div>
 </div>
 <div class="form-group" data-ng-class="{ 'has-error' : form.tipoEmpresa.$invalid && form.$submitted }">
-	<label class="col-sm-2 control-label">Tipo empresa:</label>
+	<label class="col-sm-3 control-label">Tipo empresa:</label>
 	<div class="col-sm-2">
 		<ui-select name="tipoEmpresa" data-ng-model="combo.selected.tipoEmpresa" required>
 			<ui-select-autoload pk-name="denominacion" comparator="view.persona.tipoEmpresa" ignore-case="true"></ui-select-autoload>
@@ -106,7 +106,7 @@
 	</div>
 </div>
 <div class="form-group">
-	<label class="col-sm-2 control-label">Fin de lucro <span class="optional">(opcional)</span>:</label>
+	<label class="col-sm-3 control-label">Fin de lucro <span class="optional">(opcional)</span>:</label>
 	<div class="col-sm-2">
 		<div class="checkbox" style="margin-top:5px;">
 			<label>
@@ -121,7 +121,7 @@
 
 <div class="form-group">
 	<div class="col-sm-offset-2 col-sm-10">
-		<button type="button" class="btn btn-default" data-ng-click="goTabRepresentante()">Siguiente »</button>
 		<button sg-cancel ui-sref="^.^.buscar">Cancelar</button>
+		<button type="button" class="btn btn-default" data-ng-click="goTabRepresentante()">Siguiente »</button>
 	</div>
 </div>
