@@ -2,12 +2,12 @@
 
 /* jshint -W098 */
 angular.module('persona').controller('Persona.Juridica.CrearPersonaJuridica.DatosPrincipalesController',
-	function ($scope, SGCountryCode, SGTipoDocumento, SGTipoEmpresa) {
+	function ($scope, $state, $stateParams, toastr, SGPersonaJuridica, SGCountryCode, SGTipoDocumento, SGTipoEmpresa) {
 
 		$scope.combo = {
-			pais: SGCountryCode.$search().$object,
-			tipoDocumento: SGTipoDocumento.$search({tipoPersona: 'juridica'}).$object,
-			tipoEmpresa: SGTipoEmpresa.$search().$object
+			pais: undefined,
+			tipoDocumento: undefined,
+			tipoEmpresa: undefined
 		};
 		$scope.combo.selected = {
 			pais: undefined,
@@ -15,26 +15,25 @@ angular.module('persona').controller('Persona.Juridica.CrearPersonaJuridica.Dato
 			tipoEmpresa: undefined
 		};
 
-		$scope.loadParams = function () {
-			$scope.view.persona.tipoDocumento = $stateParams.tipoDocumento;
-			$scope.view.persona.numeroDocumento = $stateParams.numeroDocumento;
+		$scope.loadCombo = function () {
+			$scope.combo.pais = SGCountryCode.$search().$object;
+			$scope.combo.tipoDocumento = SGTipoDocumento.$search({tipoPersona: 'juridica'}).$object;
+			$scope.combo.tipoEmpresa = SGTipoEmpresa.$search().$object;
 		};
-		$scope.loadParams();
-
-		$scope.loadDefaultConfiguration = function () {
-			$scope.view.persona.codigoPais = 'PER';
-		};
-		$scope.loadDefaultConfiguration();
 
 		$scope.check = function ($event) {
-			if (!angular.isUndefined($event))
+			if ($event) {
 				$event.preventDefault();
-			if (!angular.isUndefined($scope.combo.selected.tipoDocumento) && !angular.isUndefined($scope.view.persona.numeroDocumento)) {
-				SGPersonaJuridica.$findByTipoNumeroDocumento($scope.combo.selected.tipoDocumento.abreviatura, $scope.view.persona.numeroDocumento).then(function (data) {
-					if (!data)
-						toastr.info('Documento de identidad disponible', 'Info');
-					else
-						toastr.warn('Documento de identidad no disponible', 'Warning');
+			}
+			if ($scope.combo.selected.tipoDocumento && $scope.view.persona.numeroDocumento) {
+				var tipoDocumento = $scope.combo.selected.tipoDocumento.abreviatura;
+				var numeroDocumento = $scope.view.persona.numeroDocumento;
+				SGPersonaJuridica.$findByTipoNumeroDocumento(tipoDocumento, numeroDocumento).then(function (response) {
+					if (response) {
+						toastr.warn('Documento de identidad NO disponible');
+					} else {
+						toastr.info('Documento de identidad disponible');
+					}
 				});
 			}
 		};

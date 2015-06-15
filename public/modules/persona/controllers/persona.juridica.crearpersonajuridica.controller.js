@@ -8,38 +8,44 @@ angular.module('persona').controller('Persona.Juridica.CrearPersonaJuridicaContr
 			persona: SGPersonaJuridica.$build()
 		};
 
+		$scope.loadParams = function () {
+			$scope.view.persona.tipoDocumento = $stateParams.tipoDocumento;
+			$scope.view.persona.numeroDocumento = $stateParams.numeroDocumento;
+		};
+		$scope.loadParams();
+
+		$scope.loadDefaultConfiguration = function () {
+			$scope.view.persona.codigoPais = 'PER';
+		};
+		$scope.loadDefaultConfiguration();
+
 		$scope.save = function () {
 
-			if (angular.isUndefined($scope.view.persona.representanteLegal)) {
-				toastr.warning('Representante legal no definido.', 'Warning');
-				return;
-			}
-			if (angular.isUndefined($scope.view.persona.representanteLegal.id)) {
-				toastr.warning('Representante legal no definido.', 'Warning');
+			if (!$scope.view.persona.representanteLegal || !$scope.view.persona.representanteLegal.id) {
+				toastr.warning('Representante legal no definido.');
 				return;
 			}
 
 			SGPersonaJuridica.$findByTipoNumeroDocumento($scope.view.persona.tipoDocumento, $scope.view.persona.numeroDocumento).then(function (response) {
-				if (response) {
-					toastr.error('Documento de identidad no disponible');
+				if (!response) {
+					$scope.view.persona.representanteLegal = {
+						tipoDocumento: $scope.view.persona.representanteLegal.tipoDocumento,
+						numeroDocumento: $scope.view.persona.representanteLegal.numeroDocumento
+					};
+					$scope.view.persona.$save().then(
+						function (response) {
+							toastr.success('Persona creada');
+							$state.go('^.^.editar', {personaJuridica: response.id});
+						},
+						function error(err) {
+							toastr.error(err.data.message);
+						}
+					);
 				} else {
-					$scope.save();
+					toastr.error('Documento de identidad no disponible');
 				}
 			});
 
-			$scope.view.persona.representanteLegal = {
-				tipoDocumento: $scope.view.persona.representanteLegal.tipoDocumento,
-				numeroDocumento: $scope.view.persona.representanteLegal.numeroDocumento
-			};
-			$scope.view.persona.$save().then(
-				function (response) {
-					toastr.success('Persona creada');
-					$state.go('^.^.editar', {personaJuridica: response.id});
-				},
-				function error(err) {
-					toastr.error(err.data.message);
-				}
-			);
 		};
 
 	});
