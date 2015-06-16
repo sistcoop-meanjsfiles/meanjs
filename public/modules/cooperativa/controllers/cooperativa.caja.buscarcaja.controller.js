@@ -1,7 +1,7 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.BuscarCajaController',
+angular.module('cooperativa').controller('Cooperativa.Caja.BuscarCajaController',
     function($scope, $state, SGSucursal, SGCaja) {
 
         $scope.combo = {
@@ -53,10 +53,6 @@ angular.module('cooperativa').controller('Cooperativa.BuscarCajaController',
         $scope.search = function(){
             angular.extend($scope.filterOptions, {agencia: $scope.combo.selected.agencia.codigo});
             $scope.gridOptions.data = SGCaja.$search($scope.filterOptions).$object;
-        };
-
-        $scope.nuevo = function(){
-            $state.go('^.crearCaja');
         };
 
         $scope.gridActions = {

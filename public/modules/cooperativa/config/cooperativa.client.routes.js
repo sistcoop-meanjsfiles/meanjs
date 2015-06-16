@@ -49,6 +49,7 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 		};
 
 		$urlRouterProvider.when('/cooperativa/app/estructura/bovedas', '/cooperativa/app/estructura/bovedas/buscar');
+		$urlRouterProvider.when('/cooperativa/app/estructura/cajas', '/cooperativa/app/estructura/cajas/buscar');
 
 		$urlRouterProvider.when('/cooperativa/app/estructura/bovedas/editar/:boveda', '/cooperativa/app/estructura/bovedas/editar/:boveda/resumen');
 
@@ -209,57 +210,85 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 				}
 			})
 
-			.state('cooperativa.app.estructura.buscarCajas', {
-				url: '/buscarCajas',
+			//CAjas
+			.state('cooperativa.app.estructura.caja', {
+				url: '/cajas',
+				template: '<div ui-view></div>',
+				ncyBreadcrumb: {
+					skip: true // Never display this state in breadcrumb.
+				}
+			})
+			.state('cooperativa.app.estructura.caja.buscar', {
+				url: '/buscar',
 				templateUrl: '/modules/cooperativa/views/caja/form-buscar-caja.html',
-				controller: 'Cooperativa.BuscarCajaController',
+				controller: 'Cooperativa.Caja.BuscarCajaController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
-						return checkUserRole('PUBLIC', $q, $timeout, $http, $location, Auth);
+						return checkUserRole('ver-cajas', $q, $timeout, $http, $location, Auth);
 					}
 				}
 			})
-			.state('cooperativa.app.estructura.crearCaja', {
-				url: '/crearCaja',
+			.state('cooperativa.app.estructura.caja.crear', {
+				url: '/crear',
 				templateUrl: '/modules/cooperativa/views/caja/form-crear-caja.html',
-				controller: 'Cooperativa.CrearCajaController',
+				controller: 'Cooperativa.Caja.CrearCajaController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
-						return checkUserRole('ADMIN', $q, $timeout, $http, $location, Auth);
+						return checkUserRole('ver-cajas', $q, $timeout, $http, $location, Auth);
 					}
 				}
 			})
-			.state('cooperativa.app.estructura.editarCaja', {
-				url: '/caja/:id',
+			.state('cooperativa.app.estructura.caja.editar', {
+				url: '/editar/:caja',
 				templateUrl: '/modules/cooperativa/views/caja/form-editar-caja.html',
-				controller: 'Cooperativa.EditarCajaController',
+				controller: 'Cooperativa.Caja.EditarCajaController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
-						return checkUserRole('PUBLIC', $q, $timeout, $http, $location, Auth);
+						return checkUserRole('ver-cajas', $q, $timeout, $http, $location, Auth);
 					},
 					caja: function ($state, $stateParams, SGCaja) {
-						return SGCaja.$find($stateParams.id);
+						return SGCaja.$find($stateParams.caja);
 					}
 				}
 			})
-			.state('cooperativa.app.estructura.editarCaja.resumen', {
+			.state('cooperativa.app.estructura.caja.editar.resumen', {
 				url: '/resumen',
 				templateUrl: '/modules/cooperativa/views/caja/form-editar-caja-resumen.html',
-				controller: 'Cooperativa.EditarCaja.ResumenController',
+				controller: 'Cooperativa.Caja.EditarCaja.ResumenController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
-						return checkUserRole('PUBLIC', $q, $timeout, $http, $location, Auth);
+						return checkUserRole('ver-cajas', $q, $timeout, $http, $location, Auth);
 					}
 				}
 			})
-			.state('cooperativa.app.estructura.editarCaja.datosPrincipales', {
+			.state('cooperativa.app.estructura.caja.editar.datosPrincipales', {
 				url: '/datosPrincipales',
 				templateUrl: '/modules/cooperativa/views/caja/form-editar-caja-datosPrincipales.html',
-				controller: 'Cooperativa.EditarCaja.DatosPrincipalesController',
+				controller: 'Cooperativa.Caja.EditarCaja.DatosPrincipalesController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
-						return checkUserRole('ADMIN', $q, $timeout, $http, $location, Auth);
+						return checkUserRole('ver-cajas', $q, $timeout, $http, $location, Auth);
 					}
+				}
+			})
+			.state('cooperativa.app.estructura.caja.editar.boveda', {
+				url: '/bovedas',
+				template: '<ui-view></ui-view>',
+				ncyBreadcrumb: {
+					skip: true // Never display this state in breadcrumb.
+				}
+			})
+			.state('cooperativa.app.estructura.caja.editar.boveda.buscar', {
+				url: '/buscar',
+				templateUrl: '/modules/cooperativa/views/caja/form-editar-caja-bovedas.html',
+				controller: 'Cooperativa.Caja.EditarCaja.BovedasController',
+				resolve: {
+					loggedin: function ($q, $timeout, $http, $location, Auth) {
+						return checkUserRole('ver-cajas', $q, $timeout, $http, $location, Auth);
+					}
+				},
+				ncyBreadcrumb: {
+					label: 'Bovedas'
 				}
 			})
 			.state('cooperativa.app.estructura.editarCaja.abrir', {
@@ -279,16 +308,6 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
 						return checkUserRole('CAJERO', $q, $timeout, $http, $location, Auth);
-					}
-				}
-			})
-			.state('cooperativa.app.estructura.editarCaja.bovedas', {
-				url: '/bovedas',
-				templateUrl: '/modules/cooperativa/views/caja/form-editar-caja-bovedas.html',
-				controller: 'Cooperativa.EditarCaja.BovedasController',
-				resolve: {
-					loggedin: function ($q, $timeout, $http, $location, Auth) {
-						return checkUserRole('ADMIN', $q, $timeout, $http, $location, Auth);
 					}
 				}
 			})

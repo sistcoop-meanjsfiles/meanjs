@@ -1,7 +1,7 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.CrearCajaController',
+angular.module('cooperativa').controller('Cooperativa.Caja.CrearCajaController',
     function($scope, $state, SGCaja, SGSucursal, toastr){
 
         $scope.view = {
