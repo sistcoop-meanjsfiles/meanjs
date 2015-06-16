@@ -1,19 +1,19 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.EditarCajaController',
-    function($scope, $state, caja, SGDialog){
+angular.module('cooperativa').controller('Cooperativa.Caja.EditarCajaController',
+	function ($scope, $state, caja, SGDialog) {
 
-        $scope.view = {
-            caja: caja
-        };
+		$scope.view = {
+			caja: caja
+		};
 
-        $scope.desactivar = function(){
+		$scope.desactivar = function () {
 
-            SGDialog.confirm('Desactivar', 'Estas seguro de querer eliminar permanentemente la caja?', function() {
-                alert('Metdo no implementado');
-            });
+			SGDialog.confirm('Desactivar', 'Estas seguro de querer eliminar permanentemente la caja?', function () {
+				alert('Metdo no implementado');
+			});
 
-        };
+		};
 
-    });
+	});

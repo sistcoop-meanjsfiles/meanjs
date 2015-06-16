@@ -52,6 +52,7 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 		$urlRouterProvider.when('/cooperativa/app/estructura/cajas', '/cooperativa/app/estructura/cajas/buscar');
 
 		$urlRouterProvider.when('/cooperativa/app/estructura/bovedas/editar/:boveda', '/cooperativa/app/estructura/bovedas/editar/:boveda/resumen');
+		$urlRouterProvider.when('/cooperativa/app/estructura/cajas/editar/:caja', '/cooperativa/app/estructura/cajas/editar/:caja/resumen');
 
 		$stateProvider
 			.state('cooperativa', {
@@ -226,6 +227,9 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
 						return checkUserRole('ver-cajas', $q, $timeout, $http, $location, Auth);
 					}
+				},
+				ncyBreadcrumb: {
+					label: 'Home'
 				}
 			})
 			.state('cooperativa.app.estructura.caja.crear', {
@@ -236,6 +240,10 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
 						return checkUserRole('ver-cajas', $q, $timeout, $http, $location, Auth);
 					}
+				},
+				ncyBreadcrumb: {
+					label: 'Crear caja',
+					parent: 'cooperativa.app.estructura.caja.buscar'
 				}
 			})
 			.state('cooperativa.app.estructura.caja.editar', {
@@ -249,6 +257,10 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 					caja: function ($state, $stateParams, SGCaja) {
 						return SGCaja.$find($stateParams.caja);
 					}
+				},
+				ncyBreadcrumb: {
+					label: 'Editar caja',
+					parent: 'cooperativa.app.estructura.caja.buscar'
 				}
 			})
 			.state('cooperativa.app.estructura.caja.editar.resumen', {
@@ -259,6 +271,9 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
 						return checkUserRole('ver-cajas', $q, $timeout, $http, $location, Auth);
 					}
+				},
+				ncyBreadcrumb: {
+					skip: true // Never display this state in breadcrumb.
 				}
 			})
 			.state('cooperativa.app.estructura.caja.editar.datosPrincipales', {

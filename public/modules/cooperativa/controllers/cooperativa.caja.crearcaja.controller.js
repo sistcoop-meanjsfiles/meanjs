@@ -2,7 +2,7 @@
 
 /* jshint -W098 */
 angular.module('cooperativa').controller('Cooperativa.Caja.CrearCajaController',
-    function($scope, $state, SGCaja, SGSucursal, toastr){
+    function($scope, $state, SGCaja, SGSucursal, SGAgencia, toastr){
 
         $scope.view = {
             caja: SGCaja.$build()
@@ -28,21 +28,18 @@ angular.module('cooperativa').controller('Cooperativa.Caja.CrearCajaController',
         $scope.loadCombo();
 
 
-        $scope.submit = function(){
-            if($scope.form.$valid){
+        $scope.save = function(){
+			$scope.view.caja.agencia = SGAgencia.$new($scope.combo.selected.agencia.id).$getUrl();
 
-                $scope.view.caja.agencia = $scope.combo.selected.agencia.codigo;
-
-                $scope.view.caja.$save().then(
-                    function(response){
-                        toastr.success('Caja creada');
-                        $state.go('^.editarCaja.resumen', {id: response.id});
-                    },
-                    function error(error){
-                        toastr.error(error.data.message);
-                    }
-                );
-            }
+			$scope.view.caja.$save().then(
+				function(response){
+					toastr.success('Caja creada');
+					$state.go('^.editar', {caja: response.id});
+				},
+				function error(error){
+					toastr.error(error.data.message);
+				}
+			);
         };
 
 });
