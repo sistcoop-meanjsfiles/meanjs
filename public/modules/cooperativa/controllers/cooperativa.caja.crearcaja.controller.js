@@ -4,6 +4,8 @@
 angular.module('cooperativa').controller('Cooperativa.Caja.CrearCajaController',
     function($scope, $state, SGCaja, SGSucursal, SGAgencia, toastr){
 
+		$scope.changed = false;
+
         $scope.view = {
             caja: SGCaja.$build()
         };
@@ -29,12 +31,15 @@ angular.module('cooperativa').controller('Cooperativa.Caja.CrearCajaController',
 
 
         $scope.save = function(){
-			$scope.view.caja.agencia = SGAgencia.$new($scope.combo.selected.agencia.id).$getUrl();
 
+			$scope.changed = true;
+
+			$scope.view.caja.agencia = SGAgencia.$new($scope.combo.selected.agencia.id).$getUrl();
 			$scope.view.caja.$save().then(
 				function(response){
 					toastr.success('Caja creada');
 					$state.go('^.editar', {caja: response.id});
+					$scope.changed = false;
 				},
 				function error(error){
 					toastr.error(error.data.message);
