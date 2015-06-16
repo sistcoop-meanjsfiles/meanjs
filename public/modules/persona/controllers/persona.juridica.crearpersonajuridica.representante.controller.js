@@ -5,34 +5,40 @@ angular.module('persona').controller('Persona.Juridica.CrearPersonaJuridica.Repr
 	function ($scope, $state, toastr, SGTipoDocumento, SGPersonaNatural) {
 
 		$scope.verificarDatos = function () {
-			if (angular.isUndefined($scope.view.persona.razonSocial)) {
+			if (!$scope.view.persona.razonSocial) {
 				$state.go('^.datosPrincipales');
 			}
 		};
 		$scope.verificarDatos();
 
+		$scope.view = {
+			representante: SGPersonaNatural.$build()
+		};
+
 		$scope.combo = {
-			tipoDocumento: SGTipoDocumento.$search({tipoPersona: 'natural'}).$object
+			tipoDocumento: undefined
 		};
 		$scope.combo.selected = {
 			tipoDocumento: undefined
 		};
 
-		$scope.goCrearPersonaNatural = function () {
-			$state.go('persona.app.personas.crearPersonaNatural');
+		$scope.loadCombo = function(){
+			$scope.combo.tipoDocumento = SGTipoDocumento.$search({tipoPersona: 'natural'}).$object;
 		};
+		$scope.loadCombo();
 
 		$scope.setRepresentante = function ($event) {
-			if (!angular.isUndefined($event))
+			if ($event) {
 				$event.preventDefault();
-			if (angular.isDefined($scope.combo.selected.tipoDocumento) && angular.isDefined($scope.representante.numeroDocumento)) {
-				SGPersonaNatural.$findByTipoNumeroDocumento($scope.combo.selected.tipoDocumento.abreviatura, $scope.representante.numeroDocumento).then(function (response) {
+			}
+			if ($scope.combo.selected.tipoDocumento && $scope.representante.numeroDocumento) {
+				SGPersonaNatural.$findByTipoNumeroDocumento($scope.combo.selected.tipoDocumento.abreviatura, $scope.view.representante.numeroDocumento).then(function (response) {
 					if (response) {
+						$scope.view.representante = response;
 						$scope.view.persona.representanteLegal = response;
-						toastr.info('Persona encontrada', 'Info');
-					}
-					else {
-						toastr.warning('Persona no encontrada', 'Warning');
+						toastr.info('Persona encontrada');
+					} else {
+						toastr.warning('Persona no encontrada');
 					}
 				});
 			}

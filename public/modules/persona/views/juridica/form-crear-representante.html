@@ -11,16 +11,16 @@
 					<div data-ng-bind-html="item.abreviatura | highlight: $select.search"></div>
 				</ui-select-choices>
 			</ui-select>
-			<div data-ng-messages="form.tipoDocumento.$error" data-ng-if="form.tipoDocumento.$touched || form.$submitted">
+			<div data-ng-messages="form.tipoDocumento.$error" data-ng-if="form.$submitted">
 				<div class="has-error" data-ng-message="required">Ingrese documento.</div>
 			</div>
 		</div>
 		<div class="col-sm-2">
 			<div class="input-group">
-				<input type="text" name="numeroDocumento" data-ng-model="representante.numeroDocumento" ui-keypress="{13:'setRepresentante($event)'}" data-ng-pattern="/^[0-9]+$/" data-ng-minlength="combo.selected.tipoDocumento.cantidadCaracteres" data-ng-maxlength="combo.selected.tipoDocumento.cantidadCaracteres" class="form-control" required/>
+				<input type="text" name="numeroDocumento" data-ng-model="view.representante.numeroDocumento" ui-keypress="{13:'setRepresentante($event)'}" data-ng-pattern="/^[0-9]+$/" data-ng-minlength="combo.selected.tipoDocumento.cantidadCaracteres" data-ng-maxlength="combo.selected.tipoDocumento.cantidadCaracteres" class="form-control" required/>
 				<span class="input-group-btn"><button type="button" data-ng-click="setRepresentante()" tooltip="Seleccionar representante" tooltip-trigger="mouseenter" tooltip-placement="bottom" class="btn btn-default"><span class="glyphicon glyphicon-check"></span></button></span>
 			</div>
-			<div data-ng-messages="form.numeroDocumento.$error" data-ng-if="form.numeroDocumento.$dirty || form.numeroDocumento.$touched || form.$submitted">
+			<div data-ng-messages="form.numeroDocumento.$error" data-ng-if="form.numeroDocumento.$dirty || form.$submitted">
 				<div class="has-error" data-ng-message="required">Ingrese numero documento.</div>
 				<div class="has-error" data-ng-message="minlength">Debe tener <span data-ng-bind="combo.selected.tipoDocumento.cantidadCaracteres"></span> digitos.</div>
 				<div class="has-error" data-ng-message="maxlength">Debe tener <span data-ng-bind="combo.selected.tipoDocumento.cantidadCaracteres"></span> digitos.</div>
@@ -46,11 +46,11 @@
 				</thead>
 				<tbody>
 				<tr>
-					<td><span data-ng-bind="view.persona.representanteLegal.tipoDocumento"></span></td>
-					<td><span data-ng-bind="view.persona.representanteLegal.numeroDocumento"></span></td>
-					<td><span data-ng-bind="view.persona.representanteLegal.apellidoPaterno"></span></td>
-					<td><span data-ng-bind="view.persona.representanteLegal.apellidoMaterno"></span></td>
-					<td><span data-ng-bind="view.persona.representanteLegal.nombres"></span></td>
+					<td><span data-ng-bind="view.representante.tipoDocumento"></span></td>
+					<td><span data-ng-bind="view.representante.numeroDocumento"></span></td>
+					<td><span data-ng-bind="view.representante.apellidoPaterno"></span></td>
+					<td><span data-ng-bind="view.representante.apellidoMaterno"></span></td>
+					<td><span data-ng-bind="view.representante.nombres"></span></td>
 				</tr>
 				</tbody>
 			</table>
@@ -62,6 +62,6 @@
 <div class="form-group">
 	<div class="col-sm-offset-2 col-sm-10">
 		<button type="button" class="btn btn-default" ui-sref="^.datosPrincipales">« Anterior</button>
-		<button sg-save data-ng-if="view.persona.representanteLegal">Guardar</button>
+		<button sg-save data-ng-if="view.representante.id">Guardar</button>
 	</div>
 </div>

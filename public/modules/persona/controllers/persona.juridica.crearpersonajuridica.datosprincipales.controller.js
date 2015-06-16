@@ -26,9 +26,7 @@ angular.module('persona').controller('Persona.Juridica.CrearPersonaJuridica.Dato
 				$event.preventDefault();
 			}
 			if ($scope.combo.selected.tipoDocumento && $scope.view.persona.numeroDocumento) {
-				var tipoDocumento = $scope.combo.selected.tipoDocumento.abreviatura;
-				var numeroDocumento = $scope.view.persona.numeroDocumento;
-				SGPersonaJuridica.$findByTipoNumeroDocumento(tipoDocumento, numeroDocumento).then(function (response) {
+				SGPersonaJuridica.$findByTipoNumeroDocumento($scope.combo.selected.tipoDocumento.abreviatura, $scope.view.persona.numeroDocumento).then(function (response) {
 					if (response) {
 						toastr.warn('Documento de identidad NO disponible');
 					} else {
@@ -45,6 +43,5 @@ angular.module('persona').controller('Persona.Juridica.CrearPersonaJuridica.Dato
 				$scope.form.$setSubmitted();
 			}
 		};
-
 
 	});
