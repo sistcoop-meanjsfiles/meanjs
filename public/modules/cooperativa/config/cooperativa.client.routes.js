@@ -287,13 +287,6 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 				}
 			})
 			.state('cooperativa.app.estructura.caja.editar.boveda', {
-				url: '/bovedas',
-				template: '<ui-view></ui-view>',
-				ncyBreadcrumb: {
-					skip: true // Never display this state in breadcrumb.
-				}
-			})
-			.state('cooperativa.app.estructura.caja.editar.boveda.buscar', {
 				url: '/buscar',
 				templateUrl: '/modules/cooperativa/views/caja/form-editar-caja-bovedas.html',
 				controller: 'Cooperativa.Caja.EditarCaja.BovedasController',
