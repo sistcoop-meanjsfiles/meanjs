@@ -1,18 +1,18 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.EditarBovedaController', function(
-    $scope, $state, boveda, toastr, SGDialog){
+angular.module('cooperativa').controller('Cooperativa.Boveda.EditarBovedaController',
+	function ($scope, $state, boveda, toastr, SGDialog) {
 
-    $scope.view = {
-        boveda: boveda
-    };
+		$scope.view = {
+			boveda: boveda
+		};
 
-    $scope.desactivar = function(){
+		$scope.desactivar = function () {
 
-        SGDialog.confirm('Desactivar', 'Estas seguro de querer desactvar permanentemente la boveda?', function() {
-            alert('Metodo no implementado');
-        });
-    };
+			SGDialog.confirm('Desactivar', 'Estas seguro de querer desactvar permanentemente la boveda?', function () {
+				alert('Metodo no implementado');
+			});
+		};
 
-});
+	});

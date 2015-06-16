@@ -2,7 +2,7 @@
 
 /* jshint -W098 */
 angular.module('cooperativa').controller('Cooperativa.Boveda.BuscarBovedaController',
-    function ($scope, $state, sucursales, agencias, SGSucursal, SGBoveda) {
+    function ($scope, $state, sucursales, agencias, SGSucursal, SGAgencia, SGBoveda) {
 
         $scope.combo = {
             sucursal: undefined,
@@ -62,7 +62,7 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.BuscarBovedaControl
         };
 
         $scope.search = function () {
-            angular.extend($scope.filterOptions, {agencia: $scope.combo.selected.agencia.codigo});
+            angular.extend($scope.filterOptions, {agencia: SGAgencia.$new($scope.combo.selected.agencia.id).$getUrl()});
             $scope.gridOptions.data = SGBoveda.$search($scope.filterOptions).$object;
         };
 

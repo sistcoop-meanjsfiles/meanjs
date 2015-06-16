@@ -1,7 +1,7 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.EditarBoveda.ResumenController',
+angular.module('cooperativa').controller('Cooperativa.Boveda.EditarBoveda.ResumenController',
     function($scope, boveda, SGAgencia){
 
         $scope.view = {
@@ -13,7 +13,7 @@ angular.module('cooperativa').controller('Cooperativa.EditarBoveda.ResumenContro
         };
 
         $scope.loadAgencia = function(){
-          $scope.view.load.agencia = SGAgencia.$findByCodigo($scope.view.boveda.agencia).$object;
+          $scope.view.load.agencia = SGAgencia.$findByUrl($scope.view.boveda.agencia).$object;
         };
         $scope.loadAgencia();
 

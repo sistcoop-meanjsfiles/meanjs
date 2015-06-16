@@ -1,37 +1,33 @@
-<form name="form" data-ng-submit="submit()" novalidate>
+<form name="form" sg-read-only="!(access.administrarBovedas || access.administrarBovedasAgencia)" class="form-horizontal" novalidate>
 
-    <h4><strong>Datos principales</strong> </h4>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Agencia:</label>
+		<div class="col-sm-3">
+			<input type="text" ng-model="view.load.agencia.denominacion" class="form-control" disabled/>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label">Moneda:</label>
+		<div class="col-sm-3">
+			<input type="text" ng-model="view.boveda.moneda" class="form-control" disabled/>
+		</div>
+	</div>
+	<div class="form-group" ng-class="{ 'has-error' : form.denominacion.$invalid && form.$submitted}">
+		<label class="col-sm-2 control-label"><span class="required">*</span> Sucursal:</label>
+		<div class="col-sm-3">
+			<input type="text" name="denominacion" ng-model="view.boveda.denominacion" ng-maxlength="60" class="form-control" autofocus required/>
+			<div ng-messages="form.denominacion.$error" ng-if="form.$submitted">
+				<div class="validate-has-error" ng-message="required">Ingrese denominacion.</div>
+				<div class="validate-has-error" ng-message="maxlength">Maximo 60 caracteres.</div>
+			</div>
+		</div>
+	</div>
 
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="form-group">
-                <label>Agencia</label>
-                <h4><span ng-bind="view.load.agencia.denominacion"></span></h4>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4">
-            <div class="form-group">
-                <label>Moneda</label>
-                <h4><span ng-bind="view.boveda.moneda"></span></h4>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="form-group" ng-class="{ 'validate-has-error' : form.denominacion.$invalid && (form.denominacion.$touched || form.$submitted)}">
-                <label>Denominacion</label>
-                <input type="text" name="denominacion" ng-model="view.boveda.denominacion" ng-maxlength="60" class="form-control" autofocus required/>
-                <div ng-messages="form.denominacion.$error" ng-if="form.denominacion.$touched || form.$submitted">
-                    <div class="validate-has-error" ng-message="required">Ingrese denominacion.</div>
-                    <div class="validate-has-error" ng-message="maxlength">Maximo 60 caracteres.</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <p>
-        <button type="submit" class="btn btn-primary" ladda="control.block" data-style="expand-right">Guardar</button>
-        <button type="button" class="btn btn-default" ui-sref="^.resumen">Cancelar</button>
-    </p>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button sg-save>Guardar</button>
+			<button sg-cancel ui-sref="^.resumen">Cancelar</button>
+		</div>
+	</div>
 
 </form>

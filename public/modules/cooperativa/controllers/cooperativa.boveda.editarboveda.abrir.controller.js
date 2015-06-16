@@ -1,7 +1,7 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.EditarBoveda.AbrirController', function(
+angular.module('cooperativa').controller('Cooperativa.Boveda.EditarBoveda.AbrirController', function(
     $scope, $state, boveda, SGCurrency, toastr){
 
     $scope.view = {
