@@ -1,7 +1,7 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.EditarBoveda.CerrarController',
+angular.module('cooperativa').controller('Cooperativa.Boveda.EditarBoveda.CerrarController',
     function($scope, $state, boveda, toastr){
 
         $scope.view = {

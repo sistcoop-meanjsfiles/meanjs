@@ -190,16 +190,22 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
 						return checkUserRole('ver-bovedas', $q, $timeout, $http, $location, Auth);
 					}
+				},
+				ncyBreadcrumb: {
+					label: 'Abrir boveda'
 				}
 			})
-			.state('cooperativa.app.estructura.editarBoveda.cerrar', {
+			.state('cooperativa.app.estructura.boveda.editar.cerrar', {
 				url: '/cerrar',
 				templateUrl: '/modules/cooperativa/views/boveda/form-editar-boveda-cerrar.html',
-				controller: 'Cooperativa.EditarBoveda.CerrarController',
+				controller: 'Cooperativa.Boveda.EditarBoveda.CerrarController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
-						return checkUserRole('JEFE_CAJA', $q, $timeout, $http, $location, Auth);
+						return checkUserRole('ver-bovedas', $q, $timeout, $http, $location, Auth);
 					}
+				},
+				ncyBreadcrumb: {
+					label: 'Cerrar boveda'
 				}
 			})
 
