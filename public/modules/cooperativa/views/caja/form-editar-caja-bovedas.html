@@ -11,20 +11,17 @@
 			<div class="row">
 				<div class="col-md-3">
 					<label class="control-label">Bovedas disponibles <i class="fa fa-question-circle text-muted" tooltip="Bovedas existentes en la agencia." tooltip-placement="right"></i></label>
-					<select class="form-control" multiple="" size="5" ng-multiple="true" ng-model="selectedRealmRoles" ng-options="r.name for r in realmRoles">
-						<option value="0">CAJERO</option>
-						<option value="1">ADMINISTRADOR</option>
+					<select class="form-control" multiple size="5" ng-multiple="true" ng-model="combo.selected.bovedaDisponible" ng-options="c.denominacion for c in combo.bovedaDisponible">
 					</select>
-					<button class="btn btn-default" type="submit" ng-click="addRealmRole()" tooltip="Asignar bovedas" tooltip-placement="right">
+					<button class="btn btn-default" type="submit" ng-click="addBovedas()" tooltip="Asignar bovedas" tooltip-placement="right">
 						Asignar seleccionados <i class="fa fa-angle-right"></i>
 					</button>
 				</div>
 				<div class="col-md-3">
 					<label class="control-label">Bovedas asignadas <i class="fa fa-question-circle text-muted" tooltip="Bovedas asignadas a la caja." tooltip-placement="right"></i></label>
-					<select class="form-control" multiple="" size="5" ng-multiple="true" ng-model="selectedRealmMappings" ng-options="r.name for r in realmMappings">
-						<option value="0">ADMIN</option>
+					<select class="form-control" multiple size="5" ng-multiple="true" ng-model="combo.selected.bovedaAsignada" ng-options="c.boveda.denominacion for c in combo.bovedaAsignada">
 					</select>
-					<button class="btn btn-default" type="submit" ng-click="deleteRealmRole()" tooltip="Quitar bovedas" tooltip-placement="left">
+					<button class="btn btn-default" type="submit" ng-click="removeBovedas()" tooltip="Quitar bovedas" tooltip-placement="left">
 						<i class="fa fa-angle-double-left"></i> Quitar seleccionados
 					</button>
 				</div>
@@ -33,75 +30,3 @@
 	</div>
 
 </form>
-
-
-<form name="form" data-ng-submit="submit()" novalidate>
-    <div class="row">
-        <div class="col-sm-8">
-            <div class="form-group" ng-class="{ 'has-error' : form.boveda.$invalid && (form.boveda.$touched || form.$submitted)}">
-                <label>Bovedas disponibles</label>
-                <ui-select name="boveda" ng-model="combo.selected.boveda" ui-autofocus required>
-                    <ui-select-match placeholder="Boveda">{{$select.selected.denominacion}}</ui-select-match>
-                    <ui-select-choices repeat="item in combo.boveda | filter: $select.search">
-                        <div ng-bind-html="item.denominacion | highlight: $select.search"></div>
-                    </ui-select-choices>
-                </ui-select>
-                <div ng-messages="form.boveda.$error" ng-if="form.boveda.$touched || form.$submitted">
-                    <div class="has-error" ng-message="required">Ingrese boveda.</div>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-4">
-            <div class="form-group">
-                <div class="form-group">
-                    <label>&nbsp;</label>
-                    <div class="input-group">
-                        <button type="submit" class="btn btn-primary">+</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</form>
-
-<div class="row">
-    <div class="col-sm-12">
-        <table class="table table-bordered table-striped table-condensed table-hover">
-            <caption ng-show="!view.loaded.bovedasAsignadas.length">No se encontraron bovedas.</caption>
-            <thead ng-show="view.loaded.bovedasAsignadas.length">
-            <tr>
-                <th>#</th>
-                <th>Moneda.</th>
-                <th>Denom.</th>
-                <th>Abierto</th>
-                <th>Movimiento</th>
-                <th>Estado</th>
-                <th>Edit</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="item in view.loaded.bovedasAsignadas">
-                <td><span ng-bind="$index+1"></span></td>
-                <td>
-                    <span ng-bind="item.boveda.moneda"></span>
-                </td>
-                <td>
-                    <span ng-bind="item.boveda.denominacion"></span>
-                </td>
-                <td>
-                    <span ng-bind="item.boveda.abierto | si_no: 'Abierto'"></span>
-                </td>
-                <td>
-                    <span ng-bind="item.boveda.estadoMovimiento | si_no:'Congelado'"></span>
-                </td>
-                <td>
-                    <span ng-bind="item.boveda.estado | si_no:'Activo'"></span>
-                </td>
-                <td style="text-align: center">
-                    <button type="button" ng-click="removeBoveda($index, item)" class="btn btn-danger btn-xs">Desvincular</button>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
