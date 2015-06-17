@@ -299,23 +299,23 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 					label: 'Bovedas'
 				}
 			})
-			.state('cooperativa.app.estructura.editarCaja.abrir', {
+			.state('cooperativa.app.estructura.caja.editar.abrir', {
 				url: '/abrir',
 				templateUrl: '/modules/cooperativa/views/caja/form-editar-caja-abrir.html',
-				controller: 'Cooperativa.EditarCaja.AbrirController',
+				controller: 'Cooperativa.Caja.EditarCaja.AbrirController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
-						return checkUserRole('JEFE_CAJA', $q, $timeout, $http, $location, Auth);
+						return checkUserRole('ver-cajas', $q, $timeout, $http, $location, Auth);
 					}
 				}
 			})
-			.state('cooperativa.app.estructura.editarCaja.cerrar', {
+			.state('cooperativa.app.estructura.caja.editar.cerrar', {
 				url: '/cerrar',
 				templateUrl: '/modules/cooperativa/views/caja/form-editar-caja-cerrar.html',
-				controller: 'Cooperativa.EditarCaja.CerrarController',
+				controller: 'Cooperativa.Caja.EditarCaja.CerrarController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
-						return checkUserRole('CAJERO', $q, $timeout, $http, $location, Auth);
+						return checkUserRole('ver-cajas', $q, $timeout, $http, $location, Auth);
 					}
 				}
 			})
