@@ -1,8 +1,10 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.Boveda.EditarBoveda.DatosPrincipalesController',
+angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.DatosPrincipalesController',
 	function ($scope, boveda, toastr, SGAgencia) {
+
+		$scope.changed = true;
 
 		$scope.view = {
 			boveda: boveda
@@ -20,6 +22,7 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.EditarBoveda.DatosP
 		$scope.save = function () {
 			$scope.view.boveda.$save().then(
 				function (response) {
+					$scope.changed = true;
 					toastr.success('Boveda actualizada');
 				},
 				function error(err) {

@@ -1,8 +1,10 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.Boveda.CrearBovedaController',
-	function ($scope, $state, sucursales, agencias, SGCurrency, SGSucursal, SGAgencia, SGBoveda, toastr) {
+angular.module('cooperativa').controller('Cooperativa.Boveda.CrearController',
+	function ($scope, $state, toastr, sucursales, agencias, SGSucursal, SGAgencia, SGCurrency, SGBoveda) {
+
+		$scope.changed = false;
 
 		$scope.view = {
 			boveda: SGBoveda.$build()
@@ -47,6 +49,7 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.CrearBovedaControll
 
 			$scope.view.boveda.$save().then(
 				function (response) {
+					$scope.changed = true;
 					toastr.success('Boveda creada');
 					$state.go('^.editar', {boveda: response.id});
 				},

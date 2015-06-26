@@ -54,6 +54,8 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 		$urlRouterProvider.when('/cooperativa/app/estructura/bovedas/editar/:boveda', '/cooperativa/app/estructura/bovedas/editar/:boveda/resumen');
 		$urlRouterProvider.when('/cooperativa/app/estructura/cajas/editar/:caja', '/cooperativa/app/estructura/cajas/editar/:caja/resumen');
 
+		$urlRouterProvider.when('/cooperativa/app/estructura/bovedas/editar/:boveda/historiales', '/cooperativa/app/estructura/bovedas/editar/:boveda/historiales/buscar');
+
 		$stateProvider
 			.state('cooperativa', {
 				abstract: true,
@@ -92,7 +94,7 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 				abstract: true
 			})
 
-			//estructura
+			//Estructura
 
 			//Bovedas
 			.state('cooperativa.app.estructura.boveda', {
@@ -105,7 +107,7 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 			.state('cooperativa.app.estructura.boveda.buscar', {
 				url: '/buscar',
 				templateUrl: '/modules/cooperativa/views/boveda/form-buscar-boveda.html',
-				controller: 'Cooperativa.Boveda.BuscarBovedaController',
+				controller: 'Cooperativa.Boveda.BuscarController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
 						return checkUserRole('ver-bovedas', $q, $timeout, $http, $location, Auth);
@@ -124,7 +126,7 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 			.state('cooperativa.app.estructura.boveda.crear', {
 				url: '/crear',
 				templateUrl: '/modules/cooperativa/views/boveda/form-crear-boveda.html',
-				controller: 'Cooperativa.Boveda.CrearBovedaController',
+				controller: 'Cooperativa.Boveda.CrearController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
 						return checkUserRole('ver-bovedas', $q, $timeout, $http, $location, Auth);
@@ -144,7 +146,7 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 			.state('cooperativa.app.estructura.boveda.editar', {
 				url: '/editar/:boveda',
 				templateUrl: '/modules/cooperativa/views/boveda/form-editar-boveda.html',
-				controller: 'Cooperativa.Boveda.EditarBovedaController',
+				controller: 'Cooperativa.Boveda.EditarController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
 						return checkUserRole('ver-bovedas', $q, $timeout, $http, $location, Auth);
@@ -161,7 +163,7 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 			.state('cooperativa.app.estructura.boveda.editar.resumen', {
 				url: '/resumen',
 				templateUrl: '/modules/cooperativa/views/boveda/form-editar-boveda-resumen.html',
-				controller: 'Cooperativa.Boveda.EditarBoveda.ResumenController',
+				controller: 'Cooperativa.Boveda.Editar.ResumenController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
 						return checkUserRole('ver-bovedas', $q, $timeout, $http, $location, Auth);
@@ -174,7 +176,7 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 			.state('cooperativa.app.estructura.boveda.editar.datosPrincipales', {
 				url: '/datosPrincipales',
 				templateUrl: '/modules/cooperativa/views/boveda/form-editar-boveda-datosPrincipales.html',
-				controller: 'Cooperativa.Boveda.EditarBoveda.DatosPrincipalesController',
+				controller: 'Cooperativa.Boveda.Editar.DatosPrincipalesController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
 						return checkUserRole('ver-bovedas', $q, $timeout, $http, $location, Auth);
@@ -184,34 +186,138 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 					label: 'Datos principales'
 				}
 			})
-			.state('cooperativa.app.estructura.boveda.editar.abrir', {
-				url: '/abrir',
-				templateUrl: '/modules/cooperativa/views/boveda/form-editar-boveda-abrir.html',
-				controller: 'Cooperativa.Boveda.EditarBoveda.AbrirController',
-				resolve: {
-					loggedin: function ($q, $timeout, $http, $location, Auth) {
-						return checkUserRole('ver-bovedas', $q, $timeout, $http, $location, Auth);
-					}
-				},
+			//HistorialBoveda
+			.state('cooperativa.app.estructura.boveda.editar.historial', {
+				url: '/historiales',
+				template: '<div ui-view></div>',
 				ncyBreadcrumb: {
-					label: 'Abrir boveda'
+					skip: true // Never display this state in breadcrumb.
 				}
 			})
-			.state('cooperativa.app.estructura.boveda.editar.cerrar', {
-				url: '/cerrar',
-				templateUrl: '/modules/cooperativa/views/boveda/form-editar-boveda-cerrar.html',
-				controller: 'Cooperativa.Boveda.EditarBoveda.CerrarController',
+			.state('cooperativa.app.estructura.boveda.editar.historial.buscar', {
+				url: '/buscar',
+				templateUrl: '/modules/cooperativa/views/boveda/historial/form-buscar-historial.html',
+				controller: 'Cooperativa.Boveda.Editar.Historial.BuscarController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
 						return checkUserRole('ver-bovedas', $q, $timeout, $http, $location, Auth);
 					}
 				},
 				ncyBreadcrumb: {
-					label: 'Cerrar boveda'
+					label: 'Buscar historial'
+				}
+			})
+			.state('cooperativa.app.estructura.boveda.editar.historial.crear', {
+				url: '/crear',
+				templateUrl: '/modules/cooperativa/views/boveda/historial/form-crear-historial.html',
+				controller: 'Cooperativa.Boveda.Editar.Historial.CrearController',
+				resolve: {
+					loggedin: function ($q, $timeout, $http, $location, Auth) {
+						return checkUserRole('ver-bovedas', $q, $timeout, $http, $location, Auth);
+					}
+				},
+				ncyBreadcrumb: {
+					label: 'Crear historial',
+					parent: 'cooperativa.app.estructura.boveda.editar.historiales.buscar'
+				}
+			})
+			.state('cooperativa.app.estructura.boveda.editar.historial.editar', {
+				url: '/editar/:historial',
+				templateUrl: '/modules/cooperativa/views/boveda/historial/form-editar-historial.html',
+				controller: 'Cooperativa.Boveda.Editar.Historial.EditarController',
+				resolve: {
+					loggedin: function ($q, $timeout, $http, $location, Auth) {
+						return checkUserRole('ver-bovedas', $q, $timeout, $http, $location, Auth);
+					},
+					historial: function ($state, $stateParams, boveda) {
+						return boveda.SGHistorialBoveda().$find($stateParams.historial);
+					}
+				},
+				ncyBreadcrumb: {
+					label: 'Editar historial',
+					parent: 'cooperativa.app.estructura.boveda.editar.historiales.buscar'
+				}
+			})
+			.state('cooperativa.app.estructura.boveda.editar.historial.editar.resumen', {
+				url: '/resumen',
+				templateUrl: '/modules/cooperativa/views/boveda/historial/form-editar-historial-resumen.html',
+				controller: 'Cooperativa.Boveda.Editar.Historial.Editar.ResumenController',
+				resolve: {
+					loggedin: function ($q, $timeout, $http, $location, Auth) {
+						return checkUserRole('ver-bovedas', $q, $timeout, $http, $location, Auth);
+					}
+				},
+				ncyBreadcrumb: {
+					skip: true // Never display this state in breadcrumb.
+				}
+			})
+			.state('cooperativa.app.estructura.boveda.editar.historial.editar.cerrar', {
+				url: '/cerrar',
+				templateUrl: '/modules/cooperativa/views/boveda/historial/form-editar-historial-cerrar.html',
+				controller: 'Cooperativa.Boveda.Editar.Historial.Editar.CerrarController',
+				resolve: {
+					loggedin: function ($q, $timeout, $http, $location, Auth) {
+						return checkUserRole('ver-bovedas', $q, $timeout, $http, $location, Auth);
+					}
+				},
+				ncyBreadcrumb: {
+					label: 'Cerrar historial'
+				}
+			})
+			//TransaccionBovedaCaja
+			.state('cooperativa.app.estructura.boveda.editar.historial.editar.transaccionBovedaCaja', {
+				url: '/transaccionesBovedaCaja',
+				template: '<div ui-view></div>',
+				ncyBreadcrumb: {
+					skip: true // Never display this state in breadcrumb.
+				}
+			})
+			.state('cooperativa.app.estructura.boveda.editar.historial.editar.transaccionBovedaCaja.buscar', {
+				url: '/buscar',
+				templateUrl: '/modules/cooperativa/views/boveda/historial/transaccionBovedaCaja/form-buscar-transaccionBovedaCaja.html',
+				controller: 'Cooperativa.Boveda.Editar.Historial.Editar.TransaccionBovedaCaja.BuscarController',
+				resolve: {
+					loggedin: function ($q, $timeout, $http, $location, Auth) {
+						return checkUserRole('ver-bovedas', $q, $timeout, $http, $location, Auth);
+					}
+				},
+				ncyBreadcrumb: {
+					label: 'Buscar transaccionBovedaCaja'
+				}
+			})
+			.state('cooperativa.app.estructura.boveda.editar.historial.editar.transaccionBovedaCaja.crear', {
+				url: '/crear',
+				templateUrl: '/modules/cooperativa/views/boveda/historial/transaccionBovedaCaja/form-crear-transaccionBovedaCaja.html',
+				controller: 'Cooperativa.Boveda.Editar.Historial.Editar.TransaccionBovedaCaja.CrearController',
+				resolve: {
+					loggedin: function ($q, $timeout, $http, $location, Auth) {
+						return checkUserRole('ver-bovedas', $q, $timeout, $http, $location, Auth);
+					}
+				},
+				ncyBreadcrumb: {
+					label: 'Crear transaccion boveda-caja',
+					parent: 'cooperativa.app.estructura.boveda.editar.historial.editar.transaccionBovedaCaja.buscar'
+				}
+			})
+			.state('cooperativa.app.estructura.boveda.editar.historial.editar.transaccionBovedaCaja.editar', {
+				url: '/editar/:transaccion',
+				templateUrl: '/modules/cooperativa/views/boveda/historial/transaccionBovedaCaja/form-editar-transaccionBovedaCaja.html',
+				controller: 'Cooperativa.Boveda.Editar.Historial.Editar.TransaccionBovedaCaja.EditarController',
+				resolve: {
+					loggedin: function ($q, $timeout, $http, $location, Auth) {
+						return checkUserRole('ver-bovedas', $q, $timeout, $http, $location, Auth);
+					},
+					transaccion: function ($state, $stateParams, historial) {
+						return historial.SGTransaccionBovedaCaja().$find($stateParams.transaccion);
+					}
+				},
+				ncyBreadcrumb: {
+					label: 'Editar transaccion boveda-caja',
+					parent: 'cooperativa.app.estructura.boveda.editar.historial.editar.transaccionBovedaCaja.buscar'
 				}
 			})
 
-			//CAjas
+			//Cajas
 			.state('cooperativa.app.estructura.caja', {
 				url: '/cajas',
 				template: '<div ui-view></div>',
