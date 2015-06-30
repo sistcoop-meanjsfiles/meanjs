@@ -218,7 +218,7 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 				},
 				ncyBreadcrumb: {
 					label: 'Crear historial',
-					parent: 'cooperativa.app.estructura.boveda.editar.historiales.buscar'
+					parent: 'cooperativa.app.estructura.boveda.editar.historial.buscar'
 				}
 			})
 			.state('cooperativa.app.estructura.boveda.editar.historial.editar', {
@@ -235,7 +235,7 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 				},
 				ncyBreadcrumb: {
 					label: 'Editar historial',
-					parent: 'cooperativa.app.estructura.boveda.editar.historiales.buscar'
+					parent: 'cooperativa.app.estructura.boveda.editar.historial.buscar'
 				}
 			})
 			.state('cooperativa.app.estructura.boveda.editar.historial.editar.resumen', {

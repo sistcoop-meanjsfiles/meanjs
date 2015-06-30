@@ -14,7 +14,7 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.Historial.Bu
 
 		$scope.filterOptions = {
 			desde: undefined,
-			hasta: new Date(),
+			hasta: undefined,
 			filterText: undefined,
 			firstResult: 0,
 			maxResults: 10

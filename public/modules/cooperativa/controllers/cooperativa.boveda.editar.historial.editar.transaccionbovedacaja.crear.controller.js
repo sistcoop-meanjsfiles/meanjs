@@ -63,7 +63,7 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.Historial.Ed
 				detalle[i] = {
 					valor: $scope.view.load.detalleHistorialBoveda[i].valor,
 					cantidad: $scope.view.load.detalleHistorialBoveda[i].cantidad
-				}
+				};
 			}
 
 			$scope.view.transaccionBovedaCaja.origen = 'BOVEDA';
