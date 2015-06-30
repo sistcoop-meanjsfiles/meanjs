@@ -64,7 +64,7 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.BuscarController',
 
 		$scope.search = function () {
 			$scope.filterOptions.estado = true;
-			$scope.filterOptions.agencia = SGAgencia.$new($scope.combo.selected.agencia.id).$getAbsoluteUrl();
+			$scope.filterOptions.agencia = SGAgencia.$new($scope.combo.selected.agencia.id).$getUrl();
 
 			$scope.gridOptions.data = SGBoveda.$search($scope.filterOptions).$object;
 		};

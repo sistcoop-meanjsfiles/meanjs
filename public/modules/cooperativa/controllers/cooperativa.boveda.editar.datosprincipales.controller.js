@@ -4,7 +4,7 @@
 angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.DatosPrincipalesController',
 	function ($scope, boveda, toastr, SGAgencia) {
 
-		$scope.changed = true;
+		$scope.changed = false;
 
 		$scope.view = {
 			boveda: boveda
@@ -20,9 +20,10 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.DatosPrincip
 		$scope.loadAgencia();
 
 		$scope.save = function () {
+			$scope.changed = true;
 			$scope.view.boveda.$save().then(
 				function (response) {
-					$scope.changed = true;
+					$scope.changed = false;
 					toastr.success('Boveda actualizada');
 				},
 				function error(err) {

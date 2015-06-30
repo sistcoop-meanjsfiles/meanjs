@@ -47,9 +47,10 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.CrearController',
 			$scope.view.boveda.moneda = $scope.combo.selected.moneda.alphabeticCode;
 			$scope.view.boveda.agencia = SGAgencia.$new($scope.combo.selected.agencia.id).$getUrl();
 
+			$scope.changed = true;
 			$scope.view.boveda.$save().then(
 				function (response) {
-					$scope.changed = true;
+					$scope.changed = false;
 					toastr.success('Boveda creada');
 					$state.go('^.editar', {boveda: response.id});
 				},
