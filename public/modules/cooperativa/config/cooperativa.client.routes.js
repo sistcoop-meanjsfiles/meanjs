@@ -58,6 +58,7 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 
 		$urlRouterProvider.when('/cooperativa/app/estructura/bovedas/editar/:boveda/historiales/editar/:historial', '/cooperativa/app/estructura/bovedas/editar/:boveda/historiales/editar/:historial/resumen');
 
+		$urlRouterProvider.when('/cooperativa/app/estructura/bovedas/editar/:boveda/historiales/editar/:historial/transaccionesBovedaCaja', '/cooperativa/app/estructura/bovedas/editar/:boveda/historiales/editar/:historial/transaccionesBovedaCaja/buscar');
 
 		$stateProvider
 			.state('cooperativa', {
