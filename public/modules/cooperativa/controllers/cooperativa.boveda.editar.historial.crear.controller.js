@@ -56,6 +56,12 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.Historial.Cr
 				toastr.warning('Boveda inactiva, no se puede abrir.');
 				return;
 			}
+			if ($scope.view.load.historialActivo) {
+				if ($scope.view.load.historialActivo.abierto) {
+					toastr.warning('Boveda abierta, no se puede abrir.');
+					return;
+				}
+			}
 
 			var historialBoveda = $scope.view.boveda.SGHistorialBoveda().$build();
 			historialBoveda.detalle = [];
