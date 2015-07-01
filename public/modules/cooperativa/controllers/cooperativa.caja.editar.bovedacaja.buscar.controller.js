@@ -17,4 +17,8 @@ angular.module('cooperativa').controller('Cooperativa.Caja.Editar.BovedaCaja.Bus
 		};
 		$scope.loadBovedaCajas();
 
+		$scope.edit = function (row) {
+			$state.go('^.editar', {bovedaCaja: row.id});
+		};
+
 	});

@@ -26,6 +26,9 @@ angular.module('cooperativa').controller('Cooperativa.Caja.Editar.BovedaCaja.Cre
 		$scope.orderCombo = function () {
 			for (var i = 0; i < $scope.combo.bovedaDisponible.length; i++) {
 				for (var j = 0; j < $scope.combo.bovedaAsignada.length; j++) {
+					if(!$scope.combo.bovedaDisponible[i]){
+						break;
+					}
 					if ($scope.combo.bovedaDisponible[i].id === $scope.combo.bovedaAsignada[j].boveda.id) {
 						$scope.combo.bovedaDisponible.splice(i, 1);
 					}
