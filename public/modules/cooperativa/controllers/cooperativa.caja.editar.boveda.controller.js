@@ -80,12 +80,6 @@ angular.module('cooperativa').controller('Cooperativa.Caja.Editar.BovedaControll
 		};
 
 		$scope.removeBovedas = function () {
-			if ($scope.view.caja.abierto) {
-				toastr.warning('Caja abierta, debe cerrarla antes de desvincular boveda');
-				return;
-			}
-
-			//verificar saldos 0.00
 
 			SGDialog.confirm('Eliminar', 'Estas seguro de desvincular la boveda para la caja. Debes de asegurarte que no existe saldo en caja para la boveda.', function () {
 
@@ -98,7 +92,7 @@ angular.module('cooperativa').controller('Cooperativa.Caja.Editar.BovedaControll
 				};
 
 				for (var i = 0; i < $scope.combo.selected.bovedaAsignada.length; i++) {
-					$scope.view.caja.$removeBovedaCaja($scope.combo.selected.bovedaAsignada[i].id).then(success, error);
+					$scope.view.caja.SGBovedaCaja().$new($scope.combo.selected.bovedaAsignada[i].id).$disable().then(success, error);
 				}
 
 			});
