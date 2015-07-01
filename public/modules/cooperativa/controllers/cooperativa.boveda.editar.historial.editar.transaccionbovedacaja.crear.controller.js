@@ -15,7 +15,7 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.Historial.Ed
 		};
 
 		$scope.view.load = {
-			detalleHistorialBoveda: []
+			detalleHistorialBoveda: undefined
 		};
 
 		$scope.combo = {
@@ -27,18 +27,18 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.Historial.Ed
 
 		$scope.loadDetalleHistorialBoveda = function () {
 			$scope.view.historialBoveda.$getDetalle().then(function (response) {
-				$scope.view.load.detalleHistorialBoveda = response;
-				angular.forEach($scope.view.load.detalleHistorialBoveda, function (row) {
+				angular.forEach(response, function (row) {
 					row.getSubTotal = function () {
 						return this.valor * this.cantidad;
 					};
 				});
+				$scope.view.load.detalleHistorialBoveda = response;
 			});
 		};
 		$scope.loadDetalleHistorialBoveda();
 
 		$scope.loadCombo = function () {
-			$scope.combo.caja = SGCaja.$search({agencia: $scope.view.boveda.agencia});
+			$scope.combo.caja = SGCaja.$search({agencia: $scope.view.boveda.agencia}).$object;
 		};
 		$scope.loadCombo();
 
@@ -54,6 +54,16 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.Historial.Ed
 					$scope.view.historialBovedaCaja = historiales[0];
 				});
 			});
+		};
+
+		$scope.getTotal = function () {
+			if($scope.view.load.detalleHistorialBoveda) {
+				var total = 0;
+				for (var i = 0; i < $scope.view.load.detalleHistorialBoveda.length; i++) {
+					total = total + $scope.view.load.detalleHistorialBoveda[i].getSubTotal();
+				}
+				return total;
+			}
 		};
 
 		$scope.save = function () {
