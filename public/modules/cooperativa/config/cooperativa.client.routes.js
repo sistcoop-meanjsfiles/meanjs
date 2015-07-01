@@ -389,7 +389,7 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 			.state('cooperativa.app.estructura.caja.editar.datosPrincipales', {
 				url: '/datosPrincipales',
 				templateUrl: '/modules/cooperativa/views/caja/form-editar-caja-datosPrincipales.html',
-				controller: 'Cooperativa.Caja.EditarCaja.DatosPrincipalesController',
+				controller: 'Cooperativa.Caja.Editar.DatosPrincipalesController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
 						return checkUserRole('ver-cajas', $q, $timeout, $http, $location, Auth);
@@ -399,7 +399,7 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 			.state('cooperativa.app.estructura.caja.editar.boveda', {
 				url: '/buscar',
 				templateUrl: '/modules/cooperativa/views/caja/form-editar-caja-bovedas.html',
-				controller: 'Cooperativa.Caja.EditarCaja.BovedasController',
+				controller: 'Cooperativa.Caja.Editar.BovedaController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
 						return checkUserRole('ver-cajas', $q, $timeout, $http, $location, Auth);

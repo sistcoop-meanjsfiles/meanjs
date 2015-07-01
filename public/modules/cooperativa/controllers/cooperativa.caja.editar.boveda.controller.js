@@ -1,8 +1,8 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.Caja.EditarCaja.BovedasController',
-	function ($scope, $state, $filter, caja, toastr, SGCaja, SGAgencia, SGBoveda, SGBovedaCaja, SGDialog) {
+angular.module('cooperativa').controller('Cooperativa.Caja.Editar.BovedaController',
+	function ($scope, $state, caja, toastr, SGAgencia, SGCaja, SGBoveda, SGDialog) {
 
 		$scope.view = {
 			caja: caja
@@ -19,7 +19,7 @@ angular.module('cooperativa').controller('Cooperativa.Caja.EditarCaja.BovedasCon
 
 		$scope.loadCombo = function () {
 			$scope.combo.bovedaDisponible = SGBoveda.$search({agencia: $scope.view.caja.agencia}).$object;
-			$scope.combo.bovedaAsignada = $scope.view.caja.$getBovedaCajas().$object;
+			$scope.combo.bovedaAsignada = $scope.view.caja.SGBovedaCaja().$search().$object;
 		};
 		$scope.loadCombo();
 
@@ -49,10 +49,6 @@ angular.module('cooperativa').controller('Cooperativa.Caja.EditarCaja.BovedasCon
 				toastr.info('Caja inactiva, no se puede actualizar.');
 				return;
 			}
-			if ($scope.view.caja.abierto) {
-				toastr.warn('Caja abierta, debe cerrarla antes de vincular boveda.');
-				return;
-			}
 
 			SGDialog.confirm('Vincular', 'Estas seguro de vincular la caja para la boveda', function () {
 
@@ -64,7 +60,7 @@ angular.module('cooperativa').controller('Cooperativa.Caja.EditarCaja.BovedasCon
 					bovedaCajas.push(bovedaCaja);
 				}
 
-				$scope.view.caja.$addBovedaCaja(bovedaCajas).then(
+				$scope.view.caja.SGBovedaCaja().$saveSent(bovedaCajas).then(
 					function (response) {
 						toastr.success('Bovedas asignadas');
 						var nuevo = [];
@@ -89,12 +85,7 @@ angular.module('cooperativa').controller('Cooperativa.Caja.EditarCaja.BovedasCon
 				return;
 			}
 
-			for (var i = 0; i < $scope.combo.bovedaAsignada.length; i++) {
-				if ($scope.combo.bovedaAsignada[i].saldo !== 0) {
-					toastr.warning('Caja tiene saldo diferente de 0.00, no puede desvincularla');
-					return;
-				}
-			}
+			//verificar saldos 0.00
 
 			SGDialog.confirm('Eliminar', 'Estas seguro de desvincular la boveda para la caja. Debes de asegurarte que no existe saldo en caja para la boveda.', function () {
 
