@@ -1,10 +1,6 @@
 <br/>
 <form name="form" sg-read-only="!(access.administrarCajas || access.administrarCajasAgencia)" class="form-horizontal" novalidate>
 
-	<fieldset class="border-top">
-		<legend><span class="text ng-scope">Bovedas <i class="fa fa-question-circle text-muted ng-scope" tooltip="Bovedas asignadas a la caja." tooltip-placement="right"></i></span></legend>
-	</fieldset>
-
 	<div class="form-group">
 		<label class="col-md-2 control-label">Bovedas asignadas:</label>
 
@@ -20,11 +16,8 @@
 				</div>
 				<div class="col-md-3">
 					<label class="control-label">Bovedas asignadas <i class="fa fa-question-circle text-muted" tooltip="Bovedas asignadas a la caja." tooltip-placement="right"></i></label>
-					<select class="form-control" multiple size="5" ng-multiple="true" ng-model="combo.selected.bovedaAsignada" ng-options="c.boveda.denominacion for c in combo.bovedaAsignada">
+					<select class="form-control" multiple size="5" ng-multiple="true" ng-model="combo.selected.bovedaAsignada" ng-options="c.boveda.denominacion for c in combo.bovedaAsignada" disabled>
 					</select>
-					<button class="btn btn-default" type="submit" ng-click="removeBovedas()" tooltip="Quitar bovedas" tooltip-placement="left">
-						<i class="fa fa-angle-double-left"></i> Quitar seleccionados
-					</button>
 				</div>
 			</div>
 		</div>

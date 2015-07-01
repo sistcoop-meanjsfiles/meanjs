@@ -1,7 +1,7 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.Caja.Editar.BovedaController',
+angular.module('cooperativa').controller('Cooperativa.Caja.Editar.BovedaCaja.CrearController',
 	function ($scope, $state, caja, toastr, SGAgencia, SGCaja, SGBoveda, SGDialog) {
 
 		$scope.view = {
@@ -77,26 +77,6 @@ angular.module('cooperativa').controller('Cooperativa.Caja.Editar.BovedaControll
 					}
 				);
 			});
-		};
-
-		$scope.removeBovedas = function () {
-
-			SGDialog.confirm('Eliminar', 'Estas seguro de desvincular la boveda para la caja. Debes de asegurarte que no existe saldo en caja para la boveda.', function () {
-
-				var success = function (response) {
-					toastr.success('Boveda desvinculada');
-					$scope.loadCombo();
-				};
-				var error = function error(err) {
-					toastr.error(err.data.message);
-				};
-
-				for (var i = 0; i < $scope.combo.selected.bovedaAsignada.length; i++) {
-					$scope.view.caja.SGBovedaCaja().$new($scope.combo.selected.bovedaAsignada[i].id).$disable().then(success, error);
-				}
-
-			});
-
 		};
 
 	});
