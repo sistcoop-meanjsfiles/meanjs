@@ -1,7 +1,7 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.Caja.CrearCajaController',
+angular.module('cooperativa').controller('Cooperativa.Caja.CrearController',
     function($scope, $state, SGCaja, SGSucursal, SGAgencia, toastr){
 
 		$scope.changed = false;

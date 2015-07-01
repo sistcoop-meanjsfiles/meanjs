@@ -332,7 +332,7 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 			.state('cooperativa.app.estructura.caja.buscar', {
 				url: '/buscar',
 				templateUrl: '/modules/cooperativa/views/caja/form-buscar-caja.html',
-				controller: 'Cooperativa.Caja.BuscarCajaController',
+				controller: 'Cooperativa.Caja.BuscarController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
 						return checkUserRole('ver-cajas', $q, $timeout, $http, $location, Auth);
@@ -345,7 +345,7 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 			.state('cooperativa.app.estructura.caja.crear', {
 				url: '/crear',
 				templateUrl: '/modules/cooperativa/views/caja/form-crear-caja.html',
-				controller: 'Cooperativa.Caja.CrearCajaController',
+				controller: 'Cooperativa.Caja.CrearController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
 						return checkUserRole('ver-cajas', $q, $timeout, $http, $location, Auth);
@@ -359,7 +359,7 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 			.state('cooperativa.app.estructura.caja.editar', {
 				url: '/editar/:caja',
 				templateUrl: '/modules/cooperativa/views/caja/form-editar-caja.html',
-				controller: 'Cooperativa.Caja.EditarCajaController',
+				controller: 'Cooperativa.Caja.EditarController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
 						return checkUserRole('ver-cajas', $q, $timeout, $http, $location, Auth);
@@ -376,7 +376,7 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
 			.state('cooperativa.app.estructura.caja.editar.resumen', {
 				url: '/resumen',
 				templateUrl: '/modules/cooperativa/views/caja/form-editar-caja-resumen.html',
-				controller: 'Cooperativa.Caja.EditarCaja.ResumenController',
+				controller: 'Cooperativa.Caja.Editar.ResumenController',
 				resolve: {
 					loggedin: function ($q, $timeout, $http, $location, Auth) {
 						return checkUserRole('ver-cajas', $q, $timeout, $http, $location, Auth);

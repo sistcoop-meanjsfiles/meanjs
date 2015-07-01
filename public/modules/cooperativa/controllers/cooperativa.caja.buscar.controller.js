@@ -1,7 +1,7 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.Caja.BuscarCajaController',
+angular.module('cooperativa').controller('Cooperativa.Caja.BuscarController',
     function($scope, $state, SGSucursal, SGAgencia, SGCaja) {
 
         $scope.combo = {
