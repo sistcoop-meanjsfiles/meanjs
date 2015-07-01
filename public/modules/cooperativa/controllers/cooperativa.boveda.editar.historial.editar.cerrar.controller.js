@@ -12,7 +12,7 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.Historial.Ed
 		};
 
 		$scope.view.load = {
-			detalleHistorial: []//Detalle de monedas en boveda {cantidad:'10', valor: '200.00'}
+			detalleHistorial: []//Detalle de monedas en boveda {cantidad:'10', valor: '200.00'},
 		};
 
 		$scope.loadDetalleHistorial = function () {
@@ -45,7 +45,7 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.Historial.Ed
 				function (response) {
 					$scope.changed = true;
 					toastr.success('Historial cerrado');
-					$state.go('^.buscar');
+					$state.go('^.resumen');
 				},
 				function error(error) {
 					toastr.error(error.data.message);
