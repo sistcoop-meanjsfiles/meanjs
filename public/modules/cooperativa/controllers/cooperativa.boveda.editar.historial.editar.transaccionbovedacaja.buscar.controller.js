@@ -2,10 +2,9 @@
 
 /* jshint -W098 */
 angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.Historial.Editar.TransaccionBovedaCaja.BuscarController',
-	function ($scope, $state, boveda, historial, toastr) {
+	function ($scope, $state, historial, SGBoveda) {
 
 		$scope.view = {
-			boveda: boveda,
 			historial: historial
 		};
 
@@ -14,7 +13,15 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.Historial.Ed
 		};
 
 		$scope.loadTransaccionesBovedaCaja = function () {
-			$scope.view.load.transaccionesBovedaCaja = $scope.view.historial.SGTransaccionBovedaCaja().$search().$object;
+			$scope.view.historial.SGTransaccionBovedaCaja().$search().then(function(historiales){
+				$scope.view.load.transaccionesBovedaCaja = historiales;
+				angular.forEach($scope.view.load.transaccionesBovedaCaja, function (row) {
+					//row.boveda = SGPersonaNatural.$findByTipoNumeroDocumento(row.tipoDocumento, row.numeroDocumento).$object;
+				});
+				angular.forEach($scope.view.load.transaccionesBovedaCaja, function (row) {
+					row.detalle = row.$getDetalle().$object;
+				});
+			});
 		};
 		$scope.loadTransaccionesBovedaCaja();
 

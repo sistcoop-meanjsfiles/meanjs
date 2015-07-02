@@ -1,13 +1,12 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.Historial.Editar.CerrarController',
-	function ($scope, $state, boveda, historial, toastr) {
+angular.module('cooperativa').controller('Cooperativa.Caja.Editar.BovedaCaja.Historial.Editar.CerrarController',
+	function ($scope, $state, toastr, historial) {
 
 		$scope.changed = false;
 
 		$scope.view = {
-			boveda: boveda,
 			historial: historial
 		};
 
@@ -35,12 +34,7 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.Historial.Ed
 			return total;
 		};
 
-		$scope.save = function () {
-			if ($scope.view.boveda.estado === false) {
-				toastr.warning('Boveda inactiva, no se puede abrir.');
-				return;
-			}
-
+		$scope.cerrar = function () {
 			$scope.view.historial.$cerrar().then(
 				function (response) {
 					$scope.changed = true;

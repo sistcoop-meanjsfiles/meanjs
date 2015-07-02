@@ -55,9 +55,14 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.Historial.Ed
 				});
 			});
 		};
+		$scope.$watch('combo.selected.caja', function (newVal, oldVal) {
+			if (newVal) {
+				$scope.getHistorialActivoBovedaCaja();
+			}
+		}, true);
 
 		$scope.getTotal = function () {
-			if($scope.view.load.detalleHistorialBoveda) {
+			if ($scope.view.load.detalleHistorialBoveda) {
 				var total = 0;
 				for (var i = 0; i < $scope.view.load.detalleHistorialBoveda.length; i++) {
 					total = total + $scope.view.load.detalleHistorialBoveda[i].getSubTotal();
@@ -69,7 +74,7 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.Historial.Ed
 		$scope.save = function () {
 
 			var detalle = [];
-			for (var i = 0; $scope.view.load.detalleHistorialBoveda.length; i++) {
+			for (var i = 0; i < $scope.view.load.detalleHistorialBoveda.length; i++) {
 				detalle[i] = {
 					valor: $scope.view.load.detalleHistorialBoveda[i].valor,
 					cantidad: $scope.view.load.detalleHistorialBoveda[i].cantidad
@@ -78,7 +83,7 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.Historial.Ed
 
 			$scope.view.transaccionBovedaCaja.origen = 'BOVEDA';
 			$scope.view.transaccionBovedaCaja.historialBoveda = {id: $scope.view.historialBoveda.id};
-			$scope.view.transaccionBovedaCaja.historialBovedaCaja = $scope.view.historialBovedaCaja.id;
+			$scope.view.transaccionBovedaCaja.historialBovedaCaja = {id: $scope.view.historialBovedaCaja.id};
 			$scope.view.transaccionBovedaCaja.detalle = detalle;
 
 			$scope.view.transaccionBovedaCaja.$save().then(
