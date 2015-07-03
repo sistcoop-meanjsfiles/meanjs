@@ -58,7 +58,7 @@ module.exports = {
 				'public/lib/angular-animate/angular-animate.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/angular-breadcrumb/dist/angular-breadcrumb.js',
-				'public/lib/angular-input-masks/angular-input-masks.js',
+				'public/lib/angular-input-masks/angular-input-masks-standalone.js',
 				'public/lib/angular-messages/angular-messages.js',
 				'public/lib/angular-sanitize/angular-sanitize.js',
 				'public/lib/angular-toastr/dist/angular-toastr.tpls.js',

@@ -28,7 +28,7 @@ var ApplicationConfiguration = (function() {
 		'ui.router',
 		'ui.select',
 		'ui.select.utils',
-		'ui.utils',
+		//'ui.utils',
 		'ui.utils.masks',
 		'xeditable',
 		'ngFileUpload',
