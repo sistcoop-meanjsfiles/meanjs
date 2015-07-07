@@ -79,22 +79,9 @@ angular.module('producto').service('$menuItemsProducto', ['Auth',
 		this.prepareSidebarMenu = function () {
 			this.menuItems = [];
 
-			var rolesSession = [];
-
-			if (Auth.authz.resourceAccess.persona) {
-				rolesSession = Auth.authz.resourceAccess.persona.roles;
-			}
-
-			if (rolesSession.indexOf('ver-personas') !== -1) {
-				var personas = this.addItem('Personas', '');
-				personas.addItem('Naturales', 'persona.app.persona.natural');
-				personas.addItem('Juridicas', 'persona.app.persona.juridica');
-			}
-
-			if (rolesSession.indexOf('ver-documentos') !== -1) {
-				var administracion = this.addItem('Administracion', '');
-				administracion.addItem('Tipo documento', 'persona.app.administracion.documento');
-			}
+			var productos = this.addItem('Productos', '');
+			productos.addItem('Cuentas personales', 'producto.app.producto.cuentaPersonal');
+			productos.addItem('Creditos', 'producto.app.producto.credito');
 
 			return this;
 		};
