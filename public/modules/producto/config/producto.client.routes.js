@@ -4,6 +4,8 @@
 angular.module('producto').config(['$stateProvider', '$urlRouterProvider',
 	function ($stateProvider, $urlRouterProvider) {
 
+		$urlRouterProvider.when('/producto/app/productos/cuentasPersonales', '/producto/app/productos/cuentasPersonales/buscar');
+
 		$stateProvider
 			.state('producto', {
 				abstract: true,
