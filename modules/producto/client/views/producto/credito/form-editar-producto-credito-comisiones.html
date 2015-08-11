@@ -1,0 +1,128 @@
+<div class="panel-body">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <h4><strong>Producto</strong></h4>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <p>Codigo:&nbsp;</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <p>
+                        <strong data-ng-bind="view.producto.codigo"></strong>
+                    </p>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <p>Denominacion:&nbsp;</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <p>
+                        <strong data-ng-bind="view.producto.denominacion"></strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Lista de comisiones del producto
+                </div>
+                <div class="row wrapper">
+                    <form name="form" data-ng-submit="submit()" novalidate>
+                        <div class="col-sm-4">
+                            <div class="form-group" data-ng-class="{ 'has-error' : form.denominacion.$invalid && form.denominacion.$dirty}">
+                                <input type="text" name="denominacion" data-ng-model="view.comision.denominacion" data-ng-maxlength="60" class="input-sm form-control" placeholder="Denominacion" autofocus required/>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group" data-ng-class="{ 'has-error' : form.valor.$invalid && form.valor.$dirty}">
+                                <input type="text" name="valor" data-ng-model="view.comision.valor" ui-number-mask="2" min="0" data-ng-init="0" class="input-sm form-control" placeholder="0.00" required/>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <ui-select name="tipoValor" data-ng-model="combo.selected.tipoValor" required>
+                                <ui-select-match placeholder="Tipo valor">{{$select.selected.denominacion}}</ui-select-match>
+                                <ui-select-choices repeat="item in combo.tipoValor | filter: $select.search">
+                                    <div data-ng-bind-html="item.denominacion | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="col-sm-2">
+                            <ui-select name="frecuencia" data-ng-model="combo.selected.frecuencia" required>
+                                <ui-select-match placeholder="Frecuencia">{{$select.selected.denominacion}}</ui-select-match>
+                                <ui-select-choices repeat="item in combo.frecuencia | filter: $select.search">
+                                    <div data-ng-bind-html="item.denominacion | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-sm btn-default">
+                                <i class="fa fa-plus text"></i>
+                                <span class="text">Guardar</span>
+                                <i class="fa fa-minus text-active"></i>
+                                <span class="text-active">Guardar</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped b-t b-light">
+                        <thead>
+                        <tr>
+                            <th>Nro</th>
+                            <th>Denominacion</th>
+                            <th>Valor</th>
+                            <th>Tipo valor</th>
+                            <th>Frecuencia</th>
+                            <th style="width:30px;"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in loadObjects.comisiones">
+                            <td><span data-ng-bind="$index+1"></span></td>
+                            <td>
+                                <span editable-text="item.denominacion" e-name="denominacion" e-form="rowform" e-required>
+                                  {{ item.denominacion || 'empty' }}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-number="item.valor" e-name="valor" e-form="rowform" e-min="0" e-step="any" e-required>
+                                  {{ item.valor | currency: '' }}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-select="item.tipoValor" e-name="tipoValor" e-form="rowform" e-ng-options="g.denominacion as g.denominacion for g in combo.tipoValor">
+                                  {{ item.tipoValor || 'empty' }}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-select="item.frecuencia" e-name="frecuencia" e-form="rowform" e-ng-options="g.denominacion as g.denominacion for g in combo.frecuencia">
+                                  {{ item.frecuencia || 'empty' }}
+                                </span>
+                            </td>
+                            <td style="white-space: nowrap">
+                                <form editable-form name="rowform" onbeforesave="saveComision($data, item.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="false">
+                                    <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-sm btn-primary">
+                                        save
+                                    </button>
+                                    <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-sm btn-default">
+                                        cancel
+                                    </button>
+                                </form>
+                                <div class="buttons" ng-show="!rowform.$visible">
+                                    <button class="btn btn-sm btn-primary" ng-click="rowform.$show()">edit</button>
+                                    <button class="btn btn-sm btn-danger" ng-click="removeComision($index)">del</button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

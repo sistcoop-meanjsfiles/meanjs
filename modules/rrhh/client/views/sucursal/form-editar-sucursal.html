@@ -1,0 +1,37 @@
+<div ncy-breadcrumb></div>
+
+<h1>Editar Sucursal</h1>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div>
+
+            <div class="tab-container">
+                <ul class="nav nav-tabs">
+                    <li ui-sref-active="active">
+                        <a href ui-sref=".resumen">
+                            Resumen
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a href ui-sref=".agencia">
+                            Agencias
+                        </a>
+                    </li>
+                    <li class="pull-right" ng-if="access.administrarSucursales">
+                        <div class="btn-group">
+                            <form name="form" data-ng-submit="eliminar()" novalidate>
+                                <button sg-delete>Eliminar</button>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+                <div class="tab-pane">
+                    <br/>
+                    <div ui-view></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div ncy-breadcrumb></div>
+
+<h1>Editar Historial</h1>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div>
+
+            <div class="tab-container">
+                <ul class="nav nav-tabs">
+                    <li ui-sref-active="active">
+                        <a href ui-sref=".resumen">
+                            Resumen
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a href ui-sref=".cerrar">
+                            Cerrar
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a href ui-sref=".transaccionBovedaCaja">
+                            Transacciones boveda-caja
+                        </a>
+                    </li>
+                </ul>
+                <div class="tab-pane">
+                    <br/>
+                    <div ui-view></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

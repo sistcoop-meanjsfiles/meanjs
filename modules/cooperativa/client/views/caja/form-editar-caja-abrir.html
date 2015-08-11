@@ -1,0 +1,52 @@
+<form name="form" data-ng-submit="submit()" novalidate>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p ng-if="!view.loaded.detalle.length">No se encontró detalle de caja, si es la primera vez que abre
+                        la caja haga click en GUARDAR, sino pongase en contacto con su administrador.</p>
+                    <tabset ng-if="view.loaded.detalle.length">
+                        <tab ng-repeat="tab in view.loaded.detalle" heading="{{tab.moneda}}">
+                            <table class="table table-bordered table-striped table-condensed table-hover">
+                                <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Valor</th>
+                                    <th>Cantidad</th>
+                                    <th>Sub total</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in tab.detalle | orderBy: 'valor'">
+                                    <td><span ng-bind="$index+1"></span></td>
+                                    <td><span ng-bind="item.valor | currency: ''"></span></td>
+                                    <td><span ng-bind="item.cantidad"></span></td>
+                                    <td>
+                                        <span ng-bind="item.getSubTotal() | currency: ''"></span>
+                                        &nbsp;
+                                        <span ng-bind="tab.boveda.moneda"></span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <th rowspan="1" colspan="3">Total:</th>
+                                    <th rowspan="1" colspan="1"><span ng-bind="tab.total | currency : ''"></span></th>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </tab>
+                    </tabset>
+                    <p>
+                        <button type="submit" class="btn btn-primary" ladda="control.block" data-style="expand-right">
+                            Guardar
+                        </button>
+                        <button type="button" class="btn btn-default" ui-sref="^.resumen">Cancelar</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>

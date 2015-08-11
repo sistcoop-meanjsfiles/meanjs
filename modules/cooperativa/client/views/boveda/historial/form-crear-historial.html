@@ -1,0 +1,52 @@
+<br>
+<form name="form" data-ng-submit="submit()" novalidate>
+
+	<fieldset class="border-top">
+		<legend><span class="text ">Crear historial boveda <i class="fa fa-question-circle text-muted" tooltip="Al crear un nuevo historial se abrira la boveda." tooltip-placement="right"></i></span></legend>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Denominaciones: <i class="fa fa-question-circle text-muted" tooltip="Denominaciones con las que se abrira la boveda." tooltip-placement="right"></i></label>
+			<div class="col-md-6">
+				<p ng-if="!view.load.detalleHistorialActivo.length">No se encontró detalle de boveda, si es la primera vez que abre la boveda haga click en GUARDAR, sino pongase en contacto con su administrador.</p>
+				<table ng-if="view.load.detalleHistorialActivo.length" class="table table-bordered table-striped table-condensed table-hover">
+					<thead>
+					<tr>
+						<th width="5%" class="text-right">#</th>
+						<th width="15%" class="text-right">Valor</th>
+						<th width="30%" class="text-right">Cantidad</th>
+						<th class="text-right">Sub total</th>
+					</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="item in view.load.detalleHistorialActivo | orderBy: 'valor'">
+						<td class="text-right"><span ng-bind="$index + 1"></span></td>
+						<td class="text-right"><span ng-bind="item.valor | currency: ''"></span></td>
+						<td class="text-right"><span ng-bind="item.cantidad | number"></span></td>
+						<td class="text-right">
+							<span ng-bind="item.getSubTotal() | currency: ''"></span>&nbsp;<span ng-bind="view.boveda.moneda"></span>
+						</td>
+					</tr>
+					</tbody>
+					<tfoot>
+					<tr>
+						<th rowspan="1" colspan="3" class="text-right">TOTAL:</th>
+						<th rowspan="1" colspan="1" class="text-right">
+							<span ng-bind="getTotal() | currency : ''"></span>&nbsp;<span ng-bind="view.boveda.moneda"></span>
+						</th>
+					</tr>
+					</tfoot>
+				</table>
+			</div>
+		</div>
+	</fieldset>
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button sg-save data-ng-disabled="changed">Guardar</button>
+			<button sg-cancel ui-sref="^.buscar" data-ng-disabled="changed">Cancelar</button>
+			<div class="spinner spinner-inline" data-ng-show="changed" style="vertical-align: middle;"></div>
+		</div>
+	</div>
+
+</form>
+<br/>
+

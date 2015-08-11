@@ -1,0 +1,28 @@
+<div ncy-breadcrumb></div>
+
+<h1><strong>Boveda</strong> <span data-ng-bind="view.boveda.denominacion"></span></h1>
+
+<ul class="nav nav-tabs">
+	<li ui-sref-active="active">
+		<a href ui-sref=".resumen">
+			Resumen
+		</a>
+	</li>
+	<li ui-sref-active="active">
+		<a href ui-sref=".datosPrincipales">
+			Datos principales
+		</a>
+	</li>
+	<li ui-sref-active="active">
+		<a href ui-sref=".historial">
+			Historiales
+		</a>
+	</li>
+	<li class="pull-right">
+		<div class="btn-group">
+			<button type="button" data-ng-click="disable()" class="btn btn-danger">Desactivar</button>
+		</div>
+	</li>
+</ul>
+
+<div ui-view></div>

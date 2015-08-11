@@ -1,0 +1,56 @@
+<div ncy-breadcrumb></div>
+
+<h1><strong>Crear caja</strong></h1>
+
+<form name="form" sg-read-only="!(access.administrarCajas || access.administrarCajasAgencia)" class="form-horizontal" novalidate>
+
+	<div class="form-group" ng-class="{ 'has-error' : form.sucursal.$invalid && form.$submitted}">
+		<label class="col-sm-2 control-label"><span class="required">*</span> Sucursal:</label>
+		<div class="col-sm-3">
+			<ui-select name="sucursal" ng-model="combo.selected.sucursal" ng-disabled="!(access.administrarBovedas || access.administrarBovedasAgencia)" autofocus required>
+				<ui-select-match placeholder="Sucursal">{{$select.selected.denominacion}}</ui-select-match>
+				<ui-select-choices repeat="item in combo.sucursal | filter: $select.search">
+					<div ng-bind-html="item.denominacion | highlight: $select.search"></div>
+				</ui-select-choices>
+			</ui-select>
+			<div ng-messages="form.sucursal.$error" ng-if="form.sucursal.$touched || form.$submitted">
+				<div class="has-error" ng-message="required">Ingrese sucursal.</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group" ng-class="{ 'has-error' : form.agencia.$invalid && form.$submitted}">
+		<label class="col-sm-2 control-label"><span class="required">*</span> Agencia:</label>
+		<div class="col-sm-3">
+			<ui-select name="agencia" ng-model="combo.selected.agencia" ng-disabled="!(access.administrarBovedas || access.administrarBovedasAgencia)" required>
+				<ui-select-match placeholder="Agencia">{{$select.selected.denominacion}}</ui-select-match>
+				<ui-select-choices repeat="item in combo.agencia | filter: $select.search">
+					<div ng-bind-html="item.denominacion | highlight: $select.search"></div>
+				</ui-select-choices>
+			</ui-select>
+			<div ng-messages="form.sucursal.$error" ng-if="form.agencia.$touched || form.$submitted">
+				<div class="has-error" ng-message="required">Ingrese agencia.</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group" ng-class="{ 'has-error' : form.denominacion.$invalid && form.$submitted}">
+		<label class="col-sm-2 control-label"><span class="required">*</span> Denominacion:</label>
+		<div class="col-sm-3">
+			<input type="text" name="denominacion" ng-model="view.caja.denominacion" ng-maxlength="60" class="form-control" required/>
+			<div ng-messages="form.denominacion.$error" ng-if="form.denominacion.$touched || form.$submitted">
+				<div class="has-error" ng-message="required">Ingrese denominacion.</div>
+				<div class="has-error" ng-message="maxlength">Maximo 60 caracteres.</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button sg-save data-ng-disabled="changed">Guardar</button>
+			<button sg-cancel ui-sref="^.buscar" data-ng-disabled="changed">Cancelar</button>
+			<div class="spinner spinner-inline" data-ng-show="changed" style="vertical-align: middle;"></div>
+		</div>
+	</div>
+
+</form>
+
+

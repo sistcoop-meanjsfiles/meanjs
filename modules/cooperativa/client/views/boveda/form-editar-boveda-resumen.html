@@ -1,0 +1,91 @@
+<br/>
+<div class="row">
+    <div class="col-sm-6">
+
+        <div class="panel panel-default panel-border panel-shadow">
+            <div class="panel-heading">
+                <h3 class="panel-title">Datos principales</h3>
+            </div>
+            <div class="panel-body">
+                <div style="border-bottom: 1px solid #e5e5e5;margin-bottom: 20px;">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <p>Moneda:&nbsp;</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <p><strong ng-bind="view.boveda.moneda"></strong></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <p>Denominacion:&nbsp;</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <p><strong ng-bind="view.boveda.denominacion"></strong></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <p>Abierto:&nbsp;</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <p><strong ng-bind="view.boveda.abierto | si_no : 'Abierto' | uppercase"></strong></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <p>E. movimiento:&nbsp;</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <p><strong ng-bind="view.boveda.estadoMovimiento | si_no : 'Congelado' | uppercase"></strong></p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <p>Estado:&nbsp;</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <p><strong ng-bind="view.boveda.estado | si_no: 'activo' | uppercase"></strong></p>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" ui-sref="^.datosPrincipales" class="btn btn-default">Editar</button>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col-sm-6">
+
+        <div class="panel panel-default panel-border panel-shadow">
+            <div class="panel-heading">
+                <h3 class="panel-title">Datos adicionales</h3>
+            </div>
+            <div class="panel-body">
+                <div style="border-bottom: 1px solid #e5e5e5;margin-bottom: 20px;">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <p>Agencia:&nbsp;</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-8">
+                            <p><strong ng-bind="view.load.agencia.denominacion"></strong></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

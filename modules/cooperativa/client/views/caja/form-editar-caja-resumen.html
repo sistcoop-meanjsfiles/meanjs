@@ -1,0 +1,192 @@
+</br>
+<div class="row">
+    <div class="col-sm-6">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default panel-border panel-shadow">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Datos principales</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div style="border-bottom: 1px solid #e5e5e5;margin-bottom: 20px;">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <p>Denominacion:&nbsp;</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p><strong ng-bind="view.caja.denominacion"></strong></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <p>Abierto:&nbsp;</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p><strong ng-bind="view.caja.abierto | si_no : 'Abierto' | uppercase"></strong></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <p>E. movimiento:&nbsp;</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p><strong ng-bind="view.caja.estadoMovimiento | si_no : 'Congelado' | uppercase"></strong></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <p>Estado:&nbsp;</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p><strong ng-bind="view.caja.estado | si_no: 'activo' | uppercase"></strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" ui-sref="^.datosPrincipales" class="btn btn-default">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default panel-border panel-shadow">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Datos adicionales</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div style="border-bottom: 1px solid #e5e5e5;margin-bottom: 20px;">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <p>Sucursal:&nbsp;</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p><strong ng-bind="view.load.agencia.sucursal.denominacion"></strong></p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <p>Agencia:&nbsp;</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-8">
+                                    <p><strong ng-bind="view.load.agencia.denominacion"></strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-sm-6">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default panel-border panel-shadow">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Bovedas</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-striped table-bordered table-condensed">
+                                    <caption ng-show="!view.load.bovedaCajas.length">No se encontraron bovedas.</caption>
+                                    <thead ng-show="view.load.bovedaCajas.length">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Moneda.</th>
+                                        <th>Denom.</th>
+                                        <th>Abierto</th>
+                                        <th>Movimiento</th>
+                                        <th>Saldo</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="item in view.load.bovedaCajas track by item.id | orderBy: id">
+                                        <td><span ng-bind="$index+1"></span></td>
+                                        <td>
+                                            <span ng-bind="item.boveda.moneda"></span>
+                                        </td>
+                                        <td>
+                                            <span ng-bind="item.boveda.denominacion"></span>
+                                        </td>
+                                        <td>
+                                            <span ng-bind="item.boveda.abierto | si_no: 'Abierto'"></span>
+                                        </td>
+                                        <td>
+                                            <span ng-bind="item.boveda.estadoMovimiento | si_no:'Congelado'"></span>
+                                        </td>
+                                        <td>
+                                            <span ng-bind="item.saldo | currency: ''"></span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default panel-border panel-shadow">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Trabajadores</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table class="table table-striped table-bordered table-condensed">
+                                    <caption ng-show="!view.load.trabajadorCajas.length">No se encontraron trabajadores.</caption>
+                                    <thead ng-show="view.load.trabajadorCajas.length">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>T.Doc.</th>
+                                        <th>Num.Doc.</th>
+                                        <th>Usuario</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-repeat="item in view.load.trabajadorCajas track by item.id | orderBy: id">
+                                        <td><span ng-bind="$index+1"></span></td>
+                                        <td>
+                                            <span ng-bind="item.tipoDocumento"></span>
+                                        </td>
+                                        <td>
+                                            <span ng-bind="item.numeroDocumento"></span>
+                                        </td>
+                                        <td>
+                                            <span ng-bind="item.usuario"></span>
+                                        </td>
+                                        <td>
+                                            <span ng-bind="item.estado | si_no:'Activo'"></span>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

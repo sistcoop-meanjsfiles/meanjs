@@ -1,0 +1,31 @@
+<br/>
+<table class="table table-striped table-bordered table-condensed">
+	<thead>
+	<tr ng-if="access.administrarCajas">
+		<th colspan="9">
+			<div class="pull-right">
+				<a href="" ui-sref="^.crear" class="btn btn-primary">Add bovedas</a>
+			</div>
+		</th>
+	</tr>
+	<tr data-ng-show="view.load.bovedaCaja.length">
+		<th width="5%">#</th>
+		<th>Boveda</th>
+		<th>Estado</th>
+		<th width="5%" ng-if="access.administrarCajas">Edit</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="item in view.load.bovedaCaja">
+		<td><span ng-bind="$index+1"></span></td>
+		<td><span ng-bind="item.boveda.denominacion"></span></td>
+		<td><span ng-bind="item.estado | si_no : 'activo' | uppercase"></span></td>
+		<td ng-if="access.administrarCajas">
+			<button type="button" data-ng-click="edit(item)" class="btn btn-info btn-xs">Editar</button>
+		</td>
+	</tr>
+	<tr data-ng-show="!view.load.bovedaCaja.length">
+		<td>No se encontraron bovedas asignadas.</td>
+	</tr>
+	</tbody>
+</table>

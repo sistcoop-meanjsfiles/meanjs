@@ -1,0 +1,72 @@
+<form name="form" data-ng-submit="submit()" novalidate>
+
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-12">
+                <form name="form" data-ng-submit="submit()" novalidate>
+                    <div>
+                        <h4><strong>Datos principales</strong></h4>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Codigo</label>
+                                    <h4><span data-ng-bind="view.producto.codigo"></span></h4>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group" data-ng-class="{ 'has-error' : form.denominacion.$invalid && (form.denominacion.$touched || form.$submitted)}">
+                                    <label>Denominacion</label>
+                                    <input type="text" name="denominacion" data-ng-model="view.producto.denominacion" data-ng-maxlength="60" class="form-control" autofocus required/>
+                                    <div data-ng-messages="form.denominacion.$error" data-ng-if="form.denominacion.$touched || form.$submitted">
+                                        <div class="has-error" data-ng-message="required">Ingrese denominacion.</div>
+                                        <div class="has-error" data-ng-message="maxlength">Maximo 60 caracteres.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Moneda</label>
+                                    <h4><span data-ng-bind="view.producto.moneda"></span></h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Tipo persona</label>
+                                    <h4><span data-ng-bind="view.producto.tipoPersona"></span></h4>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group" ng-class="{ 'has-error' : form.montoMinimo.$invalid && (form.montoMinimo.$touched || form.$submitted)}">
+                                    <label>Monto minimo</label>
+                                    <input type="text" name="montoMinimo" data-ng-model="view.producto.montoMinimo" data-ui-number-mask="0" data-min="0" data-max="1000000" class="form-control" required/>
+                                    <div data-ng-messages="form.montoMinimo.$error" data-ng-if="form.montoMinimo.$touched || form.$submitted">
+                                        <div class="has-error" data-ng-message="required">Ingrese monto minimo.</div>
+                                        <div class="has-error" data-ng-message="max">Monto maximo 1,000,000.</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group" ng-class="{ 'has-error' : form.montoMaximo.$invalid && (form.montoMaximo.$touched || form.$submitted)}">
+                                    <label>Monto maximo</label>
+                                    <input type="text" name="montoMaximo" data-ng-model="view.producto.montoMaximo" data-ui-number-mask="0" data-min="0" data-max="1000000" class="form-control" required/>
+                                    <div data-ng-messages="form.denominacion.$error" data-ng-if="form.denominacion.$touched || form.$submitted">
+                                        <div class="has-error" data-ng-message="required">Ingrese monto maximo.</div>
+                                        <div class="has-error" data-ng-message="max">Monto maximo 1,000,000.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p>
+                            <button type="submit" class="btn btn-primary" ladda="control.block" data-style="expand-right">Guardar</button>
+                            <button type="button" class="btn btn-default" ui-sref="^.resumen">Cancelar</button>
+                        </p>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</form>

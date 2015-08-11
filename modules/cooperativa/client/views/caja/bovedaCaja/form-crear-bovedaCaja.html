@@ -1,0 +1,35 @@
+<br/>
+<form name="form" sg-read-only="!(access.administrarCajas || access.administrarCajasAgencia)" class="form-horizontal" novalidate>
+
+	<fieldset class="border-top">
+		<legend><span class="text ng-scope">Asignar bovedas <i class="fa fa-question-circle text-muted ng-scope" tooltip="Asignar bovedas." tooltip-placement="right"></i></span>  <kc-tooltip class="hidden"></kc-tooltip></legend>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Bovedas asignadas:</label>
+
+			<div class="col-md-10">
+				<div class="row">
+					<div class="col-md-3">
+						<label class="control-label">Bovedas disponibles <i class="fa fa-question-circle text-muted" tooltip="Bovedas existentes en la agencia." tooltip-placement="right"></i></label>
+						<select class="form-control" multiple size="5" ng-multiple="true" ng-model="combo.selected.bovedaDisponible" ng-options="c.denominacion for c in combo.bovedaDisponible">
+						</select>
+						<button class="btn btn-default" type="submit" ng-click="addBovedas()" tooltip="Asignar bovedas" tooltip-placement="right">
+							Asignar seleccionados <i class="fa fa-angle-double-right"></i>
+						</button>
+					</div>
+					<div class="col-md-3">
+						<label class="control-label">Bovedas asignadas <i class="fa fa-question-circle text-muted" tooltip="Bovedas asignadas a la caja." tooltip-placement="right"></i></label>
+						<select class="form-control" multiple size="5" ng-multiple="true" ng-model="combo.selected.bovedaAsignada" ng-options="c.boveda.denominacion for c in combo.bovedaAsignada" disabled>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+	</fieldset>
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button sg-cancel ui-sref="^.buscar" data-ng-disabled="changed">Cancelar</button>
+		</div>
+	</div>
+
+</form>

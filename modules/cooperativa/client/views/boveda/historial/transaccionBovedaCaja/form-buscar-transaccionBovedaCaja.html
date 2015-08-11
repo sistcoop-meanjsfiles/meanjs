@@ -1,0 +1,47 @@
+<br/>
+<table class="table table-striped table-bordered table-condensed">
+	<thead>
+	<tr ng-if="access.administrarBovedas">
+		<th colspan="10">
+			<div class="pull-right">
+				<a href="" ui-sref="^.crear" class="btn btn-primary">Nuevo</a>
+			</div>
+		</th>
+	</tr>
+	<tr data-ng-show="view.load.transaccionesBovedaCaja.length">
+		<th width="5%">#</th>
+		<th>Origen</th>
+		<th>Fecha</th>
+		<th>Hora</th>
+		<th>Boveda</th>
+		<th>Caja</th>
+		<th>E.Solicitud</th>
+		<th>E.Confirmacion</th>
+		<th>Monto</th>
+		<th width="5%" ng-if="access.administrarBovedas">Edit</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="item in view.load.transaccionesBovedaCaja">
+		<td><span ng-bind="$index+1"></span></td>
+		<td><span ng-bind="item.origen"></span></td>
+		<td><span ng-bind="item.fecha | date: 'dd/MM/yyyy'"></span></td>
+		<td><span ng-bind="item.hora | date: 'HH:mm:ss'"></span></td>
+
+		<td><span ng-bind="item.origen"></span></td>
+		<td><span ng-bind="item.origen"></span></td>
+
+		<td><span ng-bind="item.estadoSolicitud | si_no : 'solicitado' | uppercase"></span></td>
+		<td><span ng-bind="item.estadoConfirmacion | si_no : 'confirmado' | uppercase"></span></td>
+
+		<td><span ng-bind="item.monto | currency: ''"></span></td>
+
+		<td ng-if="access.administrarBovedas">
+			<button type="button" data-ng-click="edit(item)" class="btn btn-info btn-xs">Editar</button>
+		</td>
+	</tr>
+	<tr data-ng-show="!view.load.transaccionesBovedaCaja.length">
+		<td>No se encontraron transacciones.</td>
+	</tr>
+	</tbody>
+</table>

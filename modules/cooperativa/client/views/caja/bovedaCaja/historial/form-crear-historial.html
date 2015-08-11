@@ -1,0 +1,47 @@
+<form name="form" data-ng-submit="submit()" novalidate>
+
+    <h2><strong>Abrir boveda</strong></h2>
+
+    <div class="row">
+        <div class="col-sm-12">
+
+            <p ng-if="!view.load.detalleHistorialActivo.length">No se encontró detalle de boveda, si es la primera vez que abre la boveda haga click en GUARDAR, sino pongase en contacto con su administrador.</p>
+            <table ng-if="view.load.detalleHistorialActivo.length" class="table table-bordered table-striped table-condensed table-hover">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Valor</th>
+                    <th>Cantidad</th>
+                    <th>Sub total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in view.load.detalleHistorialActivo | orderBy: 'valor'">
+                    <td><span ng-bind="$index+1"></span></td>
+                    <td><span ng-bind="item.valor | currency: ''"></span></td>
+                    <td><span ng-bind="item.cantidad"></span></td>
+                    <td>
+                        <span ng-bind="item.getSubTotal() | currency: ''"></span>
+                        &nbsp;
+                        <span ng-bind="view.boveda.moneda"></span>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th rowspan="1" colspan="3">Total:</th>
+                    <th rowspan="1" colspan="1"><span ng-bind="getTotal() | currency : ''"></span></th>
+                </tr>
+                </tfoot>
+            </table>
+
+        </div>
+    </div>
+
+    <p>
+		<button sg-save data-ng-disabled="changed">Guardar</button>
+		<button sg-cancel ui-sref="^.buscar" data-ng-disabled="changed">Cancelar</button>
+		<div class="spinner spinner-inline" data-ng-show="changed" style="vertical-align: middle;"></div>
+    </p>
+
+</form>

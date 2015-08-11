@@ -1,0 +1,100 @@
+<div class="panel-body">
+    <div class="row">
+        <div class="col-sm-12">
+
+            <h4><strong>Producto</strong></h4>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <p>Codigo:&nbsp;</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <p>
+                        <strong data-ng-bind="view.producto.codigo"></strong>
+                    </p>
+                </div>
+                <div class="col-sm-2">
+                    <div class="form-group">
+                        <p>Denominacion:&nbsp;</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <p>
+                        <strong data-ng-bind="view.producto.denominacion"></strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Lista de caracteristicas del producto
+                </div>
+                <div class="row wrapper">
+                    <form name="form" data-ng-submit="submit()" novalidate>
+                        <div class="col-sm-3">
+                            <div class="form-group" data-ng-class="{ 'has-error' : form.descripcion.$invalid && form.descripcion.$dirty}">
+                                <input type="text" name="descripcion" data-ng-model="view.caracteristica.descripcion" data-ng-maxlength="60" class="input-sm form-control" placeholder="Descripcion" autofocus required/>
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="form-group" data-ng-class="{ 'has-error' : form.descripcionDetallada.$invalid && form.descripcionDetallada.$dirty}">
+                                <input type="text" name="descripcionDetallada" data-ng-model="view.caracteristica.descripcionDetallada" data-ng-maxlength="200" class="input-sm form-control"  placeholder="Descripcion detallada" required/>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-sm btn-default">
+                                <i class="fa fa-plus text"></i>
+                                <span class="text">Guardar</span>
+                                <i class="fa fa-minus text-active"></i>
+                                <span class="text-active">Guardar</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped b-t b-light">
+                        <thead>
+                        <tr>
+                            <th>Nro</th>
+                            <th>Descripcion</th>
+                            <th>Descripcion detallada</th>
+                            <th style="width:30px;"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="item in loadObjects.caracteristicas">
+                            <td><span data-ng-bind="$index+1"></span></td>
+                            <td>
+                                <span editable-text="item.descripcion" e-name="descripcion" e-form="rowform" e-required>
+                                  {{ item.descripcion || 'empty' }}
+                                </span>
+                            </td>
+                            <td>
+                                <span editable-text="item.descripcionDetallada" e-name="descripcionDetallada" e-form="rowform" e-required>
+                                  {{ item.descripcionDetallada || 'empty' }}
+                                </span>
+                            </td>
+                            <td style="white-space: nowrap">
+                                <form editable-form name="rowform" onbeforesave="saveCaracteristica($data, item.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="false">
+                                    <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-sm btn-primary">
+                                        save
+                                    </button>
+                                    <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-sm btn-default">
+                                        cancel
+                                    </button>
+                                </form>
+                                <div class="buttons" ng-show="!rowform.$visible">
+                                    <button class="btn btn-sm btn-primary" ng-click="rowform.$show()">edit</button>
+                                    <button class="btn btn-sm btn-danger" ng-click="removeCaracteristica($index)">del</button>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

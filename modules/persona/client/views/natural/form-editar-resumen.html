@@ -1,0 +1,212 @@
+<div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default panel-border panel-shadow">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Datos principales</h3>
+                </div>
+                <div class="panel-body">
+                    <div style="border-bottom: 1px solid #e5e5e5;margin-bottom: 20px;">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <img ng-if="view.persona.urlFoto" ng-src="{{view.persona.urlFoto}}" alt="Foto" class="img-thumbnail">
+								<img ng-if="!view.persona.urlFoto" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" alt="Foto" class="img-thumbnail">
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <p>Cod.pais:&nbsp;</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <p><strong data-ng-bind="view.persona.codigoPais"></strong></p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <p>Doc.:&nbsp;</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <p>
+                                            <strong data-ng-bind="view.persona.tipoDocumento"></strong>
+                                            <strong>/</strong>
+                                            <strong data-ng-bind="view.persona.numeroDocumento"></strong>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <p>Apellidos:&nbsp;</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <p>
+                                            <strong data-ng-bind="view.persona.apellidoPaterno"></strong>&nbsp;
+                                            <strong data-ng-bind="view.persona.apellidoMaterno"></strong>
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <p>Nombres:&nbsp;</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <p>
+                                            <strong data-ng-bind="view.persona.nombres"></strong>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4" style="text-align: center;">
+                                <button type="button" data-ng-click="openCambiarFotoModal()" class="btn btn-link" style="font-size: 14px;">Cambiar foto</button>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <p>F.nac.:&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>
+                                    <strong data-ng-bind="view.persona.fechaNacimiento | date : 'dd/MM/yyyy'"></strong>
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <p>Sexo:&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>
+                                    <strong data-ng-bind="view.persona.sexo"></strong>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <p>E.civil:&nbsp;</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <p>
+                                    <strong data-ng-bind="view.persona.estadoCivil"></strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" ui-sref="^.datosPrincipales" class="btn btn-default">Editar</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default panel-border panel-shadow">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Datos adicionales</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <p>Ocupacion:&nbsp;</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p>
+                                        <strong data-ng-bind="view.persona.ocupacion"></strong>
+                                    </p>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <p>Direccion:&nbsp;</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p>
+                                        <strong data-ng-bind="view.persona.direccion"></strong>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <p>Referencia:&nbsp;</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p>
+                                        <strong data-ng-bind="view.persona.referencia"></strong>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <p>Ubigeo:&nbsp;</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p>
+                                        <strong data-ng-bind="view.persona.ubigeo"></strong>
+                                    </p>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <p>Telefono:&nbsp;</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <p>
+                                        <strong data-ng-bind="view.persona.telefono"></strong>
+                                    </p>
+                                </div>
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <p>Celular:&nbsp;</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <p>
+                                        <strong data-ng-bind="view.persona.celular"></strong>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <p>Email:&nbsp;</p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-9">
+                                    <p>
+                                        <strong data-ng-bind="view.persona.email"></strong>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" ui-sref="^.datosAdicionales" class="btn btn-default">Editar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

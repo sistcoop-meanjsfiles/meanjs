@@ -1,0 +1,50 @@
+<div ncy-breadcrumb></div>
+
+<h1>Editar persona juridica</h1>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <div>
+
+            <div class="tab-container">
+                <ul class="nav nav-tabs">
+                    <li ui-sref-active="active">
+                        <a href ui-sref=".resumen">
+                            Resumen
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a href ui-sref=".datosPrincipales">
+                            Datos principales
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a href ui-sref=".datosAdicionales">
+                            Datos adicionales
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a href ui-sref=".representante">
+                            Representante legal
+                        </a>
+                    </li>
+                    <li ui-sref-active="active">
+                        <a href ui-sref=".crearAccionista">
+                            Nuevo accionista
+                        </a>
+                    </li>
+                    <li class="pull-right">
+                        <div class="btn-group">
+                            <button type="button" data-ng-click="desactivar()" class="btn btn-danger">Desactivar</button>
+                        </div>
+                    </li>
+                </ul>
+                <div class="tab-pane">
+                    <br/>
+                    <div ui-view></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,103 @@
+<h2>Crear transaccion boveda &rarr; caja</h2>
+
+<form name="form" sg-read-only="!access.administrarBovedas" class="form-horizontal" novalidate>
+
+	<div class="form-group" ng-class="{ 'has-error' : form.caja.$invalid && form.$submitted}">
+		<label class="col-sm-2 control-label"><span class="required">*</span> Caja:</label>
+		<div class="col-sm-3">
+			<ui-select name="caja" ng-model="combo.selected.caja" ng-disabled="!access.administrarBovedas" autofocus required>
+				<ui-select-match placeholder="Caja">{{$select.selected.denominacion}}</ui-select-match>
+				<ui-select-choices repeat="item in combo.caja | filter: $select.search">
+					<div ng-bind-html="item.denominacion | highlight: $select.search"></div>
+				</ui-select-choices>
+			</ui-select>
+			<div ng-messages="form.caja.$error" ng-if="form.caja.$touched || form.$submitted">
+				<div class="has-error" ng-message="required">Ingrese caja.</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label"><span class="required">*</span> Detalle:</label>
+		<div class="col-sm-5">
+			<label class="control-label ng-scope">Transaccion <i class="fa fa-question-circle text-muted ng-scope" tooltip="Denominaciones de transaccion." tooltip-placement="right"></i></label>
+			<table class="table table-bordered table-striped table-condensed table-hover">
+				<thead>
+				<tr>
+					<th width="5%" class="text-right">Valor</th>
+					<th width="35%" class="text-right">Cantidad</th>
+					<th class="text-right">Sub total</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="item in view.load.detalleHistorialBoveda | orderBy: 'valor'">
+					<td class="text-right"><span ng-bind="item.valor | currency: ''"></span></td>
+					<td>
+						<ng-form name="form">
+							<div class="form-group" ng-class="{ 'has-error' : form.cantidad.$invalid }" style="margin: 0;">
+								<input type="text" name="cantidad" ng-model="item.cantidad"
+									   ui-number-mask="0" min="0" max="999999999"
+									   ng-minlength="1" ng-maxlength="11" class="form-control"
+									   placeholder="Cantidad" required
+									   style="text-align: right;"/>
+							</div>
+						</ng-form>
+					</td>
+					<td class="text-right">
+						<span ng-bind="item.getSubTotal() | currency: ''"></span>
+					</td>
+				</tr>
+				</tbody>
+				<tfoot>
+				<tr>
+					<th rowspan="1" colspan="1">Total:</th>
+					<th rowspan="1" colspan="2" class="text-right">
+						<span ng-bind="getTotal() | currency : ''"></span>
+						&nbsp;
+						<span ng-bind="view.boveda.moneda"></span>
+					</th>
+				</tr>
+				</tfoot>
+			</table>
+		</div>
+		<div class="col-sm-5">
+			<label class="control-label ng-scope">Disponible <i class="fa fa-question-circle text-muted ng-scope" tooltip="Denominaciones disponibles." tooltip-placement="right"></i></label>
+			<table class="table table-bordered table-striped table-condensed table-hover">
+				<thead>
+				<tr>
+					<th width="5%" class="text-right">Valor</th>
+					<th width="35%" class="text-right">Cantidad</th>
+					<th class="text-right">Sub total</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr ng-repeat="item in ::view.load.detalleHistorialBoveda | orderBy: 'valor'">
+					<td class="text-right" style="height: 32px;"><span ng-bind="::item.valor | currency: ''"></span></td>
+					<td class="text-right"><span ng-bind="::item.cantidad"></span></td>
+					<td class="text-right">
+						<span ng-bind="::item.getSubTotal() | currency: ''"></span>
+					</td>
+				</tr>
+				</tbody>
+				<tfoot>
+				<tr>
+					<th rowspan="1" colspan="1">Total:</th>
+					<th rowspan="1" colspan="2" class="text-right">
+						<span ng-bind="::getTotal() | currency : ''"></span>
+						&nbsp;
+						<span ng-bind="view.boveda.moneda"></span>
+					</th>
+				</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button sg-save data-ng-disabled="changed">Guardar</button>
+			<button sg-cancel ui-sref="^.buscar" data-ng-disabled="changed">Cancelar</button>
+			<div class="spinner spinner-inline" data-ng-show="changed" style="vertical-align: middle;"></div>
+		</div>
+	</div>
+
+</form>

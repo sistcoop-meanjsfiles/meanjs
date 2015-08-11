@@ -1,0 +1,88 @@
+<div class="row">
+	<div class="col-sm-8 col-md-9" style="min-height: 523px;">
+		<div class="page-header page-header-bleed-right">
+			<div class="actions pull-right">
+				<a href ui-sref="^."><span class="pficon pficon-refresh"></span> Refresh</a>
+			</div>
+			<h1>Historial <span data-ng-bind="view.historial.id"></span></h1>
+		</div>
+
+		<ul class="nav nav-tabs">
+			<li ui-sref-active="active">
+				<a href ui-sref=".resumen">
+					Resumen
+				</a>
+			</li>
+			<li ui-sref-active="active">
+				<a href ui-sref=".transaccionBovedaCaja">
+					Transacciones boveda &rarr; caja
+				</a>
+			</li>
+			<li ui-sref-active="active">
+				<a href ui-sref=".cerrar">
+					Cerrar
+				</a>
+			</li>
+		</ul>
+		<div ui-view></div>
+
+	</div>
+	<!-- /col -->
+	<div class="col-sm-4 col-md-3 sidebar-pf sidebar-pf-right" style="min-height: 523px;">
+		<div class="sidebar-header sidebar-header-bleed-left sidebar-header-bleed-right">
+			<div class="actions pull-right">
+				<a href="#"></a>
+			</div>
+			<h2 class="h5">DETALLE HISTORIAL</h2>
+		</div>
+		<table class="table">
+			<tbody>
+			<tr>
+				<th>Estado</th>
+				<th>Observacion</th>
+			</tr>
+			<tr>
+				<td><span data-ng-bind="view.historial.abierto | si_no: 'abierto'"></span></td>
+				<td>
+					<span data-ng-show="view.historial.abierto">Historial abierto</span>
+					<span data-ng-show="!view.historial.abierto">Historial cerrado</span>
+				</td>
+			</tr>
+			<tr>
+				<td><span data-ng-bind="view.historial.estadoMovimiento | si_no: 'congelado'"></span></td>
+				<td>
+					<span data-ng-show="view.historial.estadoMovimiento">Historial descongelado</span>
+					<span data-ng-show="!view.historial.estadoMovimiento">Historial congelado</span>
+				</td>
+			</tr>
+			<tr>
+				<td><span data-ng-bind="view.historial.estado | si_no: 'activo'"></span></td>
+				<td>
+					<span data-ng-show="view.historial.estado">Historial activo</span>
+					<span data-ng-show="!view.historial.estado">Historial inactivo</span>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+		<table class="table">
+			<tbody>
+			<tr>
+				<th></th>
+				<th>Fecha</th>
+				<th>Hora</th>
+			</tr>
+			<tr>
+				<td>Apertura</td>
+				<td><span data-ng-bind="view.historial.fechaApertura | date:'dd/MM/yyyy'"></span></td>
+				<td><span data-ng-bind="view.historial.horaApertura | date:'HH:mm:ss'"></span></td>
+			</tr>
+			<tr>
+				<td>Cierre</td>
+				<td><span data-ng-bind="view.historial.fechaCierre | date:'dd/MM/yyyy'"></span></td>
+				<td><span data-ng-bind="view.historial.horaCierre | date:'HH:mm:ss'"></span></td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+	<!-- /col -->
+</div>

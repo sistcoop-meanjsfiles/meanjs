@@ -1,0 +1,99 @@
+<div ncy-breadcrumb></div>
+
+<h1><strong>Crear producto credito</strong></h1>
+
+<form name="form" class="form-horizontal" novalidate>
+
+	<div class="form-group" ng-class="{ 'has-error' : form.codigo.$invalid && form.$submitted}">
+		<label class="col-sm-2 control-label"><span class="required">*</span> Codigo:</label>
+		<div class="col-sm-3">
+			<input type="text" name="codigo" data-ng-model="view.producto.codigo" data-ng-maxlength="30" class="form-control" autofocus required/>
+			<div data-ng-messages="form.codigo.$error" ng-if="form.$submitted">
+				<div class="has-error" data-ng-message="required">Ingrese codigo.</div>
+				<div class="has-error" data-ng-message="maxlength">Maximo 30 caracteres.</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group" ng-class="{ 'has-error' : form.tipoCuenta.$invalid && form.$submitted}">
+		<label class="col-sm-2 control-label"><span class="required">*</span> Tipo cuenta:</label>
+		<div class="col-sm-3">
+			<ui-select name="tipoCuenta" data-ng-model="combo.selected.tipoCuenta" required>
+				<ui-select-match placeholder="Tipo persona">{{$select.selected.denominacion}}</ui-select-match>
+				<ui-select-choices repeat="item in combo.tipoCuenta | filter: $select.search">
+					<div data-ng-bind-html="item.denominacion | highlight: $select.search"></div>
+				</ui-select-choices>
+			</ui-select>
+			<div data-ng-messages="form.tipoCuenta.$error" data-ng-if="form.$submitted">
+				<div class="has-error" data-ng-message="required">Ingrese tipo cuenta.</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group" ng-class="{ 'has-error' : form.tipoPersona.$invalid && form.$submitted}">
+		<label class="col-sm-2 control-label"><span class="required">*</span> Tipo persona:</label>
+		<div class="col-sm-3">
+			<ui-select name="tipoPersona" data-ng-model="combo.selected.tipoPersona" required>
+				<ui-select-match placeholder="Tipo persona">{{$select.selected.denominacion}}</ui-select-match>
+				<ui-select-choices repeat="item in combo.tipoPersona | filter: $select.search">
+					<div data-ng-bind-html="item.denominacion | highlight: $select.search"></div>
+				</ui-select-choices>
+			</ui-select>
+			<div data-ng-messages="form.tipoPersona.$error" data-ng-if="form.$submitted">
+				<div class="has-error" data-ng-message="required">Ingrese tipo persona.</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group" ng-class="{ 'has-error' : form.moneda.$invalid && form.$submitted}">
+		<label class="col-sm-2 control-label"><span class="required">*</span> Moneda:</label>
+		<div class="col-sm-3">
+			<ui-select name="moneda" data-ng-model="combo.selected.moneda" required>
+				<ui-select-match placeholder="Moneda">{{$select.selected.alphabeticCode}}</ui-select-match>
+				<ui-select-choices repeat="item in combo.moneda | filter: $select.search">
+					<div data-ng-bind-html="item.currency | highlight: $select.search"></div>
+					<small data-ng-bind-html="item.alphabeticCode | highlight: $select.search"></small>
+				</ui-select-choices>
+			</ui-select>
+			<div data-ng-messages="form.moneda.$error" data-ng-if="form.$submitted">
+				<div class="has-error" data-ng-message="required">Ingrese moneda.</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group" ng-class="{ 'has-error' : form.denominacion.$invalid && form.$submitted}">
+		<label class="col-sm-2 control-label"><span class="required">*</span> Denominacion:</label>
+		<div class="col-sm-3">
+			<input type="text" name="denominacion" data-ng-model="view.producto.denominacion" data-ng-maxlength="60" class="form-control" required/>
+			<div data-ng-messages="form.denominacion.$error" data-ng-if="form.$submitted">
+				<div class="has-error" data-ng-message="required">Ingrese denominacion.</div>
+				<div class="has-error" data-ng-message="maxlength">Maximo 60 caracteres.</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group" ng-class="{ 'has-error' : form.montoMinimo.$invalid && form.$submitted}">
+		<label class="col-sm-2 control-label"><span class="required">*</span> Monto minimo:</label>
+		<div class="col-sm-3">
+			<input type="text" name="montoMinimo" data-ng-model="view.producto.montoMinimo" data-ui-number-mask="0" data-min="0" data-max="1000000" class="form-control" required/>
+			<div data-ng-messages="form.montoMinimo.$error" data-ng-if="form.$submitted">
+				<div class="has-error" data-ng-message="required">Ingrese monto minimo.</div>
+				<div class="has-error" data-ng-message="max">Monto maximo 1,000,000.</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group" ng-class="{ 'has-error' : form.montoMaximo.$invalid && form.$submitted}">
+		<label class="col-sm-2 control-label"><span class="required">*</span> Monto maximo:</label>
+		<div class="col-sm-3">
+			<input type="text" name="montoMaximo" data-ng-model="view.producto.montoMaximo" data-ui-number-mask="0" data-min="0" data-max="1000000" class="form-control" required/>
+			<div data-ng-messages="form.denominacion.$error" data-ng-if="form.$submitted">
+				<div class="has-error" data-ng-message="required">Ingrese monto maximo.</div>
+				<div class="has-error" data-ng-message="max">Monto maximo 1,000,000.</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
+			<button sg-save data-ng-disabled="changed">Guardar</button>
+			<button sg-cancel ui-sref="^.buscar" data-ng-disabled="changed">Cancelar</button>
+			<div class="spinner spinner-inline" data-ng-show="changed" style="vertical-align: middle;"></div>
+		</div>
+	</div>
+
+</form>
