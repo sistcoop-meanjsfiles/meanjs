@@ -26,7 +26,7 @@ module.exports = {
         'public/lib/angular-toastr/dist/angular-toastr.tpls.js',
         'public/lib/angular-ui-grid/ui-grid.js',
         'public/lib/angular-ui-select/dist/select.js',
-        'public/lib/angular-ui-select-utils/dist/select.utils.js',
+        'public/lib/select-utils/dist/select.utils.js',
         'public/lib/angular-xeditable/dist/js/xeditable.js',
         'public/lib/ng-autofocus/dist/ng-autofocus.js',
         'public/lib/restangular/dist/restangular.js',
@@ -43,7 +43,8 @@ module.exports = {
         'public/lib/ng-file-upload/ng-file-upload-all.js',
         'public/lib/spin.js/spin.js',
         'public/lib/angular-spinner/angular-spinner.js',
-        'public/lib/angular-ui-view-spinner/src/angular-ui-view-spinner.js'
+        'public/lib/angular-ui-view-spinner/src/angular-ui-view-spinner.js',
+        'public/lib/angular-patternfly/dist/angular-patternfly.js',
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
