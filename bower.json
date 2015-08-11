@@ -6,6 +6,7 @@
     "bootstrap": "~3",
     "angular": "~1.4",
     "angular-animate": "~1.4.3",
+    "angular-resource": "~1.4.3",
     "angular-mocks": "~1.4",
     "angular-bootstrap": "~0.13.3",
     "angular-ui-utils": "bower",
