@@ -5,6 +5,7 @@ module.exports = {
     lib: {
       css: [
         'public/lib/patternfly/dist/css/patternfly.css',
+        'public/lib/patternfly/dist/css/patternfly-additions.css',
         'public/lib/angular-ui-view-spinner/src/angular-ui-view-spinner.css',
         'public/lib/angular-toastr/dist/angular-toastr.css',
         'public/lib/angular-ui-grid/ui-grid.css',
