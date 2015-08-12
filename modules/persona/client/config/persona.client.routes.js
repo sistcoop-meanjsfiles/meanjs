@@ -25,33 +25,33 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 			return deferred.promise;
 		};
 
-		$urlRouterProvider.when('/persona/app', '/persona/app/personas/naturales');
+		$urlRouterProvider.when('/console/:realm/persona/app', '/console/:realm/persona/app/personas/naturales');
 
-		$urlRouterProvider.when('/persona/app/administracion/documentos', '/persona/app/administracion/documentos/buscar');
+		$urlRouterProvider.when('/console/:realm/persona/app/administracion/documentos', '/console/:realm/persona/app/administracion/documentos/buscar');
 
-		$urlRouterProvider.when('/persona/app/personas/naturales', '/persona/app/personas/naturales/buscar');
-		$urlRouterProvider.when('/persona/app/personas/juridicas', '/persona/app/personas/juridicas/buscar');
+		$urlRouterProvider.when('/console/:realm/persona/app/personas/naturales', '/console/:realm/persona/app/personas/naturales/buscar');
+		$urlRouterProvider.when('/console/:realm/persona/app/personas/juridicas', '/console/:realm/persona/app/personas/juridicas/buscar');
 
-		$urlRouterProvider.when('/persona/app/personas/juridicas/crear', '/persona/app/personas/juridicas/crear/datosPrincipales');
+		$urlRouterProvider.when('/console/:realm/persona/app/personas/juridicas/crear', '/console/:realm/persona/app/personas/juridicas/crear/datosPrincipales');
 
-		$urlRouterProvider.when('/persona/app/personas/naturales/editar/:personaNatural', '/persona/app/personas/naturales/editar/:personaNatural/resumen');
-		$urlRouterProvider.when('/persona/app/personas/juridicas/editar/:personaJuridica', '/persona/app/personas/juridicas/editar/:personaJuridica/resumen');
+		$urlRouterProvider.when('/console/:realm/persona/app/personas/naturales/editar/:personaNatural', '/console/:realm/persona/app/personas/naturales/editar/:personaNatural/resumen');
+		$urlRouterProvider.when('/console/:realm/persona/app/personas/juridicas/editar/:personaJuridica', '/console/:realm/persona/app/personas/juridicas/editar/:personaJuridica/resumen');
 
 		$stateProvider
-			.state('persona', {
+			.state('console.persona', {
 				abstract: true,
 				url: '/persona',
 				templateUrl: '/modules/persona/views/_body.html',
 				controller: 'PersonaController'
 			})
-			.state('persona.home', {
+			.state('console.persona.home', {
 				url: '/home',
 				templateUrl: '/modules/persona/views/index.html',
 				ncyBreadcrumb: {
 					label: 'Index'
 				}
 			})
-			.state('persona.app', {
+			.state('console.persona.app', {
 				url: '/app',
 				template: '<div ui-view></div>',
 				ncyBreadcrumb: {
@@ -59,26 +59,26 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 				}
 			})
 
-			.state('persona.app.persona', {
+			.state('console.persona.app.persona', {
 				url: '/personas',
 				template: '<div ui-view></div>',
 				abstract: true
 			})
-			.state('persona.app.administracion', {
+			.state('console.persona.app.administracion', {
 				url: '/administracion',
 				template: '<div ui-view></div>',
 				abstract: true
 			})
 
 			//tipoDocumento
-			.state('persona.app.administracion.documento', {
+			.state('console.persona.app.administracion.documento', {
 				url: '/documentos',
 				template: '<div ui-view></div>',
 				ncyBreadcrumb: {
 					skip: true // Never display this state in breadcrumb.
 				}
 			})
-			.state('persona.app.administracion.documento.buscar', {
+			.state('console.persona.app.administracion.documento.buscar', {
 				url: '/buscar',
 				templateUrl: '/modules/persona/views/tipoDocumento/form-buscar-tipoDocumento.html',
 				controller: 'Persona.TipoDocumento.BuscarTipoDocumentoController',
@@ -91,7 +91,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 					label: 'Home'
 				}
 			})
-			.state('persona.app.administracion.documento.crear', {
+			.state('console.persona.app.administracion.documento.crear', {
 				url: '/crear',
 				templateUrl: '/modules/persona/views/tipoDocumento/form-crear-tipoDocumento.html',
 				controller: 'Persona.TipoDocumento.CrearTipoDocumentoController',
@@ -105,7 +105,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 					parent: 'persona.app.administracion.documento.buscar'
 				}
 			})
-			.state('persona.app.administracion.documento.editar', {
+			.state('console.persona.app.administracion.documento.editar', {
 				url: '/editar/:documento',
 				templateUrl: '/modules/persona/views/tipoDocumento/form-editar-tipoDocumento.html',
 				resolve: {
@@ -124,14 +124,14 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 			})
 
 			//Personas naturales
-			.state('persona.app.persona.natural', {
+			.state('console.persona.app.persona.natural', {
 				url: '/naturales',
 				template: '<div ui-view></div>',
 				ncyBreadcrumb: {
 					skip: true // Never display this state in breadcrumb.
 				}
 			})
-			.state('persona.app.persona.natural.buscar', {
+			.state('console.persona.app.persona.natural.buscar', {
 				url: '/buscar',
 				templateUrl: '/modules/persona/views/natural/form-buscar-personaNatural.html',
 				controller: 'Persona.Natural.BuscarPersonaNaturalController',
@@ -143,7 +143,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 				ncyBreadcrumb: {
 					label: 'Home'
 				}
-			}).state('persona.app.persona.natural.crear', {
+			}).state('console.persona.app.persona.natural.crear', {
 				url: '/crear?tipoDocumento&numeroDocumento',
 				templateUrl: '/modules/persona/views/natural/form-crear-personaNatural.html',
 				controller: 'Persona.Natural.CrearPersonaNaturalController',
@@ -156,7 +156,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 					label: 'Crear persona',
 					parent: 'persona.app.persona.natural.buscar'
 				}
-			}).state('persona.app.persona.natural.editar', {
+			}).state('console.persona.app.persona.natural.editar', {
 				url: '/editar/:personaNatural',
 				templateUrl: '/modules/persona/views/natural/form-editar-personaNatural.html',
 				resolve: {
@@ -172,7 +172,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 					label: 'Editar persona',
 					parent: 'persona.app.persona.natural.buscar'
 				}
-			}).state('persona.app.persona.natural.editar.resumen', {
+			}).state('console.persona.app.persona.natural.editar.resumen', {
 				url: '/resumen',
 				templateUrl: '/modules/persona/views/natural/form-editar-resumen.html',
 				controller: 'Persona.Natural.EditarPersonaNatural.ResumenController',
@@ -184,7 +184,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 				ncyBreadcrumb: {
 					skip: true // Never display this state in breadcrumb.
 				}
-			}).state('persona.app.persona.natural.editar.datosPrincipales', {
+			}).state('console.persona.app.persona.natural.editar.datosPrincipales', {
 				url: '/datosPrincipales',
 				templateUrl: '/modules/persona/views/natural/form-editar-datosPrincipales.html',
 				controller: 'Persona.Natural.EditarPersonaNatural.DatosPrincipalesController',
@@ -196,7 +196,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 				ncyBreadcrumb: {
 					label: 'Datos principales'
 				}
-			}).state('persona.app.persona.natural.editar.datosAdicionales', {
+			}).state('console.persona.app.persona.natural.editar.datosAdicionales', {
 				url: '/datosAdicionales',
 				templateUrl: '/modules/persona/views/natural/form-editar-datosAdicionales.html',
 				controller: 'Persona.Natural.EditarPersonaNatural.DatosAdicionalesController',
@@ -211,14 +211,14 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 			})
 
 			//Personas juridicas
-			.state('persona.app.persona.juridica', {
+			.state('console.persona.app.persona.juridica', {
 				url: '/juridicas',
 				template: '<div ui-view></div>',
 				ncyBreadcrumb: {
 					skip: true // Never display this state in breadcrumb.
 				}
 			})
-			.state('persona.app.persona.juridica.buscar', {
+			.state('console.persona.app.persona.juridica.buscar', {
 				url: '/buscar',
 				templateUrl: '/modules/persona/views/juridica/form-buscar-personaJuridica.html',
 				controller: 'Persona.Juridica.BuscarPersonaJuridicaController',
@@ -230,7 +230,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 				ncyBreadcrumb: {
 					label: 'Home'
 				}
-			}).state('persona.app.persona.juridica.crear', {
+			}).state('console.persona.app.persona.juridica.crear', {
 				url: '/crear?tipoDocumento&numeroDocumento',
 				templateUrl: '/modules/persona/views/juridica/form-crear-personaJuridica.html',
 				controller: 'Persona.Juridica.CrearPersonaJuridicaController',
@@ -243,7 +243,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 					label: 'Crear persona juridica',
 					parent: 'persona.app.persona.juridica.buscar'
 				}
-			}).state('persona.app.persona.juridica.crear.datosPrincipales', {
+			}).state('console.persona.app.persona.juridica.crear.datosPrincipales', {
 				url: '/datosPrincipales',
 				templateUrl: '/modules/persona/views/juridica/form-crear-datosPrincipales.html',
 				controller: 'Persona.Juridica.CrearPersonaJuridica.DatosPrincipalesController',
@@ -255,7 +255,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 				ncyBreadcrumb: {
 					skip: true // Never display this state in breadcrumb.
 				}
-			}).state('persona.app.persona.juridica.crear.representante', {
+			}).state('console.persona.app.persona.juridica.crear.representante', {
 				url: '/representante',
 				templateUrl: '/modules/persona/views/juridica/form-crear-representante.html',
 				controller: 'Persona.Juridica.CrearPersonaJuridica.RepresentanteController',
@@ -269,7 +269,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 				}
 			})
 
-			.state('persona.app.persona.juridica.editar', {
+			.state('console.persona.app.persona.juridica.editar', {
 				url: '/editar/:personaJuridica',
 				templateUrl: '/modules/persona/views/juridica/form-editar-personaJuridica.html',
 				resolve: {
@@ -285,7 +285,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 					label: 'Editar persona juridica',
 					parent: 'persona.app.persona.juridica.buscar'
 				}
-			}).state('persona.app.persona.juridica.editar.resumen', {
+			}).state('console.persona.app.persona.juridica.editar.resumen', {
 				url: '/resumen',
 				templateUrl: '/modules/persona/views/juridica/form-editar-resumen.html',
 				controller: 'Persona.Juridica.EditarPersonaJuridica.ResumenController',
@@ -297,7 +297,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 				ncyBreadcrumb: {
 					skip: true // Never display this state in breadcrumb.
 				}
-			}).state('persona.app.persona.juridica.editar.datosPrincipales', {
+			}).state('console.persona.app.persona.juridica.editar.datosPrincipales', {
 				url: '/datosPrincipales',
 				templateUrl: '/modules/persona/views/juridica/form-editar-datosPrincipales.html',
 				controller: 'Persona.Juridica.EditarPersonaJuridica.DatosPrincipalesController',
@@ -309,7 +309,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 				ncyBreadcrumb: {
 					label: 'Datos principales'
 				}
-			}).state('persona.app.persona.juridica.editar.datosAdicionales', {
+			}).state('console.persona.app.persona.juridica.editar.datosAdicionales', {
 				url: '/datosAdicionales',
 				templateUrl: '/modules/persona/views/juridica/form-editar-datosAdicionales.html',
 				controller: 'Persona.Juridica.EditarPersonaJuridica.DatosAdicionalesController',
@@ -321,7 +321,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 				ncyBreadcrumb: {
 					label: 'Datos adicionales'
 				}
-			}).state('persona.app.persona.juridica.editar.representante', {
+			}).state('console.persona.app.persona.juridica.editar.representante', {
 				url: '/representante',
 				templateUrl: '/modules/persona/views/juridica/form-editar-representante.html',
 				controller: 'Persona.Juridica.EditarPersonaJuridica.RepresentanteController',
@@ -333,7 +333,7 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
 				ncyBreadcrumb: {
 					label: 'Representante legal'
 				}
-			}).state('persona.app.persona.juridica.editar.crearAccionista', {
+			}).state('console.persona.app.persona.juridica.editar.crearAccionista', {
 				url: '/crearAccionista',
 				templateUrl: '/modules/persona/views/juridica/form-editar-accionistas.html',
 				controller: 'Persona.Juridica.EditarPersonaJuridica.AccionistasController',

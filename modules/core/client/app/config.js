@@ -5,17 +5,27 @@ var ApplicationConfiguration = (function () {
     // Init module configuration options
     var applicationModuleName = 'mean';
     var applicationModuleVendorDependencies = [
-        'ngResource',
         'ngAnimate',
         'ui.router',
         'ui.bootstrap',
         'ui.utils',
-        'angularFileUpload',
         //own
         'ngMessages',
         'ngSanitize',
-        'ncy-angular-breadcrumb',
         'restangular',
+        'ui.grid',
+        'ui.grid.edit',
+        'ui.grid.selection',
+        'ui.select',
+        'ui.select.utils',
+        'ui.utils.masks',
+        'toastr',
+        'patternfly',
+        'xeditable',
+        'ngFileUpload',
+        'ncy-angular-breadcrumb',
+        'angularSpinner',
+        'angular-ui-view-spinner',
         'sg-cooperativa',
         'sg-iso3166',
         'sg-iso4217',
@@ -25,18 +35,6 @@ var ApplicationConfiguration = (function () {
         'sg-socio',
         'sg-ubigeo',
         'sg-utils',
-        'toastr',
-        'ui.grid',
-        'ui.grid.edit',
-        'ui.grid.selection',
-        'ui.select',
-        'ui.select.utils',
-        'ui.utils.masks',
-        'xeditable',
-        'ngFileUpload',
-        'angularSpinner',
-        'angular-ui-view-spinner',
-        'patternfly'
     ];
 
     // Add a new vertical module

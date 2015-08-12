@@ -2,9 +2,9 @@
 
 // Setting up sidebar
 angular.module('cooperativa').controller('CooperativaSidebarController',
-	function ($scope, Auth, $menuItemsCooperativa) {
+    function ($scope, Auth, $menuItemsCooperativa) {
 
-		$scope.menuItems = $menuItemsCooperativa.prepareSidebarMenu().getAll();
+        $scope.menuItems = $menuItemsCooperativa.prepareSidebarMenu().getAll();
 
-	}
+    }
 );
