@@ -43,8 +43,6 @@ angular.module(ApplicationConfiguration.applicationModuleName).run(function ($ro
     });
 });
 
-// Global variables
-window.auth = {};
 
 //Then define the init function for starting up the application
 angular.element(document).ready(function () {
@@ -53,26 +51,8 @@ angular.element(document).ready(function () {
         window.location.hash = '#!';
     }
 
-    /* jshint ignore:start */
-    var keycloak = new Keycloak({
-        url: 'https://keycloak-softgreen.rhcloud.com/auth',
-        realm: 'sistcoop',
-        clientId: 'sistcoop'
-    });
-
-    keycloak.init({onLoad: 'login-required'}).success(function () {
-        window.auth.authz = keycloak;
-        angular.module('mean').factory('Auth', function () {
-            return window.auth;
-        });
-
-        //Then init the app
-        angular.bootstrap(document, [ApplicationConfiguration.applicationModuleName]);
-    }).error(function () {
-        window.location.reload();
-    });
-    /* jshint ignore:end */
-
+    //Then init the app
+    angular.bootstrap(document, [ApplicationConfiguration.applicationModuleName]);
 });
 
 
