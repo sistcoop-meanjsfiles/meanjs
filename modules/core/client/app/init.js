@@ -71,7 +71,7 @@ angular.element(document).ready(function () {
     //
     var consoleNextPath = consoleBaseUrl.split('/')[4];
     var sucursal = consoleNextPath.split('-')[0];
-    var agencia = consoleNextPath.split('-')[1];
+    var agencia = consoleNextPath.split('-')[1].split('?')[0];
 
     /* jshint ignore:start */
     var keycloak = new Keycloak({
@@ -86,10 +86,10 @@ angular.element(document).ready(function () {
 
         var sistcoop = new Sistcoop({
             url: 'http://localhost:8080/rrhh',
-            username: keycloak.idTokenParsed.preferred_username,
+            //username: keycloak.idTokenParsed.preferred_username,
             sucursal: sucursal,
             agencia: agencia,
-            token: keycloak.token
+            authenticatedToken: keycloak.token
         });
 
         sistcoop.init({onLoad: 'login-required'}).success(function () {
