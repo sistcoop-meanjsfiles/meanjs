@@ -71,8 +71,11 @@ angular.element(document).ready(function () {
     //
     var consoleNextPath = consoleBaseUrl.split('/')[4];
     var sucursal = consoleNextPath.split('-')[0];
-    var agencia = consoleNextPath.split('-')[1].split('?')[0];
-
+    var agencia = consoleNextPath.split('-')[1];
+    if(agencia) {
+        agencia = agencia.split('?')[0];
+    }
+    
     /* jshint ignore:start */
     var keycloak = new Keycloak({
         url: 'https://keycloak-softgreen.rhcloud.com/auth',
