@@ -1,6 +1,6 @@
 <div ncy-breadcrumb></div>
 
-<h1>Editar tipo documento <strong><span data-ng-bind="view.tipoDocumento.abreviatura"></span></strong></h1>
+<h1><strong>Editar tipo documento</strong> <span data-ng-bind="view.tipoDocumento.abreviatura"></span></h1>
 
 <div class="panel panel-default">
     <div class="panel-body">
@@ -10,11 +10,11 @@
             <div class="form-group" data-ng-class="{ 'has-error' : form.tipoPersona.$invalid && form.$submitted }">
                 <label class="col-sm-2 control-label"><span class="required">*</span> Tipo persona:</label>
                 <div class="col-sm-3">
-                    <ui-select name="tipoPersona" data-ng-model="combo.selected.tipoPersona" ng-disabled="!access.administrarDocumentos" autofocus required>
-                        <ui-select-match placeholder="Seleccione">{{$select.selected.denominacion}}</ui-select-match>
+                    <ui-select name="tipoPersona" data-ng-model="combo.selected.tipoPersona" ng-disabled="!access.administrarDocumentos" pf-focused="true" autofocus required>
+                        <ui-select-match placeholder="Seleccione">{{$select.selected}}</ui-select-match>
                         <ui-select-autoload pk-name="denominacion" comparator="view.tipoDocumento.tipoPersona" ignore-case="true"></ui-select-autoload>
-                        <ui-select-choices repeat="item in combo.tipoPersona | filter: $select.search">
-                            <div data-ng-bind-html="item.denominacion | highlight: $select.search"></div>
+                        <ui-select-choices repeat="item in combo.tipoPersona.items | filter: $select.search">
+                            <div data-ng-bind-html="item | highlight: $select.search"></div>
                         </ui-select-choices>
                     </ui-select>
                     <div data-ng-messages="form.tipoPersona.$error" data-ng-if="form.$submitted">
