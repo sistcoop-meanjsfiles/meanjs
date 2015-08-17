@@ -6,7 +6,7 @@ angular.module('persona').controller('Persona.TipoDocumento.BuscarTipoDocumentoC
 
         var paginationOptions = {
             page: 1,
-            pageSize: 2
+            pageSize: 10
         };
 
         $scope.filterOptions = {
@@ -20,8 +20,8 @@ angular.module('persona').controller('Persona.TipoDocumento.BuscarTipoDocumentoC
             enableRowHeaderSelection: false,
             multiSelect: false,
 
-            paginationPageSizes: [2, 25, 50],
-            paginationPageSize: 2,
+            paginationPageSizes: [10, 25, 50],
+            paginationPageSize: 10,
             useExternalPagination: true,
             useExternalSorting: true,
 
