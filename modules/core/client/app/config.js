@@ -15,6 +15,7 @@ var ApplicationConfiguration = (function () {
         'restangular',
         'ui.grid',
         'ui.grid.edit',
+        'ui.grid.pagination',
         'ui.grid.selection',
         'ui.select',
         'ui.select.utils',
