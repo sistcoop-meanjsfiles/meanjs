@@ -28,33 +28,32 @@
   <meta name="twitter:url" content="{{url}}">
   <meta name="twitter:image" content="{{url}}modules/core/img/brand/logo.png">
 
-  <!-- Fav Icon -->
-  <link href="{{url}}{{favicon}}" rel="shortcut icon" type="image/x-icon">
-
   <script type="text/javascript" src="/lib/keycloak/dist/keycloak.js"></script>
   <script type="text/javascript" src="/lib/sistcoop/dist/sistcoop.js"></script>
 
+  <!-- Fav Icon -->
+  <link href="{{url}}{{favicon}}" rel="shortcut icon" type="image/x-icon">
+
   <!-- Application CSS Files -->
-  {% for cssFile in cssFiles %}<link rel="stylesheet" href="/{{cssFile}}">{% endfor %}
+  {% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">{% endfor %}
 </head>
 
 <body class="ng-cloak">
-
-  <nav data-ng-include="'/modules/core/views/header.client.view.html'" class="navbar navbar-default navbar-pf"></nav>
+  <nav data-ng-include="'/modules/core/client/views/header.client.view.html'" class="navbar navbar-default navbar-pf"></nav>
   <div class="container-fluid">
-      {% block content %}{% endblock %}
+    {% block content %}{% endblock %}
   </div>
 
   <!--Embedding The User Object-->
   <script type="text/javascript">
     var user = {{ user | json | safe }};
   </script>
-
+  
   <!--Load The Socket.io File-->
   <script type="text/javascript" src="/socket.io/socket.io.js"></script>
 
   <!--Application JavaScript Files-->
-  {% for jsFile in jsFiles %}<script type="text/javascript" src="/{{jsFile}}"></script>{% endfor %}
+  {% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>{% endfor %} 
 
   {% if livereload %}
   <!--Livereload script rendered -->

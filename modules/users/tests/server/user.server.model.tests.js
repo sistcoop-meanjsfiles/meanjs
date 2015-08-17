@@ -129,23 +129,283 @@ describe('User Model Unit Tests:', function () {
       });
     });
 
-    it('should not be able to save different user with the same email address', function () {
+    it('should not be able to save another user with the same email address', function (done) {
+      // Test may take some time to complete due to db operations
+      this.timeout(10000);
+
       var _user = new User(user);
       var _user3 = new User(user3);
 
       _user.remove(function (err) {
         should.not.exist(err);
         _user.save(function (err) {
-          var user3_email = _user3.email;
+          should.not.exist(err);
           _user3.email = _user.email;
           _user3.save(function (err) {
             should.exist(err);
-            // Restoring the original email for test3 so it can be used in later tests
-            _user3.email = user3_email;
+            _user.remove(function(err) {
+              should.not.exist(err);
+              done();
+            });
           });
         });
       });
 
+    });
+
+  });
+
+  describe("User E-mail Validation Tests", function() {
+    it('should not allow invalid email address - "123"', function (done) {
+      var _user = new User(user);
+
+      _user.email = '123';
+      _user.save(function (err) {
+        if (!err) {
+          _user.remove(function (err_remove) {
+            should.not.exist(err_remove);
+            done();
+          });
+        } else {
+          should.exist(err);
+          done();
+        }
+      });
+
+    });
+
+    it('should not allow invalid email address - "123@123"', function (done) {
+      var _user = new User(user);
+
+      _user.email = '123@123';
+      _user.save(function (err) {
+        if (!err) {
+          _user.remove(function (err_remove) {
+            should.not.exist(err_remove);
+            done();
+          });
+        } else {
+          should.exist(err);
+          done();
+        }
+      });
+      
+    });
+
+    it('should not allow invalid email address - "123.com"', function (done) {
+      var _user = new User(user);
+
+      _user.email = '123.com';
+      _user.save(function (err) {
+        if (!err) {
+          _user.remove(function (err_remove) {
+            should.not.exist(err_remove);
+            done();
+          });
+        } else {
+          should.exist(err);
+          done();
+        }
+      });
+      
+    });
+
+    it('should not allow invalid email address - "@123.com"', function (done) {
+      var _user = new User(user);
+
+      _user.email = '@123.com';
+      _user.save(function (err) {
+        if (!err) {
+          _user.remove(function (err_remove) {
+            should.not.exist(err_remove);
+            done();
+          });
+        } else {
+          should.exist(err);
+          done();
+        }
+      });
+      
+    });
+
+    it('should not allow invalid email address - "abc@abc@abc.com"', function (done) {
+      var _user = new User(user);
+
+      _user.email = 'abc@abc@abc.com';
+      _user.save(function (err) {
+        if (!err) {
+          _user.remove(function (err_remove) {
+            should.not.exist(err_remove);
+            done();
+          });
+        } else {
+          should.exist(err);
+          done();
+        }
+      });
+      
+    });
+
+    it('should not allow invalid characters in email address - "abc~@#$%^&*()ef=@abc.com"', function (done) {
+      var _user = new User(user);
+
+      _user.email = 'abc~@#$%^&*()ef=@abc.com';
+      _user.save(function (err) {
+        if (!err) {
+          _user.remove(function (err_remove) {
+            should.not.exist(err_remove);
+            done();
+          });
+        } else {
+          should.exist(err);
+          done();
+        }
+      });
+      
+    });
+
+    it('should not allow space characters in email address - "abc def@abc.com"', function (done) {
+      var _user = new User(user);
+
+      _user.email = 'abc def@abc.com';
+      _user.save(function (err) {
+        if (!err) {
+          _user.remove(function (err_remove) {
+            should.not.exist(err_remove);
+            done();
+          });
+        } else {
+          should.exist(err);
+          done();
+        }
+      });
+      
+    });
+
+    it('should not allow single quote characters in email address - "abc\'def@abc.com"', function (done) {
+      var _user = new User(user);
+
+      _user.email = 'abc\'def@abc.com';
+      _user.save(function (err) {
+        if (!err) {
+          _user.remove(function (err_remove) {
+            should.not.exist(err_remove);
+            done();
+          });
+        } else {
+          should.exist(err);
+          done();
+        }
+      });
+      
+    });
+
+    it('should not allow doudble quote characters in email address - "abc\"def@abc.com"', function (done) {
+      var _user = new User(user);
+
+      _user.email = 'abc\"def@abc.com';
+      _user.save(function (err) {
+        if (!err) {
+          _user.remove(function (err_remove) {
+            should.not.exist(err_remove);
+            done();
+          });
+        } else {
+          should.exist(err);
+          done();
+        }
+      });
+      
+    });
+
+    it('should not allow double dotted characters in email address - "abcdef@abc..com"', function (done) {
+      var _user = new User(user);
+
+      _user.email = 'abcdef@abc..com';
+      _user.save(function (err) {
+        if (!err) {
+          _user.remove(function (err_remove) {
+            should.not.exist(err_remove);
+            done();
+          });
+        } else {
+          should.exist(err);
+          done();
+        }
+      });
+      
+    });
+
+    it('should allow valid email address - "abc@abc.com"', function (done) {
+      var _user = new User(user);
+
+      _user.email = 'abc@abc.com';
+      _user.save(function (err) {
+        if (!err) {
+          _user.remove(function (err_remove) {
+            should.not.exist(err_remove);
+            done();
+          });
+        } else {
+          should.exist(err);
+          done();
+        }
+      });
+      
+    });
+
+    it('should allow valid email address - "abc+def@abc.com"', function (done) {
+      var _user = new User(user);
+
+      _user.email = 'abc+def@abc.com';
+      _user.save(function (err) {
+        if (!err) {
+          _user.remove(function (err_remove) {
+            should.not.exist(err_remove);
+            done();
+          });
+        } else {
+          should.exist(err);
+          done();
+        }
+      });
+      
+    });
+
+    it('should allow valid email address - "abc.def@abc.com"', function (done) {
+      var _user = new User(user);
+
+      _user.email = 'abc.def@abc.com';
+      _user.save(function (err) {
+        if (!err) {
+          _user.remove(function (err_remove) {
+            should.not.exist(err_remove);
+            done();
+          });
+        } else {
+          should.exist(err);
+          done();
+        }
+      });
+      
+    });
+
+    it('should allow valid email address - "abc-def@abc.com"', function (done) {
+      var _user = new User(user);
+
+      _user.email = 'abc-def@abc.com';
+      _user.save(function (err) {
+        if (!err) {
+          _user.remove(function (err_remove) {
+            should.not.exist(err_remove);
+            done();
+          });
+        } else {
+          should.exist(err);
+          done();
+        }
+      });
+      
     });
 
   });

@@ -83,15 +83,15 @@ angular.module('cooperativa').service('$menuItemsCooperativa', [
             var transaccionInterna = this.addItem('Transaccion interna', '', 'linecons-user');
             var transaccionCliente = this.addItem('Transaccion clientes', '', 'linecons-user');
 
-            estructura.addItem('Bovedas', 'console.cooperativa.app.estructura.boveda');
-            estructura.addItem('Cajas', 'console.cooperativa.app.estructura.caja');
+            estructura.addItem('Bovedas', 'cooperativa.app.estructura.boveda');
+            estructura.addItem('Cajas', 'cooperativa.app.estructura.caja');
 
-            transaccionInterna.addItem('Boveda/Caja', 'console.cooperativa.app.transaccionInterna.buscarTransaccionesBovedaCaja');
-            transaccionInterna.addItem('Caja/Caja', 'console.cooperativa.app.transaccionInterna.buscarTransaccionesCajaCaja');
+            transaccionInterna.addItem('Boveda/Caja', 'cooperativa.app.transaccionInterna.buscarTransaccionesBovedaCaja');
+            transaccionInterna.addItem('Caja/Caja', 'cooperativa.app.transaccionInterna.buscarTransaccionesCajaCaja');
 
-            transaccionCliente.addItem('Transaccion aporte', 'console.cooperativa.app.transaccionCliente.buscarTransaccionesAporte');
-            transaccionCliente.addItem('Transaccion cta.personal', 'console.cooperativa.app.transaccionCliente.buscarTransaccionesAporte');
-            transaccionCliente.addItem('Transaccion compra/venta', 'console.cooperativa.app.transaccionCliente.buscarTransaccionesAporte');
+            transaccionCliente.addItem('Transaccion aporte', 'cooperativa.app.transaccionCliente.buscarTransaccionesAporte');
+            transaccionCliente.addItem('Transaccion cta.personal', 'cooperativa.app.transaccionCliente.buscarTransaccionesAporte');
+            transaccionCliente.addItem('Transaccion compra/venta', 'cooperativa.app.transaccionCliente.buscarTransaccionesAporte');
 
 
             return this;

@@ -6,7 +6,7 @@ angular.module('persona').run(['Menus',
 		// Set top bar menu items
 		Menus.addMenuItem('topbar', {
 			title: 'Persona',
-			state: 'console.persona.app'
+			state: 'persona.app'
 		});
 	}
 ]);

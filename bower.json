@@ -44,6 +44,6 @@
     "sistcoop": "https://github.com/sistcoop/sistcoop-js-bower.git#master"
   },
   "resolutions": {
-    "angular": "~1.4"
+    "angular": "~1.3"
   }
 }

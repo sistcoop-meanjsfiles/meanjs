@@ -43,10 +43,7 @@ angular.module(ApplicationConfiguration.applicationModuleName).run(function ($ro
     });
 });
 
-//Config
 window.auth = {};
-window.auth.sistcoop = {};
-window.realm = {};
 
 //Then define the init function for starting up the application
 angular.element(document).ready(function () {
@@ -55,56 +52,35 @@ angular.element(document).ready(function () {
         window.location.hash = '#!';
     }
 
-    var consoleBaseUrl = window.location.href;
-    if (!consoleBaseUrl.split('/')[3]) {
-        alert('Page not found on /');
-        return;
-    }
-    if (consoleBaseUrl.split('/')[3] === 'console' && consoleBaseUrl.split('/')[4] !== undefined) {
-        // La url es correcta
-        console.log('Url test passed');
-    } else {
-        alert('Page not found on /console');
-        return;
-    }
+    var keycloakUrl = 'https://keycloak-softgreen.rhcloud.com/auth';
+    var rrhhUrl = 'http://localhost:8080/rrhh';
+    var keycloakRealm = 'sistcoop';
+    var keycloakClientId = 'sistcoop';
 
-    //
-    var consoleNextPath = consoleBaseUrl.split('/')[4];
-    var sucursal = consoleNextPath.split('-')[0];
-    var agencia = consoleNextPath.split('-')[1];
-    if(agencia) {
-        agencia = agencia.split('?')[0];
-    }
-    
     /* jshint ignore:start */
     var keycloak = new Keycloak({
-        url: 'https://keycloak-softgreen.rhcloud.com/auth',
-        realm: 'sistcoop',
-        clientId: 'sistcoop'
+        url: keycloakUrl,
+        realm: keycloakRealm,
+        clientId: keycloakClientId
     });
     /* jshint ignore:end */
 
     /* jshint ignore:start */
     keycloak.init({onLoad: 'login-required'}).success(function () {
-
         var sistcoop = new Sistcoop({
-            url: 'http://localhost:8080/rrhh',
-            //username: keycloak.idTokenParsed.preferred_username,
-            sucursal: sucursal,
-            agencia: agencia,
+            url: rrhhUrl,
             authenticatedToken: keycloak.token
         });
 
         sistcoop.init({onLoad: 'login-required'}).success(function () {
             window.auth.authz = keycloak;
-            window.auth.sistcoop = sistcoop;
             angular.module('mean').factory('Auth', function () {
                 return window.auth;
             });
 
-            window.realm.name = keycloak.realm;
-            window.realm.authServerUrl = keycloak.authServerUrl;
-            angular.module('mean').constant('REALM', window.realm);
+            angular.module('mean').constant('REALM', {name: keycloakRealm, authServerUrl: keycloakUrl});
+            angular.module('mean').constant('SUCURSAL', sistcoop.sucursal);
+            angular.module('mean').constant('AGENCIA', sistcoop.agencia);
 
             //Then init the app
             angular.bootstrap(document, [ApplicationConfiguration.applicationModuleName]);
@@ -116,6 +92,7 @@ angular.element(document).ready(function () {
         window.location.reload();
     });
     /* jshint ignore:end */
+
 });
 
 angular.module('mean').controller('KeycloakController',
