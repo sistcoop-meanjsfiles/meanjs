@@ -23,8 +23,7 @@
         <a ng-switch-default data-ui-sref="{{item.state}}" data-ng-bind="item.title"></a>
       </li>
     </ul>
-    <ul class="nav navbar-nav navbar-utility">
-
+    <ul class="nav navbar-nav navbar-utility" data-ng-controller="KeycloakController">
       <li class="dropdown" dropdown>
         <a href="" class="dropdown" dropdown-toggle>
           <span class="icon-info-sign icon-white"></span>
@@ -71,22 +70,21 @@
             <li class="list-group-item">
               <span class="i fa fa-angle-double-right"></span>
               <span>Sucursal: </span>
-              <span ng-if="session.sucursal.denominacion" ng-bind="session.sucursal.denominacion"></span>
-              <span ng-if="!session.sucursal.denominacion">No definido</span>
+              <span ng-bind="sucursal.denominacion"></span>
+              <span ng-if="!sucursal">No definido</span>
             </li>
             <li class="list-group-item">
               <span class="i fa fa-angle-double-right"></span>
               <span>Agencia: </span>
-              <span ng-if="session.agencia.denominacion" ng-bind="session.agencia.denominacion"></span>
-              <span ng-if="!session.agencia.denominacion">No definido</span>
+              <span ng-bind="agencia.denominacion"></span>
+              <span ng-if="!agencia">No definido</span>
             </li>
             <li class="list-group-item">
               <span class="i fa fa-angle-double-right"></span>
               <span>Trabajador: </span>
-              <span ng-if="session.trabajadorCaja.trabajador" ng-bind="session.trabajadorCaja.trabajador.tipoDocumento"></span>
-              <span ng-if="session.trabajadorCaja.trabajador">/</span>
-              <span ng-if="session.trabajadorCaja.trabajador" ng-bind="session.trabajadorCaja.trabajador.numeroDocumento"></span>
-              <span ng-if="!session.trabajadorCaja.trabajador">No definido</span>
+              <span ng-bind="trabajador.tipoDocumento"></span>
+              <span ng-bind="trabajador.numeroDocumento"></span>
+              <span ng-if="!trabajador">No definido</span>
             </li>
           </ul>
         </div>

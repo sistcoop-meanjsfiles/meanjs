@@ -81,6 +81,7 @@ angular.element(document).ready(function () {
             angular.module('mean').constant('REALM', {name: keycloakRealm, authServerUrl: keycloakUrl});
             angular.module('mean').constant('SUCURSAL', sistcoop.sucursal);
             angular.module('mean').constant('AGENCIA', sistcoop.agencia);
+            angular.module('mean').constant('TRABAJADOR', sistcoop.trabajador);
 
             //Then init the app
             angular.bootstrap(document, [ApplicationConfiguration.applicationModuleName]);
@@ -96,7 +97,7 @@ angular.element(document).ready(function () {
 });
 
 angular.module('mean').controller('KeycloakController',
-    function ($scope, Auth) {
+    function ($scope, Auth, SUCURSAL, AGENCIA, TRABAJADOR) {
 
         $scope.logout = function () {
             Auth.authz.logout();
@@ -118,6 +119,9 @@ angular.module('mean').controller('KeycloakController',
         };
         $scope.loadRoles();
 
+        $scope.sucursal = SUCURSAL;
+        $scope.agencia = AGENCIA;
+        $scope.trabajador = TRABAJADOR;
     }
 );
 

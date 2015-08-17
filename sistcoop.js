@@ -111,6 +111,31 @@
             return promise.promise;
         };
 
+        sc.loadTrabajador = function() {
+            var url = getServerUrl() + '/rest/session/account/trabajador';
+            var req = new XMLHttpRequest();
+            req.open('GET', url, true);
+            req.setRequestHeader('Accept', 'application/json');
+            req.setRequestHeader('Authorization', 'bearer ' + sc.authenticatedToken);
+
+            var promise = createPromise();
+
+            req.onreadystatechange = function () {
+                if (req.readyState == 4) {
+                    if (req.status == 200) {
+                        sc.trabajador = JSON.parse(req.responseText);
+                        promise.setSuccess(sc.trabajador);
+                    } else {
+                        promise.setError();
+                    }
+                }
+            };
+
+            req.send();
+
+            return promise.promise;
+        };
+
         function getServerUrl() {
             return sc.authServerUrl;
         }
@@ -220,16 +245,27 @@
                     login: function (options) {
                         var promise = createPromise();
 
+                        //load Sucursal
                         sc.loadSucursal().success(function () {
-                            if(sc.sucursal && sc.agencia) {
+                            if(sc.sucursal && sc.agencia && sc.trabajador) {
                                 promise.setSuccess();
                             }
                         }).error(function () {
                             promise.setError();
                         });
 
+                        //load Agencia
                         sc.loadAgencia().success(function () {
-                            if(sc.sucursal && sc.agencia) {
+                            if(sc.sucursal && sc.agencia && sc.trabajador) {
+                                promise.setSuccess();
+                            }
+                        }).error(function () {
+                            promise.setError();
+                        });
+
+                        //load Trabajador
+                        sc.loadTrabajador().success(function () {
+                            if(sc.sucursal && sc.agencia && sc.trabajador) {
                                 promise.setSuccess();
                             }
                         }).error(function () {
