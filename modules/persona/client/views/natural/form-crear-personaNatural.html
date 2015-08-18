@@ -1,6 +1,6 @@
 <div ncy-breadcrumb></div>
 
-<h1>Crear persona natural</h1>
+<h1><strong>Crear persona natural</strong></h1>
 
 <form name="form" sg-read-only="!access.administrarPersonas" class="form-horizontal" novalidate>
 
@@ -9,7 +9,7 @@
 		<div class="col-sm-3">
 			<div class="input-group">
 				<span data-ng-bind="combo.selected.pais ? combo.selected.pais.alpha3Code : 'NA'" class="input-group-addon"></span>
-				<ui-select name="pais" data-ng-model="combo.selected.pais" ng-disabled="!access.administrarPersonas" autofocus required>
+				<ui-select name="pais" data-ng-model="combo.selected.pais" ng-disabled="!access.administrarPersonas" pf-focused="true" autofocus required>
 					<ui-select-autoload pk-name="alpha3Code" comparator="view.persona.codigoPais" ignore-case="true"></ui-select-autoload>
 					<ui-select-match placeholder="Seleccione">{{$select.selected.fullNameEn}}</ui-select-match>
 					<ui-select-choices repeat="item in combo.pais | filter: $select.search">
@@ -40,7 +40,7 @@
 		<div class="col-sm-2">
 			<div class="input-group">
 				<input type="text" name="numeroDocumento" data-ng-model="view.persona.numeroDocumento" ui-keypress="{13:'check($event)'}" data-ng-pattern="/^[0-9]+$/" data-ng-minlength="combo.selected.tipoDocumento.cantidadCaracteres" data-ng-maxlength="combo.selected.tipoDocumento.cantidadCaracteres" class="form-control" required/>
-				<span class="input-group-btn"><button type="button" data-ng-click="check()" tooltip="Check" tooltip-trigger="mouseenter" tooltip-placement="bottom" class="btn btn-default"><span class="glyphicon glyphicon-check"></span></button></span>
+				<span class="input-group-btn"><button type="button" data-ng-click="check()" tooltip="Check" tooltip-trigger="mouseenter" tooltip-placement="bottom" class="btn btn-default"><span class="pficon pficon-cluster"></span></button></span>
 			</div>
 			<div data-ng-messages="form.numeroDocumento.$error" data-ng-if="form.numeroDocumento.$dirty || form.$submitted">
 				<div class="has-error" data-ng-message="required">Ingrese numero documento.</div>
@@ -100,10 +100,9 @@
 		<label class="col-sm-2 control-label">Sexo:</label>
 		<div class="col-sm-2">
 			<ui-select name="sexo" data-ng-model="combo.selected.sexo" ng-disabled="!access.administrarPersonas" required>
-				<ui-select-match placeholder="Seleccione">{{$select.selected.denominacion}}</ui-select-match>
-				<ui-select-autoload pk-name="denominacion" comparator="view.persona.sexo" ignore-case="true"></ui-select-autoload>
+				<ui-select-match placeholder="Seleccione">{{$select.selected}}</ui-select-match>
 				<ui-select-choices repeat="item in combo.sexo | filter: $select.search">
-					<div data-ng-bind-html="item.denominacion | highlight: $select.search"></div>
+					<div data-ng-bind-html="item | highlight: $select.search"></div>
 				</ui-select-choices>
 			</ui-select>
 			<div data-ng-messages="form.sexo.$error" data-ng-if="form.$submitted">
@@ -115,10 +114,9 @@
 		<label class="col-sm-2 control-label">Estado civil <span class="optional">(opcional)</span>:</label>
 		<div class="col-sm-2">
 			<ui-select data-ng-model="combo.selected.estadoCivil" ng-disabled="!access.administrarPersonas">
-				<ui-select-autoload pk-name="denominacion" comparator="view.persona.estadoCivil" ignore-case="true"></ui-select-autoload>
-				<ui-select-match placeholder="Seleccione">{{$select.selected.denominacion}}</ui-select-match>
+				<ui-select-match placeholder="Seleccione">{{$select.selected}}</ui-select-match>
 				<ui-select-choices repeat="item in combo.estadoCivil | filter: $select.search">
-					<div data-ng-bind-html="item.denominacion | highlight: $select.search"></div>
+					<div data-ng-bind-html="item | highlight: $select.search"></div>
 				</ui-select-choices>
 			</ui-select>
 		</div>
@@ -126,9 +124,12 @@
 
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<button sg-save>Guardar</button>
-			<button sg-cancel ui-sref="^.buscar">Cancelar</button>
+			<button sg-save ng-disabled="working">
+				<i class="pficon pficon-running" ng-show="working"></i>
+				<span ng-show="working">Guardando...</span>
+				<span ng-hide="working">Guardar</span>
+			</button>
+			<button sg-cancel ng-disabled="working" ui-sref="^.buscar">Cancelar</button>
 		</div>
 	</div>
-
 </form>
