@@ -24,6 +24,7 @@ angular.module('persona').controller('Persona.TipoDocumento.EditarTipoDocumentoC
 
 			$scope.view.tipoDocumento.$save().then(
 				function (response) {
+					$scope.changed = false;
 					toastr.success('Tipo documento actualizado');
 				},
 				function error(err) {
