@@ -44,14 +44,7 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button sg-save data-ng-disabled="changed">Guardar</button>
-                    <button sg-cancel ui-sref="^.buscar">Cancelar</button>
-
-                    <div class="spinner spinner-inline" data-ng-show="changed" style="vertical-align: middle;"></div>
-                </div>
-            </div>
+            <div pf-form-buttons pf-on-cancel="cancel()" pf-on-save="save()" pf-working="working"></div>
 
         </form>
 

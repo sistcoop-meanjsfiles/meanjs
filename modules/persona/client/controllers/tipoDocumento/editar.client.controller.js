@@ -4,7 +4,7 @@
 angular.module('persona').controller('Persona.TipoDocumento.EditarTipoDocumentoController',
 	function ($scope, $state, tipoDocumento, SGTipoDocumento, SGTipoPersona, toastr) {
 
-		$scope.changed = false;
+		$scope.working = false;
 
 		$scope.view = {
 			tipoDocumento: tipoDocumento
@@ -20,16 +20,20 @@ angular.module('persona').controller('Persona.TipoDocumento.EditarTipoDocumentoC
 		$scope.save = function () {
 			$scope.view.tipoDocumento.tipoPersona = $scope.combo.selected.tipoPersona;
 
-			$scope.changed = true;
+			$scope.working = true;
 
 			$scope.view.tipoDocumento.$save().then(
 				function (response) {
-					$scope.changed = false;
+					$scope.working = false;
 					toastr.success('Tipo documento actualizado');
 				},
 				function error(err) {
 					toastr.error(err.data.message);
 				}
 			);
+		};
+
+		$scope.cancel = function(){
+			$state.go('^.buscar');
 		};
 	});

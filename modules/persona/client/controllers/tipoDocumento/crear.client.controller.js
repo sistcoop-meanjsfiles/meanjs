@@ -4,7 +4,7 @@
 angular.module('persona').controller('Persona.TipoDocumento.CrearTipoDocumentoController',
     function ($scope, $state, SGTipoDocumento, SGTipoPersona, toastr) {
 
-        $scope.changed = false;
+        $scope.working = false;
 
         $scope.view = {
             tipoDocumento: SGTipoDocumento.$build()
@@ -20,18 +20,22 @@ angular.module('persona').controller('Persona.TipoDocumento.CrearTipoDocumentoCo
         $scope.save = function () {
             $scope.view.tipoDocumento.tipoPersona = $scope.combo.selected.tipoPersona;
 
-            $scope.changed = true;
+            $scope.working = true;
 
             $scope.view.tipoDocumento.$save().then(
                 function (response) {
                     toastr.success('Tipo documento creado');
-                    $scope.changed = false;
+                    $scope.working = false;
                     $state.go('^.editar', {documento: $scope.view.tipoDocumento.abreviatura});
                 },
                 function error(err) {
                     toastr.error(err.data.message);
                 }
             );
+        };
+
+        $scope.cancel = function(){
+            $state.go('^.buscar');
         };
 
     });
