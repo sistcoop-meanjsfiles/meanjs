@@ -41,12 +41,6 @@ angular.module('persona').controller('Persona.TipoDocumento.BuscarTipoDocumentoC
                     '<span>&nbsp;Editar</span>'+
                     '</button>' +
                     '</div>'
-                    /*
-                    * <button sg-save ng-disabled="working">
-                     <i class="pficon pficon-running" ng-show="working"></i>
-                     <span ng-show="working">Guardando...</span>
-                     <span ng-hide="working">Guardar</span>
-                     </button>*/
                 }
             ],
             onRegisterApi: function (gridApi) {

@@ -61,9 +61,7 @@ angular.module('persona').controller('Persona.TipoDocumento.EditarTipoDocumentoC
 
         $scope.save = function () {
             $scope.view.tipoDocumento.tipoPersona = $scope.combo.selected.tipoPersona;
-
             $scope.working = true;
-
             $scope.view.tipoDocumento.$save().then(
                 function (response) {
                     $scope.working = false;
