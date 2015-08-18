@@ -35,6 +35,19 @@ a:hover .header-profile-image {
 }
 */
 
+/*Sistcoop*/
+.grid {
+    min-height: 381px;
+}
+
+.has-error {
+    color: #f05050 !important;
+}
+
+.has-error .form-control {
+    border-color: #f05050 !important;
+}
+
 .required {
     color: #f00;
 }

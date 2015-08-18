@@ -34,11 +34,26 @@ angular.module('persona').controller('Persona.TipoDocumento.BuscarTipoDocumentoC
                 {
                     name: 'edit',
                     displayName: 'Edit',
-                    cellTemplate: '<div style="text-align: center; padding-top: 5px;"><button type="button" ng-click="grid.appScope.gridActions.edit(row.entity)" class="btn btn-info btn-xs"><span class="glyphicon glyphicon-edit"></span>Editar</button></div>'
+                    cellTemplate: '' +
+                    '<div style="text-align: center; padding-top: 5px;">' +
+                    '<button type="button" ng-click="grid.appScope.gridActions.edit(row.entity)" class="btn btn-info btn-xs">' +
+                    '<i class="pficon pficon-edit"></i>' +
+                    '<span>&nbsp;Editar</span>'+
+                    '</button>' +
+                    '</div>'
+                    /*
+                    * <button sg-save ng-disabled="working">
+                     <i class="pficon pficon-running" ng-show="working"></i>
+                     <span ng-show="working">Guardando...</span>
+                     <span ng-hide="working">Guardar</span>
+                     </button>*/
                 }
             ],
             onRegisterApi: function (gridApi) {
                 $scope.gridApi = gridApi;
+                $scope.gridApi.core.on.sortChanged($scope, function (grid, sortColumns) {
+                    console.log('Order by. Not available.');
+                });
                 gridApi.pagination.on.paginationChanged($scope, function (newPage, pageSize) {
                     paginationOptions.page = newPage;
                     paginationOptions.pageSize = pageSize;
@@ -60,4 +75,6 @@ angular.module('persona').controller('Persona.TipoDocumento.BuscarTipoDocumentoC
             });
         };
 
-    });
+    }
+)
+;

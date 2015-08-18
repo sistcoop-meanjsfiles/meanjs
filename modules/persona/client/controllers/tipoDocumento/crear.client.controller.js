@@ -34,7 +34,7 @@ angular.module('persona').controller('Persona.TipoDocumento.CrearTipoDocumentoCo
             );
         };
 
-        $scope.cancel = function(){
+        $scope.cancel = function () {
             $state.go('^.buscar');
         };
 
