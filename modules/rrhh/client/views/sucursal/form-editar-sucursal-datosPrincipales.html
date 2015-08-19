@@ -12,8 +12,12 @@
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button sg-save>Guardar</button>
-            <button sg-cancel ui-sref="^.resumen">Cancelar</button>
+            <button sg-save ng-disabled="working">
+                <i class="pficon pficon-running" ng-show="working"></i>
+                <span ng-show="working">Guardando...</span>
+                <span ng-hide="working">Guardar</span>
+            </button>
+            <button sg-cancel ng-disabled="working" ui-sref="^.resumen">Cancelar</button>
         </div>
     </div>
 </form>

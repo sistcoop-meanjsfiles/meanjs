@@ -1,6 +1,19 @@
 <div ncy-breadcrumb></div>
 
-<h1>Editar Sucursal</h1>
+<h1>
+    <strong>Editar Sucursal</strong>
+
+    <div class="pull-right">
+        <div class="btn-group">
+            <form name="form" data-ng-submit="remove()" novalidate>
+                <button sg-delete>
+                    <i class="pficon pficon-delete"></i>
+                    <span>Eliminar</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</h1>
 
 <div class="panel panel-default">
     <div class="panel-body">
@@ -17,13 +30,6 @@
                         <a href ui-sref=".agencia">
                             Agencias
                         </a>
-                    </li>
-                    <li class="pull-right" ng-if="access.administrarSucursales">
-                        <div class="btn-group">
-                            <form name="form" data-ng-submit="eliminar()" novalidate>
-                                <button sg-delete>Eliminar</button>
-                            </form>
-                        </div>
                     </li>
                 </ul>
                 <div class="tab-pane">

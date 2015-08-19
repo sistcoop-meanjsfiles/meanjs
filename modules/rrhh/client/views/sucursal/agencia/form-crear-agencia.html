@@ -4,7 +4,7 @@
     <div class="form-group" ng-class="{ 'has-error' : form.denominacion.$invalid && form.denominacion.$dirty }">
         <label class="col-sm-2 control-label"><span class="required">*</span> Denominacion:</label>
         <div class="col-sm-3">
-            <input type="text" name="denominacion" ng-model="view.agencia.denominacion" ng-maxlength="60" class="form-control" autofocus required/>
+            <input type="text" name="denominacion" ng-model="view.agencia.denominacion" ng-maxlength="60" class="form-control" pf-focused="true" autofocus required/>
             <div ng-messages="form.denominacion.$error" ng-if="form.denominacion.$dirty">
                 <div class="has-error" ng-message="required">Ingrese denominacion.</div>
                 <div class="has-error" ng-message="maxlength">Maximo 60 caracteres.</div>
@@ -30,8 +30,12 @@
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button sg-save>Guardar</button>
-            <button sg-cancel ui-sref="^.buscar">Cancelar</button>
+            <button sg-save ng-disabled="working">
+                <i class="pficon pficon-running" ng-show="working"></i>
+                <span ng-show="working">Guardando...</span>
+                <span ng-hide="working">Guardar</span>
+            </button>
+            <button sg-cancel ng-disabled="working" ui-sref="^.buscar">Cancelar</button>
         </div>
     </div>
 </form>
