@@ -43,7 +43,16 @@ angular.module('persona').controller('Persona.Juridica.EditarPersonaJuridica.Rep
         };
 
         $scope.save = function () {
-            alert('guardando');
+            $scope.working = true;
+            $scope.view.persona.$save().then(
+                function (response) {
+                    toastr.success('Representante legal actualizado');
+                    $scope.working = false;
+                },
+                function error(err) {
+                    toastr.error(err.data.message);
+                }
+            );
         };
 
     });
