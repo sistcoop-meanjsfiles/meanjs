@@ -3,7 +3,7 @@
 	<div class="col-sm-3">
 		<div class="input-group">
 			<span data-ng-bind="combo.selected.pais ? combo.selected.pais.alpha3Code : 'NA'" class="input-group-addon"></span>
-			<ui-select name="pais" data-ng-model="combo.selected.pais" ng-disabled="!access.administrarPersonas" autofocus required>
+			<ui-select name="pais" data-ng-model="combo.selected.pais" ng-disabled="!access.administrarPersonas" pf-focused="true" autofocus required>
 				<ui-select-autoload pk-name="alpha3Code" comparator="view.persona.codigoPais" ignore-case="true"></ui-select-autoload>
 				<ui-select-match placeholder="Seleccione">{{$select.selected.fullNameEn}}</ui-select-match>
 				<ui-select-choices repeat="item in combo.pais | filter: $select.search">
@@ -34,7 +34,7 @@
 	<div class="col-sm-2">
 		<div class="input-group">
 			<input type="text" name="numeroDocumento" data-ng-model="view.persona.numeroDocumento" ui-keypress="{13:'check($event)'}" data-ng-pattern="/^[0-9]+$/" data-ng-minlength="combo.selected.tipoDocumento.cantidadCaracteres" data-ng-maxlength="combo.selected.tipoDocumento.cantidadCaracteres" class="form-control" required/>
-			<span class="input-group-btn"><button type="button" data-ng-click="check()" tooltip="Check" tooltip-trigger="mouseenter" tooltip-placement="bottom" class="btn btn-default"><span class="glyphicon glyphicon-check"></span></button></span>
+			<span class="input-group-btn"><button type="button" data-ng-click="check()" tooltip="Check" tooltip-trigger="mouseenter" tooltip-placement="bottom" class="btn btn-default"><span class="pficon pficon-cluster"></span></button></span>
 		</div>
 		<div data-ng-messages="form.numeroDocumento.$error" data-ng-if="form.numeroDocumento.$dirty || form.$submitted">
 			<div class="has-error" data-ng-message="required">Ingrese numero documento.</div>
@@ -94,10 +94,9 @@
 	<label class="col-sm-3 control-label">Tipo empresa:</label>
 	<div class="col-sm-2">
 		<ui-select name="tipoEmpresa" data-ng-model="combo.selected.tipoEmpresa" required>
-			<ui-select-autoload pk-name="denominacion" comparator="view.persona.tipoEmpresa" ignore-case="true"></ui-select-autoload>
-			<ui-select-match placeholder="Seleccione">{{$select.selected.denominacion}}</ui-select-match>
+			<ui-select-match placeholder="Seleccione">{{$select.selected}}</ui-select-match>
 			<ui-select-choices repeat="item in combo.tipoEmpresa | filter: $select.search">
-				<div data-ng-bind-html="item.denominacion | highlight: $select.search"></div>
+				<div data-ng-bind-html="item | highlight: $select.search"></div>
 			</ui-select-choices>
 		</ui-select>
 		<div data-ng-messages="form.tipoEmpresa.$error" data-ng-if="form.$submitted">

@@ -2,11 +2,11 @@
 
 /* jshint -W098 */
 angular.module('persona').controller('Persona.Juridica.EditarPersonaJuridicaController',
-	function ($scope, $state, personaJuridica, SGPersonaJuridica, toastr) {
+    function ($scope, $state, personaJuridica) {
 
-		$scope.view = {
-			persona: personaJuridica
-		};
+        $scope.view = {
+            persona: personaJuridica
+        };
 
-	});
+    });
 

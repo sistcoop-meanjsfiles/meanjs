@@ -4,6 +4,8 @@
 angular.module('persona').controller('Persona.Juridica.CrearPersonaJuridicaController',
     function ($scope, $state, $stateParams, toastr, SGTipoEmpresa, SGTipoDocumento, SGCountryCode, SGPersonaJuridica) {
 
+        $scope.working = false;
+
         $scope.view = {
             persona: SGPersonaJuridica.$build()
         };
@@ -26,15 +28,22 @@ angular.module('persona').controller('Persona.Juridica.CrearPersonaJuridicaContr
                 return;
             }
 
-            SGPersonaJuridica.$findByTipoNumeroDocumento($scope.view.persona.tipoDocumento, $scope.view.persona.numeroDocumento).then(function (response) {
-                if (!response) {
+            SGPersonaJuridica.$search({
+                documento: $scope.view.persona.tipoDocumento,
+                numero: $scope.view.persona.numeroDocumento
+            }).then(function (response) {
+                if (!response.items.length) {
                     $scope.view.persona.representanteLegal = {
                         tipoDocumento: $scope.view.persona.representanteLegal.tipoDocumento,
                         numeroDocumento: $scope.view.persona.representanteLegal.numeroDocumento
                     };
+
+                    $scope.working = true;
+
                     $scope.view.persona.$save().then(
                         function (response) {
                             toastr.success('Persona creada');
+                            $scope.working = false;
                             $state.go('^.^.editar', {personaJuridica: response.id});
                         },
                         function error(err) {
