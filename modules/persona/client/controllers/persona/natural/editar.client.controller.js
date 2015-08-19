@@ -13,7 +13,7 @@ angular.module('persona').controller('Persona.Natural.EditarPersonaNaturalContro
 				$scope.view.persona.$remove().then(
 					function (response) {
 						toastr.success('Persona eliminada');
-						$state.go('persona.app.administracion.documento.buscar');
+						$state.go('persona.app.persona.natural.buscar');
 					},
 					function error(err) {
 						toastr.error(err.data.message);

@@ -262,10 +262,10 @@
                             <tr data-ng-repeat="item in view.loadObjects.accionistas">
                                 <td><span data-ng-bind="$index+1"></span></td>
                                 <td>
-                                    <span data-ng-bind="item.tipoDocumento"></span><span>/</span><span data-ng-bind="item.numeroDocumento"></span>
+                                    <span data-ng-bind="item.personaNatural.tipoDocumento"></span><span>/</span><span data-ng-bind="item.numeroDocumento"></span>
                                 </td>
                                 <td>
-                                    <span data-ng-bind="item.apellidoPaterno"></span><span>&nbsp;</span><span data-ng-bind="item.apellidoMaterno"></span><span>,&nbsp;</span><span data-ng-bind="item.nombres"></span>
+                                    <span data-ng-bind="item.personaNatural.apellidoPaterno"></span><span>&nbsp;</span><span data-ng-bind="item.personaNatural.apellidoMaterno"></span><span>,&nbsp;</span><span data-ng-bind="item.personaNatural.nombres"></span>
                                 </td>
                                 <td>
                                     <span data-ng-bind="item.porcentajeParticipacion"></span>
