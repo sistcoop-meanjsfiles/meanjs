@@ -2,32 +2,51 @@
 
 /* jshint -W098 */
 angular.module('persona').controller('Persona.Natural.EditarPersonaNatural.DatosPrincipalesController',
-	function ($scope, $state, personaNatural, SGCountryCode, SGSexo, SGEstadoCivil, SGPersonaNatural, toastr) {
+    function ($scope, $state, toastr, personaNatural, SGCountryCode, SGSexo, SGEstadoCivil, SGPersonaNatural) {
 
-		$scope.view = {
-			persona: personaNatural
-		};
+        $scope.working = false;
 
-		$scope.combo = {
-			pais: SGCountryCode.$search().$object,
-			sexo: SGSexo.$search().$object,
-			estadoCivil: SGEstadoCivil.$search().$object
-		};
-		$scope.combo.selected = {
-			pais: undefined,
-			sexo: undefined,
-			estadoCivil: undefined
-		};
+        $scope.view = {
+            persona: personaNatural
+        };
 
-		$scope.save = function () {
-			$scope.view.persona.$save().then(
-				function (response) {
-					toastr.success('Persona actualizada');
-				},
-				function error(err) {
-					toastr.error(err.data.message, 'Error');
-				}
-			);
-		};
+        $scope.combo = {
+            pais: undefined,
+            sexo: undefined,
+            estadoCivil: undefined
+        };
+        $scope.combo.selected = {
+            pais: undefined,
+            sexo: personaNatural.sexo,
+            estadoCivil: personaNatural.estadoCivil
+        };
 
-	});
+        $scope.loadCombos = function () {
+            SGCountryCode.$search().then(function (response) {
+                $scope.combo.pais = response.items;
+            });
+            SGSexo.$search().then(function (response) {
+                $scope.combo.sexo = response.items;
+            });
+            SGEstadoCivil.$search().then(function (response) {
+                $scope.combo.estadoCivil = response.items;
+            });
+        };
+        $scope.loadCombos();
+
+        $scope.save = function () {
+            $scope.view.persona.sexo = $scope.combo.selected.sexo;
+            $scope.view.persona.estadoCivil = $scope.combo.selected.estadoCivil;
+            $scope.working = true;
+            $scope.view.persona.$save().then(
+                function (response) {
+                    $scope.working = false;
+                    toastr.success('Persona actualizada');
+                },
+                function error(err) {
+                    toastr.error(err.data.message, 'Error');
+                }
+            );
+        };
+
+    });
