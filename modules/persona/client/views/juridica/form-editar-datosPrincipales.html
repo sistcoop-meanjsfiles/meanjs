@@ -5,7 +5,7 @@
 		<div class="col-sm-3">
 			<div class="input-group">
 				<span data-ng-bind="combo.selected.pais ? combo.selected.pais.alpha3Code : 'NA'" class="input-group-addon"></span>
-				<ui-select name="pais" data-ng-model="combo.selected.pais" ng-disabled="!access.administrarPersonas" autofocus required>
+				<ui-select name="pais" data-ng-model="combo.selected.pais" ng-disabled="!access.administrarPersonas" pf-focused="true" autofocus required>
 					<ui-select-autoload pk-name="alpha3Code" comparator="view.persona.codigoPais" ignore-case="true"></ui-select-autoload>
 					<ui-select-match placeholder="Seleccione">{{$select.selected.fullNameEn}}</ui-select-match>
 					<ui-select-choices repeat="item in combo.pais | filter: $select.search">
@@ -96,10 +96,9 @@
 		<label class="col-sm-3 control-label">Tipo empresa:</label>
 		<div class="col-sm-2">
 			<ui-select name="tipoEmpresa" data-ng-model="combo.selected.tipoEmpresa" required>
-				<ui-select-autoload pk-name="denominacion" comparator="view.persona.tipoEmpresa" ignore-case="true"></ui-select-autoload>
-				<ui-select-match placeholder="Seleccione">{{$select.selected.denominacion}}</ui-select-match>
+				<ui-select-match placeholder="Seleccione">{{$select.selected}}</ui-select-match>
 				<ui-select-choices repeat="item in combo.tipoEmpresa | filter: $select.search">
-					<div data-ng-bind-html="item.denominacion | highlight: $select.search"></div>
+					<div data-ng-bind-html="item | highlight: $select.search"></div>
 				</ui-select-choices>
 			</ui-select>
 			<div data-ng-messages="form.tipoEmpresa.$error" data-ng-if="form.$submitted">
@@ -123,8 +122,12 @@
 
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<button sg-save>Guardar</button>
-			<button sg-cancel ui-sref="^.resumen">Cancelar</button>
+			<button sg-save ng-disabled="working">
+				<i class="pficon pficon-running" ng-show="working"></i>
+				<span ng-show="working">Guardando...</span>
+				<span ng-hide="working">Guardar</span>
+			</button>
+			<button sg-cancel ng-disabled="working" ui-sref="^.resumen">Cancelar</button>
 		</div>
 	</div>
 

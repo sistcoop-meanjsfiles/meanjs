@@ -2,35 +2,48 @@
 
 /* jshint -W098 */
 angular.module('persona').controller('Persona.Juridica.EditarPersonaJuridica.RepresentanteController',
-	function ($scope, $state, SGTipoDocumento, SGPersonaNatural, toastr) {
+    function ($scope, $state, SGTipoDocumento, SGPersonaNatural, toastr) {
 
-		$scope.representante = {
-			tipoDocumento: undefined,
-			numeroDocumento: undefined
-		};
+        $scope.working = false;
 
-		$scope.combo = {
-			tipoDocumento: SGTipoDocumento.$search({tipoPersona: 'natural'}).$object
-		};
-		$scope.combo.selected = {
-			tipoDocumento: undefined
-		};
+        $scope.representante = {
+            tipoDocumento: undefined,
+            numeroDocumento: undefined
+        };
 
-		$scope.setRepresentante = function ($event) {
-			if (!angular.isUndefined($event))
-				$event.preventDefault();
-			if (angular.isDefined($scope.combo.selected.tipoDocumento) && angular.isDefined($scope.representante.numeroDocumento)) {
-				SGPersonaNatural.$findByTipoNumeroDocumento($scope.combo.selected.tipoDocumento.abreviatura, $scope.representante.numeroDocumento).then(function (response) {
-					if (response)
-						$scope.view.persona.representanteLegal = response;
-					else
-						toastr.warning('Persona no encontrada');
-				});
-			}
-		};
+        $scope.combo = {
+            tipoDocumento: undefined
+        };
+        $scope.combo.selected = {
+            tipoDocumento: undefined
+        };
 
-		$scope.save = function () {
-			alert('guardando');
-		};
+        $scope.loadCombo = function () {
+            SGTipoDocumento.$search({tipoPersona: 'natural'}).then(function (response) {
+                $scope.combo.tipoDocumento = response.items;
+            });
+        };
+        $scope.loadCombo();
 
-	});
+        $scope.setRepresentante = function ($event) {
+            if (!angular.isUndefined($event))
+                $event.preventDefault();
+
+            if (angular.isDefined($scope.combo.selected.tipoDocumento) && angular.isDefined($scope.representante.numeroDocumento)) {
+                SGPersonaNatural.$search({
+                    documento: $scope.combo.selected.tipoDocumento.abreviatura,
+                    numero: $scope.representante.numeroDocumento
+                }).then(function (response) {
+                    if (response.items.length)
+                        $scope.view.persona.representanteLegal = response.items[0];
+                    else
+                        toastr.warning('Persona no encontrada');
+                });
+            }
+        };
+
+        $scope.save = function () {
+            alert('guardando');
+        };
+
+    });
