@@ -5,7 +5,7 @@
     <tr ng-if="access.administrarSucursales">
         <th colspan="6">
             <div class="pull-right">
-                <a href="" ui-sref="^.crear" class="btn btn-primary">Add Agencia</a>
+                <a href="" ui-sref="^.crear" class="btn btn-primary">Nuevo</a>
             </div>
         </th>
     </tr>
@@ -31,10 +31,16 @@
             <span ng-bind="item.ubigeo"></span>
         </td>
         <td ng-if="access.administrarSucursales">
-            <button type="button" data-ng-click="edit(item)" class="btn btn-info btn-xs">Editar</button>
+            <button type="button" data-ng-click="edit(item)" class="btn btn-info btn-xs">
+                <i class="pficon pficon-edit"></i>
+                <span>Editar</span>
+            </button>
         </td>
         <td ng-if="access.administrarSucursales">
-            <button type="button" data-ng-click="remove(item)" class="btn btn-danger btn-xs">Eliminar</button>
+            <button type="button" data-ng-click="remove(item)" class="btn btn-danger btn-xs">
+                <i class="pficon pficon-delete"></i>
+                <span>Eliminar</span>
+            </button>
         </td>
     </tr>
     <tr data-ng-show="!loadObjects.agencias.length">
