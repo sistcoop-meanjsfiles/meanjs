@@ -2,15 +2,23 @@
 
 /* jshint -W098 */
 angular.module('persona').controller('Persona.Natural.EditarPersonaNaturalController',
-	function ($scope, $state, $modal, personaNatural, SGDialog, toastr) {
+	function ($scope, $state, $modal, toastr, personaNatural, SGDialog) {
 
 		$scope.view = {
 			persona: personaNatural
 		};
 
-		$scope.desactivar = function () {
-			SGDialog.confirm('Desactivar', 'Estas seguro de querer desactivar el/la persona', function () {
-				toastr.info('Las personas no pueden ser desactivadas, solo actualizadas');
+		$scope.remove = function(){
+			SGDialog.confirm('Eliminar', 'Estas seguro de eliminar la persona?', function () {
+				$scope.view.persona.$remove().then(
+					function (response) {
+						toastr.success('Persona eliminada');
+						$state.go('persona.app.administracion.documento.buscar');
+					},
+					function error(err) {
+						toastr.error(err.data.message);
+					}
+				);
 			});
 		};
 

@@ -11,8 +11,8 @@ angular.module('persona').controller('Persona.Natural.EditarPersonaNatural.Resum
 		$scope.openCambiarFotoModal = function () {
 
 			var modalInstance = $modal.open({
-				animation: false,
-				templateUrl: '/modules/persona/views/natural/form-editar-cambiarFoto.html',
+				animation: true,
+				templateUrl: '/modules/persona/client/views/natural/form-editar-cambiarFoto.html',
 				controller: 'Persona.Natural.EditarPersonaNatural.CambiarFotoModalController',
 				size: 'lg',
 				resolve: {

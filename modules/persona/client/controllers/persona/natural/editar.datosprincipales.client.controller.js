@@ -2,7 +2,7 @@
 
 /* jshint -W098 */
 angular.module('persona').controller('Persona.Natural.EditarPersonaNatural.DatosPrincipalesController',
-    function ($scope, $state, toastr, personaNatural, SGCountryCode, SGSexo, SGEstadoCivil, SGPersonaNatural) {
+    function ($scope, $state, toastr, personaNatural, SGCountryCode, SGSexo, SGEstadoCivil) {
 
         $scope.working = false;
 
