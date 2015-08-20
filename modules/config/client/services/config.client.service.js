@@ -30,8 +30,8 @@ angular.module('config').factory('SGUsuarioKeycloak', ['KeycloakRestangular', 'R
     var url = 'users';
 
     var modelMethos = {
-        $find: function (username) {
-            return KeycloakRestangular.one(url, username).get();
+        $find: function (id) {
+            return KeycloakRestangular.one(url, id).get();
         },
         $search: function (queryParams) {
             return KeycloakRestangular.all(url).getList(queryParams);

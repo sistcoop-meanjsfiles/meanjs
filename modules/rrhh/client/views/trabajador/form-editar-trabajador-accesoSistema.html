@@ -9,7 +9,7 @@
 			<label class="col-sm-2 control-label"><span class="required">*</span> Usuario:</label>
 			<div class="col-sm-3">
 				<div class="input-group">
-					<input type="text" name="usuario" ng-model="view.usuario" ng-minlength="1" ng-maxlength="60" class="form-control" autofocus required/>
+					<input type="text" name="usuario" ng-model="view.usuario" ng-minlength="1" ng-maxlength="60" class="form-control" pf-focused="true" autofocus required/>
 					<span data-ng-show="view.trabajador.usuario" class="input-group-btn">
 						<button type="button" data-ng-click="desvincular()" class="btn btn-default"
 								tooltip="Desvincular el usuario."
@@ -36,8 +36,12 @@
 
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<button sg-save>Guardar</button>
-			<button sg-cancel ui-sref="^.resumen">Cancelar</button>
+			<button sg-save ng-disabled="working">
+				<i class="pficon pficon-running" ng-show="working"></i>
+				<span ng-show="working">Guardando...</span>
+				<span ng-hide="working">Guardar</span>
+			</button>
+			<button sg-cancel ng-disabled="working" ui-sref="^.resumen">Cancelar</button>
 		</div>
 	</div>
 

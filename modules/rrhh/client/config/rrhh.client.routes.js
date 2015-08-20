@@ -27,27 +27,6 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
             return deferred.promise;
         };
 
-        // Get session sucursal
-        var getSucursalesAutorizadasParaAdministrarTrabajadores = function ($q, $timeout, $http, $location, Auth, SGSucursal) {
-            if (Auth.authz.hasResourceRole('administrar-trabajadores', moduleName)) {
-                return SGSucursal.$search();
-            } else if (Auth.authz.hasResourceRole('administrar-trabajadores-agencia', moduleName)) {
-                return SGSucursal.$find(Auth.sistcoop.sucursal);
-            } else {
-                return SGSucursal.$find(Auth.sistcoop.sucursal);
-            }
-        };
-        // Get session agencia
-        var getAgenciasAutorizadasParaAdministrarTrabajadores = function ($q, $timeout, $http, $location, Auth, SGSucursal) {
-            if (Auth.authz.hasResourceRole('administrar-trabajadores', moduleName)) {
-                return undefined;
-            } else if (Auth.authz.hasResourceRole('administrar-trabajadores-agencia', moduleName)) {
-                return SGSucursal.$new(Auth.sistcoop.sucursal).$findAgencia(Auth.sistcoop.agencia);
-            } else {
-                return SGSucursal.$new(Auth.sistcoop.sucursal).$findAgencia(Auth.sistcoop.agencia);
-            }
-        };
-
         $urlRouterProvider.when('/rrhh/app', '/rrhh/app/organizacion/sucursales');
 
         $urlRouterProvider.when('/rrhh/app/organizacion/sucursales', '/rrhh/app/organizacion/sucursales/buscar');
@@ -240,12 +219,6 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
                 resolve: {
                     loggedin: function ($q, $timeout, $http, $location, Auth) {
                         return checkUserRole('ver-trabajadores', $q, $timeout, $http, $location, Auth);
-                    },
-                    sucursales: function ($q, $timeout, $http, $location, Auth, SGSucursal) {
-                        return getSucursalesAutorizadasParaAdministrarTrabajadores($q, $timeout, $http, $location, Auth, SGSucursal);
-                    },
-                    agencias: function ($q, $timeout, $http, $location, Auth, SGSucursal) {
-                        return getAgenciasAutorizadasParaAdministrarTrabajadores($q, $timeout, $http, $location, Auth, SGSucursal);
                     }
                 },
                 ncyBreadcrumb: {
@@ -259,12 +232,6 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
                 resolve: {
                     loggedin: function ($q, $timeout, $http, $location, Auth) {
                         return checkUserRole('ver-trabajadores', $q, $timeout, $http, $location, Auth);
-                    },
-                    sucursales: function ($q, $timeout, $http, $location, Auth, SGSucursal) {
-                        return getSucursalesAutorizadasParaAdministrarTrabajadores($q, $timeout, $http, $location, Auth, SGSucursal);
-                    },
-                    agencias: function ($q, $timeout, $http, $location, Auth, SGSucursal) {
-                        return getAgenciasAutorizadasParaAdministrarTrabajadores($q, $timeout, $http, $location, Auth, SGSucursal);
                     }
                 },
                 ncyBreadcrumb: {
@@ -321,12 +288,6 @@ angular.module('persona').config(['$stateProvider', '$urlRouterProvider',
                 resolve: {
                     loggedin: function ($q, $timeout, $http, $location, Auth) {
                         return checkUserRole('ver-trabajadores', $q, $timeout, $http, $location, Auth);
-                    },
-                    sucursales: function ($q, $timeout, $http, $location, Auth, SGSucursal) {
-                        return getSucursalesAutorizadasParaAdministrarTrabajadores($q, $timeout, $http, $location, Auth, SGSucursal);
-                    },
-                    agencias: function ($q, $timeout, $http, $location, Auth, SGSucursal) {
-                        return getAgenciasAutorizadasParaAdministrarTrabajadores($q, $timeout, $http, $location, Auth, SGSucursal);
                     }
                 },
                 ncyBreadcrumb: {

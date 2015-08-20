@@ -5,7 +5,7 @@
 		<div class="form-group" ng-class="{ 'has-error' : form.sucursal.$invalid && form.$submitted}">
 			<label class="col-sm-2 control-label"><span class="required">*</span> Sucursal:</label>
 			<div class="col-sm-3">
-				<ui-select name="sucursal" ng-model="combo.selected.sucursal" ng-disabled="!access.administrarTrabajadores" autofocus required>
+				<ui-select name="sucursal" ng-model="combo.selected.sucursal" ng-disabled="!access.administrarTrabajadores" pf-focused="true" autofocus required>
 					<ui-select-autoload pk-name="denominacion" comparator="view.trabajador.agencia.sucursal.denominacion"></ui-select-autoload>
 					<ui-select-match placeholder="Sucursal">{{$select.selected.denominacion}}</ui-select-match>
 					<ui-select-choices repeat="item in combo.sucursal | filter: $select.search">
@@ -65,8 +65,12 @@
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button sg-save>Guardar</button>
-            <button sg-cancel ui-sref="^.resumen">Cancelar</button>
+			<button sg-save ng-disabled="working">
+				<i class="pficon pficon-running" ng-show="working"></i>
+				<span ng-show="working">Guardando...</span>
+				<span ng-hide="working">Guardar</span>
+			</button>
+			<button sg-cancel ng-disabled="working" ui-sref="^.resumen">Cancelar</button>
         </div>
     </div>
 </form>
