@@ -1,8 +1,8 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.Boveda.BuscarController',
-    function ($scope, $state, SUCURSAL, AGENCIA, SGSucursal, SGBoveda) {
+angular.module('cooperativa').controller('Cooperativa.Caja.BuscarController',
+    function ($scope, $state, SUCURSAL, AGENCIA, SGSucursal, SGCaja) {
 
         $scope.combo = {
             sucursal: undefined,
@@ -51,14 +51,11 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.BuscarController',
             useExternalSorting: true,
 
             columnDefs: [
-                {field: 'moneda', displayName: 'Moneda'},
+                {field: 'agencia.denominacion', displayName: 'Agencia'},
                 {field: 'denominacion', displayName: 'Denominacion'},
                 {field: 'abierto', displayName: 'Abierto', cellFilter: 'si_no : "abierto" | uppercase'},
-                {
-                    field: 'estadoMovimiento',
-                    displayName: 'Estado movimiento',
-                    cellFilter: 'si_no : "congelado" | uppercase'
-                },
+                {field: 'estadoMovimiento', displayName: 'Estado movimiento', cellFilter: 'si_no : "congelado" | uppercase'},
+                {field: 'estado', cellFilter: 'si_no : "activo" | uppercase', displayName: 'Estado'},
                 {field: 'estado', cellFilter: 'si_no : "activo" | uppercase', displayName: 'Estado'},
                 {
                     name: 'edit',
@@ -81,7 +78,7 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.BuscarController',
 
         $scope.gridActions = {
             edit: function (row) {
-                $state.go('^.editar', {boveda: row.id});
+                $state.go('^.editar', {caja: row.id});
             }
         };
 
@@ -92,7 +89,7 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.BuscarController',
             }
 
             $scope.filterOptions.agencia = agencia ? agencia.$getAbsoluteUrl() : undefined;
-            SGBoveda.$search(angular.extend($scope.filterOptions, paginationOptions)).then(function (response) {
+            SGCaja.$search(angular.extend($scope.filterOptions, paginationOptions)).then(function (response) {
                 $scope.gridOptions.data = response.items;
                 $scope.gridOptions.totalItems = response.totalSize;
             });

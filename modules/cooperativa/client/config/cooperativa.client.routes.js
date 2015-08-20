@@ -27,27 +27,6 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
             return deferred.promise;
         };
 
-        // Get session sucursal
-        var getSucursalesAutorizadasParaAdministrarBovedas = function ($q, $timeout, $http, $location, Auth, SGSucursal) {
-            if (Auth.authz.hasResourceRole('administrar-bovedas', moduleName)) {
-                return SGSucursal.$search();
-            } else if (Auth.authz.hasResourceRole('administrar-bovedas-agencia', moduleName)) {
-                return SGSucursal.$find(Auth.sistcoop.sucursal);
-            } else {
-                return SGSucursal.$find(Auth.sistcoop.sucursal);
-            }
-        };
-        // Get session agencia
-        var getAgenciasAutorizadasParaAdministrarBovedas = function ($q, $timeout, $http, $location, Auth, SGSucursal) {
-            if (Auth.authz.hasResourceRole('administrar-bovedas', moduleName)) {
-                return undefined;
-            } else if (Auth.authz.hasResourceRole('administrar-bovedas-agencia', moduleName)) {
-                return SGSucursal.$new(Auth.sistcoop.sucursal).$findAgencia(Auth.sistcoop.agencia);
-            } else {
-                return SGSucursal.$new(Auth.sistcoop.sucursal).$findAgencia(Auth.sistcoop.agencia);
-            }
-        };
-
         $urlRouterProvider.when('/cooperativa/app/estructura/bovedas', '/cooperativa/app/estructura/bovedas/buscar');
         $urlRouterProvider.when('/cooperativa/app/estructura/cajas', '/cooperativa/app/estructura/cajas/buscar');
 
@@ -121,12 +100,6 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
                 resolve: {
                     loggedin: function ($q, $timeout, $http, $location, Auth) {
                         return checkUserRole('ver-bovedas', $q, $timeout, $http, $location, Auth);
-                    },
-                    sucursales: function ($q, $timeout, $http, $location, Auth, SGSucursal) {
-                        return getSucursalesAutorizadasParaAdministrarBovedas($q, $timeout, $http, $location, Auth, SGSucursal);
-                    },
-                    agencias: function ($q, $timeout, $http, $location, Auth, SGSucursal) {
-                        return getAgenciasAutorizadasParaAdministrarBovedas($q, $timeout, $http, $location, Auth, SGSucursal);
                     }
                 },
                 ncyBreadcrumb: {
@@ -140,12 +113,6 @@ angular.module('cooperativa').config(['$stateProvider', '$urlRouterProvider',
                 resolve: {
                     loggedin: function ($q, $timeout, $http, $location, Auth) {
                         return checkUserRole('ver-bovedas', $q, $timeout, $http, $location, Auth);
-                    },
-                    sucursales: function ($q, $timeout, $http, $location, Auth, SGSucursal) {
-                        return getSucursalesAutorizadasParaAdministrarBovedas($q, $timeout, $http, $location, Auth, SGSucursal);
-                    },
-                    agencias: function ($q, $timeout, $http, $location, Auth, SGSucursal) {
-                        return getAgenciasAutorizadasParaAdministrarBovedas($q, $timeout, $http, $location, Auth, SGSucursal);
                     }
                 },
                 ncyBreadcrumb: {

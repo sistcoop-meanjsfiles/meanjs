@@ -2,7 +2,7 @@
 
 /* jshint -W098 */
 angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.ResumenController',
-	function ($scope, boveda, SGAgencia) {
+	function ($scope, boveda) {
 
 		$scope.view = {
 			boveda: boveda
@@ -13,9 +13,9 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.Editar.ResumenContr
 		};
 
 		$scope.loadAgencia = function () {
-			$scope.view.load.agencia = SGAgencia.$findByUrl($scope.view.boveda.agencia).$object;
+			//$scope.view.load.agencia = SGAgencia.$findByUrl($scope.view.boveda.agencia).$object;
 		};
-		$scope.loadAgencia();
+		//$scope.loadAgencia();
 
 	}
 );

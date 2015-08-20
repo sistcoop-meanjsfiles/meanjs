@@ -1,32 +1,26 @@
 'use strict';
 
 /* jshint -W098 */
-angular.module('cooperativa').controller('Cooperativa.Boveda.CrearController',
-    function ($scope, $state, toastr, SUCURSAL, AGENCIA, SGSucursal, SGCurrency, SGBoveda) {
+angular.module('cooperativa').controller('Cooperativa.Caja.CrearController',
+    function ($scope, $state, toastr, SUCURSAL, AGENCIA, SGCaja, SGSucursal) {
 
         $scope.working = false;
 
         $scope.view = {
-            boveda: SGBoveda.$build()
+            caja: SGCaja.$build()
         };
 
         $scope.combo = {
             sucursal: undefined,
-            agencia: undefined,
-            moneda: undefined
+            agencia: undefined
         };
         $scope.combo.selected = {
             sucursal: SUCURSAL ? SUCURSAL : undefined,
-            agencia: AGENCIA ? AGENCIA : undefined,
-            moneda: undefined
+            agencia: AGENCIA ? AGENCIA : undefined
         };
 
         $scope.loadCombo = function () {
-            SGCurrency.$search().then(function (response) {
-                $scope.combo.moneda = response.items;
-            });
-
-            if ($scope.access.administrarBovedas) {
+            if ($scope.access.administrarCajas) {
                 SGSucursal.$search().then(function (response1) {
                     $scope.combo.sucursal = response1.items;
                     $scope.$watch('combo.selected.sucursal', function () {
@@ -37,7 +31,7 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.CrearController',
                         }
                     }, true);
                 });
-            } else if ($scope.access.administrarBovedasAgencia) {
+            } else if ($scope.access.administrarCajasAgencia) {
                 $scope.combo.sucursal = [SUCURSAL];
                 $scope.combo.agencia = [AGENCIA];
             } else {
@@ -48,21 +42,18 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.CrearController',
 
 
         $scope.save = function () {
-            $scope.view.boveda.moneda = $scope.combo.selected.moneda.alphabeticCode;
-            $scope.view.boveda.agencia = SGSucursal.$new($scope.combo.selected.agencia.sucursal.id).SGAgencia().$new($scope.combo.selected.agencia.id).$getAbsoluteUrl();
-
             $scope.working = true;
-            $scope.view.boveda.$save().then(
+            $scope.view.caja.agencia = SGSucursal.$new($scope.combo.selected.agencia.sucursal.id).SGAgencia().$new($scope.combo.selected.agencia.id).$getAbsoluteUrl();
+            $scope.view.caja.$save().then(
                 function (response) {
+                    toastr.success('Caja creada');
+                    $state.go('^.editar', {caja: response.id});
                     $scope.working = false;
-                    toastr.success('Boveda creada');
-                    $state.go('^.editar', {boveda: response.id});
                 },
                 function error(err) {
                     toastr.error(err.data.message);
                 }
             );
-
         };
 
     });

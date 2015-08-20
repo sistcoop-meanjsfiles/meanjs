@@ -35,7 +35,7 @@
 	<div class="form-group" ng-class="{ 'has-error' : form.moneda.$invalid && form.$submitted}">
 		<label class="col-sm-2 control-label"><span class="required">*</span> Moneda:</label>
 		<div class="col-sm-3">
-			<ui-select name="moneda" ng-model="combo.selected.moneda" sg-moneda-boveda-agencia-validate sg-agencia="{{combo.selected.agencia}}" required>
+			<ui-select name="moneda" ng-model="combo.selected.moneda" required>
 				<ui-select-match placeholder="Moneda">{{$select.selected.alphabeticCode}} ({{$select.selected.currency}})</ui-select-match>
 				<ui-select-choices repeat="item in combo.moneda | filter: $select.search">
 					<div ng-bind-html="item.currency | highlight: $select.search"></div>
