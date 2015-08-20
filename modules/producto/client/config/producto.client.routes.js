@@ -10,12 +10,12 @@ angular.module('producto').config(['$stateProvider', '$urlRouterProvider',
 			.state('producto', {
 				abstract: true,
 				url: '/producto',
-				templateUrl: '/modules/producto/views/_body.html',
+				templateUrl: 'modules/producto/client/views/_body.html',
 				controller: 'ProductoController'
 			})
 			.state('producto.home', {
 				url: '/home',
-				templateUrl: '/modules/producto/views/index.html',
+				templateUrl: 'modules/producto/client/views/index.html',
 				ncyBreadcrumb: {
 					label: 'Index'
 				}
@@ -44,7 +44,7 @@ angular.module('producto').config(['$stateProvider', '$urlRouterProvider',
 			})
 			.state('producto.app.producto.cuentaPersonal.buscar', {
 				url: '/buscar',
-				templateUrl: '/modules/producto/views/producto/cuentaPersonal/form-buscar-producto.html',
+				templateUrl: 'modules/producto/client/views/producto/cuentaPersonal/form-buscar-producto.html',
 				controller: 'Producto.CuentaPersonal.BuscarController',
 				resolve: {
 				},
@@ -54,7 +54,7 @@ angular.module('producto').config(['$stateProvider', '$urlRouterProvider',
 			})
 			.state('producto.app.producto.cuentaPersonal.crear', {
 				url: '/crear',
-				templateUrl: '/modules/producto/views/producto/cuentaPersonal/form-crear-producto.html',
+				templateUrl: 'modules/producto/client/views/producto/cuentaPersonal/form-crear-producto.html',
 				controller: 'Producto.CuentaPersonal.CrearController',
 				resolve: {
 
