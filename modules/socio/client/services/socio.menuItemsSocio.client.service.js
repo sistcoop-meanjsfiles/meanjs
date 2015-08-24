@@ -81,20 +81,17 @@ angular.module('socio').service('$menuItemsSocio', ['Auth',
 
             var rolesSession = [];
 
-            if (Auth.authz.resourceAccess.persona) {
-                rolesSession = Auth.authz.resourceAccess.persona.roles;
+            if (Auth.authz.resourceAccess.socio) {
+                rolesSession = Auth.authz.resourceAccess.socio.roles;
             }
 
-            if (rolesSession.indexOf('ver-socios') !== -1) {
-                var personas = this.addItem('Socios', '');
-                personas.addItem('Naturales', 'persona.app.persona.natural');
-                personas.addItem('Juridicas', 'persona.app.persona.juridica');
-            }
+            //if (rolesSession.indexOf('ver-socios') !== -1) {
+            var socios = this.addItem('Socios', '');
+            socios.addItem('Socios', 'socio.app.socio.socio');
+            //}
 
-            if (rolesSession.indexOf('ver-documentos') !== -1) {
-                var administracion = this.addItem('Administracion', '');
-                administracion.addItem('Tipo documento', 'persona.app.administracion.documento');
-            }
+            var configuracion = this.addItem('Configuracion', '');
+            configuracion.addItem('Configuracion', 'socio.app.configuracion.configuracion');
 
             return this;
         };

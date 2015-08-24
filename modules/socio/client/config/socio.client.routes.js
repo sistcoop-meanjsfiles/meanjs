@@ -27,6 +27,10 @@ angular.module('socio').config(['$stateProvider', '$urlRouterProvider',
             return deferred.promise;
         };
 
+        //$urlRouterProvider.when('/socio/app', '/socio/app/socio/socios');
+
+        $urlRouterProvider.when('/socio/app/socio/socios', '/socio/app/socio/socios/buscar');
+
         $stateProvider
             .state('socio', {
                 abstract: true,
@@ -50,66 +54,62 @@ angular.module('socio').config(['$stateProvider', '$urlRouterProvider',
             })
 
             .state('socio.app.socio', {
-                url: '/socios',
+                url: '/socio',
                 template: '<div ui-view></div>',
                 abstract: true
             })
-            .state('socio.app.cliente', {
-                url: '/clientes',
+            .state('socio.app.configuracion', {
+                url: '/configuracion',
                 template: '<div ui-view></div>',
                 abstract: true
             })
 
-            //tipoDocumento
-            .state('socio.app.administracion.documento', {
-                url: '/documentos',
+            //socios
+            .state('socio.app.socio.socio', {
+                url: '/socios',
                 template: '<div ui-view></div>',
                 ncyBreadcrumb: {
                     skip: true // Never display this state in breadcrumb.
                 }
             })
-            .state('socio.app.administracion.documento.buscar', {
+            .state('socio.app.socio.socio.buscar', {
                 url: '/buscar',
-                templateUrl: 'modules/socio/client/views/tipoDocumento/form-buscar-tipoDocumento.html',
-                controller: 'Persona.TipoDocumento.BuscarTipoDocumentoController',
-                resolve: {
-                    loggedin: function ($q, $timeout, $http, $location, Auth) {
-                        return checkUserRole('ver-documentos', $q, $timeout, $http, $location, Auth);
-                    }
-                },
+                templateUrl: 'modules/socio/client/views/socio/form-buscar-socio.html',
+                controller: 'Socio.Socio.BuscarSocioController',
                 ncyBreadcrumb: {
                     label: 'Home'
                 }
             })
-            .state('socio.app.administracion.documento.crear', {
+            .state('socio.app.socio.socio.crear', {
                 url: '/crear',
-                templateUrl: 'modules/socio/client/views/tipoDocumento/form-crear-tipoDocumento.html',
-                controller: 'Persona.TipoDocumento.CrearTipoDocumentoController',
-                resolve: {
-                    loggedin: function ($q, $timeout, $http, $location, Auth) {
-                        return checkUserRole('ver-documentos', $q, $timeout, $http, $location, Auth);
-                    }
-                },
+                templateUrl: 'modules/socio/client/views/socio/form-crear-socio.html',
+                controller: 'Socio.Socio.CrearSocioController',
                 ncyBreadcrumb: {
                     label: 'Crear documento',
-                    parent: 'persona.app.administracion.documento.buscar'
+                    parent: 'socio.app.socio.socio.buscar'
                 }
             })
-            .state('socio.app.administracion.documento.editar', {
-                url: '/editar/:documento',
-                templateUrl: 'modules/socio/client/views/tipoDocumento/form-editar-tipoDocumento.html',
+            .state('socio.app.socio.socio.editar', {
+                url: '/editar/:socio',
+                templateUrl: 'modules/socio/client/views/socio/form-editar-socio.html',
                 resolve: {
-                    loggedin: function ($q, $timeout, $http, $location, Auth) {
-                        return checkUserRole('ver-documentos', $q, $timeout, $http, $location, Auth);
-                    },
-                    tipoDocumento: function ($state, $stateParams, SGTipoDocumento) {
-                        return SGTipoDocumento.$find($stateParams.documento);
+                    socio: function ($state, $stateParams, SGSocio) {
+                        return SGSocio.$find($stateParams.socio);
                     }
                 },
-                controller: 'Persona.TipoDocumento.EditarTipoDocumentoController',
+                controller: 'Socio.Socio.EditarSocioController',
                 ncyBreadcrumb: {
-                    label: 'Editar documento',
-                    parent: 'persona.app.administracion.documento.buscar'
+                    label: 'Editar socio',
+                    parent: 'socio.app.socio.socio.buscar'
+                }
+            })
+
+            //socios
+            .state('socio.app.configuracion.configuracion', {
+                url: '/configuracion',
+                template: '<div ui-view></div>',
+                ncyBreadcrumb: {
+                    skip: true // Never display this state in breadcrumb.
                 }
             });
 

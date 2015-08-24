@@ -31,7 +31,7 @@ angular.module('socio').controller('SocioController', ['$scope', 'Auth',
             },
 
             get administrarSocios() {
-                return getAccess('administrar-documentos');
+                return getAccess('administrar-socios');
             }
         };
 
