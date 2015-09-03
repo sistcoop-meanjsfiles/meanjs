@@ -4,6 +4,7 @@ module.exports = {
     client: {
         lib: {
             css: [
+                'public/lib/c3/c3.css',
                 'public/lib/patternfly/dist/css/patternfly.css',
                 'public/lib/patternfly/dist/css/patternfly-additions.css',
                 'public/lib/angular-ui-grid/ui-grid.css',
@@ -32,6 +33,8 @@ module.exports = {
                 'public/lib/spin.js/spin.js',
                 'public/lib/angular-spinner/angular-spinner.js',
                 'public/lib/angular-ui-view-spinner/src/angular-ui-view-spinner.js',
+                'public/lib/d3/d3.js',
+                'public/lib/c3/c3.js',
                 'public/lib/angular-patternfly/dist/angular-patternfly.js',
                 'public/lib/ng-file-upload/ng-file-upload-all.js',
                 'public/lib/sg-cooperativa/dist/sg-cooperativa.js',
