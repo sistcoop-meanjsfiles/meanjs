@@ -5,18 +5,18 @@
   "dependencies": {
     "bootstrap": "~3",
     "angular": "~1.4",
-    "angular-animate": "~1.4.3",
-    "angular-resource": "~1.4.3",
+    "angular-animate": "~1.4.4",
+    "angular-resource": "~1.4.4",
     "angular-mocks": "~1.4",
     "angular-bootstrap": "~0.13.3",
     "angular-ui-utils": "bower",
     "angular-ui-router": "~0.2.15",
-    "angular-file-upload": "1.1.5",
-    "angular-input-masks": "~2.0.0",
-    "angular-messages": "~1.4.3",
-    "angular-sanitize": "~1.4.3",
-    "angular-toastr": "~1.4.1",
-    "angular-ui-grid": "~3.0.2",
+    "angular-file-upload": "~2.1.3",
+    "angular-input-masks": "~2.1.0",
+    "angular-messages": "~1.4.4",
+    "angular-sanitize": "~1.4.4",
+    "angular-toastr": "~1.5.0",
+    "angular-ui-grid": "~3.0.5",
     "angular-ui-select": "~0.12.1",
     "select-utils": "https://github.com/sistcoop-angularjsfiles/ui-select-utils.git#master",
     "angular-xeditable": "~0.1.9",
@@ -27,11 +27,11 @@
     "restangular": "~1.5.1",
     "underscore": "~1.8.3",
     "angular-breadcrumb": "~0.4.1",
-    "patternfly": "~2.0.0",
-    "ng-file-upload": "~6.0.4",
+    "patternfly": "~2.2.0",
+    "ng-file-upload": "~7.0.17",
     "angular-ui-view-spinner": "~1.0.0",
     "angular-spinner": "~0.6.2",
-    "angular-patternfly": "~2.0.0",
+    "angular-patternfly": "~2.1.1",
     "sg-cooperativa": "https://github.com/sistcoop-restangularfiles/sg-cooperativa.git#master",
     "sg-iso3166": "https://github.com/sistcoop-restangularfiles/sg-iso3166.git#master",
     "sg-iso4217": "https://github.com/sistcoop-restangularfiles/sg-iso4217.git#master",
@@ -44,6 +44,6 @@
     "sistcoop": "https://github.com/sistcoop/sistcoop-js-bower.git#master"
   },
   "resolutions": {
-    "angular": "~1.3"
+    "angular": "~1.4"
   }
 }
