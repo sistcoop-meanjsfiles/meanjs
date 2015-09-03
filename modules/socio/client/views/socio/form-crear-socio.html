@@ -1,15 +1,15 @@
 <div ncy-breadcrumb></div>
 
-<h1><strong>Crear tipo documento</strong></h1>
+<h1><strong>Crear socio</strong></h1>
 
-<form name="form" sg-read-only="!access.administrarDocumentos" class="form-horizontal" novalidate>
+<form name="form" class="form-horizontal" novalidate>
 
     <div class="form-group" data-ng-class="{ 'has-error' : form.tipoPersona.$invalid && form.$submitted }">
         <label class="col-sm-2 control-label"><span class="required">*</span> Tipo persona:</label>
         <div class="col-sm-3">
-            <ui-select name="tipoPersona" data-ng-model="combo.selected.tipoPersona" ng-disabled="!access.administrarDocumentos" pf-focused="true" autofocus required>
+            <ui-select name="tipoPersona" data-ng-model="combo.selected.tipoPersona" pf-focused="true" autofocus required>
                 <ui-select-match placeholder="Seleccione">{{$select.selected}}</ui-select-match>
-                <ui-select-choices repeat="item in combo.tipoPersona.items | filter: $select.search">
+                <ui-select-choices repeat="item in combo.tipoPersona | filter: $select.search">
                     <div data-ng-bind-html="item | highlight: $select.search"></div>
                 </ui-select-choices>
             </ui-select>
@@ -18,37 +18,85 @@
             </div>
         </div>
     </div>
-    <div class="form-group" data-ng-class="{ 'has-error' : form.abreviatura.$invalid && form.$submitted }">
-        <label class="col-sm-2 control-label"><span class="required">*</span> Abreviatura:</label>
-        <div class="col-sm-3">
-            <input name="abreviatura" type="text" data-ng-model="view.tipoDocumento.abreviatura" data-ng-minlength="1" data-ng-maxlength="20" class="form-control" required/>
-            <div data-ng-messages="form.abreviatura.$error" data-ng-if="form.$submitted">
-                <div class="has-error" data-ng-message="required">Ingrese abreviatura.</div>
-                <div class="has-error" data-ng-message="minlength">Ingrese abreviatura.</div>
-                <div class="has-error" data-ng-message="maxlength">Abreviatura muy extensa, maximo 20 caracteres.</div>
-            </div>
+    <div class="col-sm-3">
+        <ui-select name="tipoDocumento" data-ng-model="combo.selected.tipoDocumento" required>
+            <ui-select-match placeholder="Seleccione">{{$select.selected.abreviatura}}</ui-select-match>
+            <ui-select-choices repeat="item in combo.tipoDocumento | filter: $select.search">
+                <div data-ng-bind-html="item.abreviatura | highlight: $select.search"></div>
+            </ui-select-choices>
+        </ui-select>
+        <div data-ng-messages="form.tipoDocumento.$error" data-ng-if="form.$submitted">
+            <div class="has-error" data-ng-message="required">Ingrese documento.</div>
         </div>
     </div>
-    <div class="form-group" data-ng-class="{ 'has-error' : form.denominacion.$invalid && form.$submitted }">
-        <label class="col-sm-2 control-label"><span class="required">*</span> Denominacion:</label>
-        <div class="col-sm-3">
-            <input name="denominacion" type="text" data-ng-model="view.tipoDocumento.denominacion" data-ng-minlength="1" data-ng-maxlength="60" class="form-control" required/>
-            <div data-ng-messages="form.denominacion.$error" data-ng-if="form.$submitted">
-                <div class="has-error" data-ng-message="required">Ingrese denominacion.</div>
-                <div class="has-error" data-ng-message="minlength">Ingrese denominacion.</div>
-                <div class="has-error" data-ng-message="maxlength">Denominacion muy extensa, maximo 60 caracteres.</div>
+    <div class="col-sm-3">
+        <div class="input-group">
+            <input type="text" name="numeroDocumento" data-ng-model="view.socio.numeroDocumento"
+                   ui-keypress="{13:'check($event)'}" data-ng-pattern="/^[0-9]+$/"
+                   data-ng-minlength="combo.selected.tipoDocumento.cantidadCaracteres"
+                   data-ng-maxlength="combo.selected.tipoDocumento.cantidadCaracteres" class="form-control" placeholder="Numero" required/>
+                    <span class="input-group-btn"><button type="button" data-ng-click="check()" tooltip="Check" tooltip-trigger="mouseenter"
+                                                          tooltip-placement="bottom" class="btn btn-default"><span
+                            class="glyphicon glyphicon-check"></span></button></span>
+        </div>
+        <div data-ng-messages="form.numeroDocumento.$error" data-ng-if="form.numeroDocumento.$dirty || form.numeroDocumento.$touched || form.$submitted">
+            <div class="has-error" data-ng-message="required">Ingrese numero documento.</div>
+            <div class="has-error" data-ng-message="minlength">Debe tener <span
+                    data-ng-bind="combo.selected.tipoDocumento.cantidadCaracteres"></span> digitos.
             </div>
+            <div class="has-error" data-ng-message="maxlength">Debe tener <span
+                    data-ng-bind="combo.selected.tipoDocumento.cantidadCaracteres"></span> digitos.
+            </div>
+            <div class="has-error" data-ng-message="pattern">Numero invalido.</div>
         </div>
     </div>
-    <div class="form-group" data-ng-class="{ 'has-error' : form.cantidadCaracteres.$invalid && form.$submitted}">
-        <label class="col-sm-2 control-label"><span class="required">*</span> Cantidad caracteres:</label>
-        <div class="col-sm-3">
-            <input name="cantidadCaracteres" type="text" data-ng-model="view.tipoDocumento.cantidadCaracteres" ui-number-mask="0" min="1" max="20" ng-init="1" class="form-control" required />
-            <div data-ng-messages="form.cantidadCaracteres.$error" data-ng-if="form.$submitted">
-                <div class="has-error" data-ng-message="required">Ingrese cantidad caracteres.</div>
-                <div class="has-error" data-ng-message="min">Minimo 1.</div>
-                <div class="has-error" data-ng-message="max">Maximo 20.</div>
-            </div>
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label"></label>
+
+        <div class="col-sm-8">
+            <table ng-show="view.load.persona" class="table table-striped table-bordered table-condensed">
+                <thead>
+                <tr>
+                    <th colspan="5">Persona seleccionada</th>
+                </tr>
+                <tr>
+                    <th>Documento</th>
+                    <th>Numero</th>
+                    <th>Apellido paterno</th>
+                    <th>Apellido materno</th>
+                    <th>Nombres</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><span data-ng-bind="view.load.persona.tipoDocumento"></span></td>
+                    <td><span data-ng-bind="view.load.persona.numeroDocumento"></span></td>
+                    <td><span data-ng-bind="view.load.persona.apellidoPaterno"></span></td>
+                    <td><span data-ng-bind="view.load.persona.apellidoMaterno"></span></td>
+                    <td><span data-ng-bind="view.load.persona.nombres"></span></td>
+                </tr>
+                </tbody>
+            </table>
+            <table ng-show="view.load.persona" class="table table-striped table-bordered table-condensed">
+                <thead>
+                <tr>
+                    <th colspan="5">Persona seleccionada</th>
+                </tr>
+                <tr>
+                    <th>Documento</th>
+                    <th>Numero</th>
+                    <th>Razon social</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><span data-ng-bind="view.load.persona.tipoDocumento"></span></td>
+                    <td><span data-ng-bind="view.load.persona.numeroDocumento"></span></td>
+                    <td><span data-ng-bind="view.load.persona.razonSocial"></span></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 

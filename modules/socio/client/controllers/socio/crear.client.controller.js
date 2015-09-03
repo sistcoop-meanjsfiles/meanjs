@@ -2,31 +2,81 @@
 
 /* jshint -W098 */
 angular.module('socio').controller('Socio.Socio.CrearSocioController',
-    function ($scope, $state, SGTipoDocumento, SGTipoPersona, toastr) {
+    function ($scope, $state, SGSocio, SGTipoPersona, SGTipoDocumento, SGPersonaNatural, SGPersonaJuridica, toastr) {
 
         $scope.working = false;
 
         $scope.view = {
-            tipoDocumento: SGTipoDocumento.$build()
+            socio: SGSocio.$build()
+        };
+
+        $scope.view.load = {
+            persona: undefined
         };
 
         $scope.combo = {
-            tipoPersona: SGTipoPersona.$search().$object
+            tipoPersona: undefined,
+            tipoDocumento: undefined
         };
         $scope.combo.selected = {
-            tipoPersona: undefined
+            tipoPersona: undefined,
+            tipoDocumento: undefined
+        };
+
+        $scope.loadCombo = function () {
+            SGTipoPersona.$getAll().then(function (response) {
+                $scope.combo.tipoPersona = response;
+            });
+            $scope.$watch('combo.selected.tipoPersona', function (newValue) {
+                if (newValue) {
+                    SGTipoDocumento.$search({tipoPersona: newValue, estado: true}).then(function (response) {
+                        $scope.combo.tipoDocumento = response.items;
+                    });
+                }
+            }, true);
+        };
+        $scope.loadCombo();
+
+        $scope.check = function ($event) {
+            if (!angular.isUndefined($event)) {
+                $event.preventDefault();
+            }
+
+            var sgPersona;
+            switch ($scope.combo.selected.tipoPersona.toUpperCase()) {
+                case 'NATURAL':
+                    sgPersona = SGPersonaNatural;
+                    break;
+                case 'JURIDICA':
+                    sgPersona = SGPersonaJuridica;
+                default:
+                    toastr.info('Tipo de persona no valida');
+                    return;
+            }
+            sgPersona.$search({
+                tipoDocumento: $scope.combo.selected.tipoDocumento.abreviatura,
+                numeroDocumento: $scope.view.socio.numeroDocumento
+            }).then(function (response) {
+                $scope.view.loaded.persona = response.items[0];
+                if ($scope.view.loaded.persona)
+                    toastr.info('Persona encontrada')
+                else
+                    toastr.warning('Persona no encontrada');
+            });
+
         };
 
         $scope.save = function () {
-            $scope.view.tipoDocumento.tipoPersona = $scope.combo.selected.tipoPersona;
+            $scope.view.socio.tipoPersona = $scope.combo.selected.tipoPersona;
+            $scope.view.socio.tipoDOcumento = $scope.combo.selected.tipoDocumento.abreviatura;
 
             $scope.working = true;
 
-            $scope.view.tipoDocumento.$save().then(
+            $scope.view.socio.$save().then(
                 function (response) {
-                    toastr.success('Tipo documento creado');
+                    toastr.success('Socio creado');
                     $scope.working = false;
-                    $state.go('^.editar', {documento: $scope.view.tipoDocumento.abreviatura});
+                    $state.go('^.editar', {socio: response.id});
                 },
                 function error(err) {
                     toastr.error(err.data.message);
