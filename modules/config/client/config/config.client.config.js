@@ -41,6 +41,10 @@ angular.module('config').config(function (sgCooperativaProvider) {
     sgCooperativaProvider.restUrl = 'http://localhost:8080/cooperativa/rest';
 });
 
+angular.module('config').config(function (sgSocioProvider) {
+    sgSocioProvider.restUrl = 'http://localhost:8080/socio/rest';
+});
+
 angular.module('config').run(function (editableOptions, editableThemes) {
     editableThemes.bs3.inputClass = 'input-sm form-control';
     editableThemes.bs3.buttonsClass = 'btn-sm';
