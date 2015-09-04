@@ -49,6 +49,7 @@ angular.module('socio').controller('Socio.Socio.CrearSocioController',
                     break;
                 case 'JURIDICA':
                     sgPersona = SGPersonaJuridica;
+                    break;
                 default:
                     toastr.info('Tipo de persona no valida');
                     return;
@@ -59,7 +60,7 @@ angular.module('socio').controller('Socio.Socio.CrearSocioController',
             }).then(function (response) {
                 $scope.view.loaded.persona = response.items[0];
                 if ($scope.view.loaded.persona)
-                    toastr.info('Persona encontrada')
+                    toastr.info('Persona encontrada');
                 else
                     toastr.warning('Persona no encontrada');
             });
