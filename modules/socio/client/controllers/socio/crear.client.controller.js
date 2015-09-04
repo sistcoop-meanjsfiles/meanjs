@@ -58,8 +58,8 @@ angular.module('socio').controller('Socio.Socio.CrearSocioController',
                 tipoDocumento: $scope.combo.selected.tipoDocumento.abreviatura,
                 numeroDocumento: $scope.view.socio.numeroDocumento
             }).then(function (response) {
-                $scope.view.loaded.persona = response.items[0];
-                if ($scope.view.loaded.persona)
+                $scope.view.load.persona = response.items[0];
+                if ($scope.view.load.persona)
                     toastr.info('Persona encontrada');
                 else
                     toastr.warning('Persona no encontrada');
@@ -69,7 +69,7 @@ angular.module('socio').controller('Socio.Socio.CrearSocioController',
 
         $scope.save = function () {
             $scope.view.socio.tipoPersona = $scope.combo.selected.tipoPersona;
-            $scope.view.socio.tipoDOcumento = $scope.combo.selected.tipoDocumento.abreviatura;
+            $scope.view.socio.tipoDocumento = $scope.combo.selected.tipoDocumento.abreviatura;
 
             $scope.working = true;
 
