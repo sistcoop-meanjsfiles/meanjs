@@ -32,7 +32,7 @@
     "angular-ui-view-spinner": "~1.0.0",
     "angular-spinner": "~0.6.2",
     "c3": "~0.4.10",
-    "angular-patternfly": "~2.1.1",
+    "angular-patternfly": "~2.2.0",
     "sg-cooperativa": "https://github.com/sistcoop-restangularfiles/sg-cooperativa.git#master",
     "sg-iso3166": "https://github.com/sistcoop-restangularfiles/sg-iso3166.git#master",
     "sg-iso4217": "https://github.com/sistcoop-restangularfiles/sg-iso4217.git#master",
