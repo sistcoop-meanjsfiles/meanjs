@@ -103,6 +103,14 @@ angular.module('socio').config(['$stateProvider', '$urlRouterProvider',
                     parent: 'socio.app.socio.socio.buscar'
                 }
             })
+            .state('socio.app.socio.socio.editar.resumen', {
+                url: '/resumen',
+                templateUrl: 'modules/socio/client/views/socio/form-editar-resumen.html',
+                controller: 'Socio.Socio.EditarSocio.ResumenController',
+                ncyBreadcrumb: {
+                    skip: true // Never display this state in breadcrumb.
+                }
+            })
 
             //socios
             .state('socio.app.configuracion.configuracion', {
