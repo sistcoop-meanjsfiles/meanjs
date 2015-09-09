@@ -7,6 +7,7 @@ module.exports = {
                 'public/lib/c3/c3.css',
                 'public/lib/patternfly/dist/css/patternfly.css',
                 'public/lib/patternfly/dist/css/patternfly-additions.css',
+                'public/lib/angular-patternfly/dist/styles/angular-patternfly.css',
                 'public/lib/angular-ui-grid/ui-grid.css',
                 'public/lib/angular-ui-select/dist/select.css',
                 'public/lib/angular-toastr/dist/angular-toastr.css',
