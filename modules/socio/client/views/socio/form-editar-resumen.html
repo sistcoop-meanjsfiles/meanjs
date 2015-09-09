@@ -1,3 +1,20 @@
+<dl class="dl-horizontal">
+    <dt>Cod.pais:</dt>
+    <dd data-ng-bind="view.load.socioPersonaNatural.codigoPais"></dd>
+    <dt>Doc.:</dt>
+    <dd data-ng-bind-template="{{view.load.socioPersonaNatural.tipoDocumento}}/{{view.load.socioPersonaNatural.numeroDocumento}}"></dd>
+    <dt>Apellidos:</dt>
+    <dd data-ng-bind-template="{{view.load.socioPersonaNatural.apellidoPaterno}}&nbsp;{{view.load.socioPersonaNatural.apellidoMaterno}}"></dd>
+    <dt>Nombres:</dt>
+    <dd data-ng-bind="view.load.socioPersonaNatural.nombres"></dd>
+    <dt>F.nac.:</dt>
+    <dd data-ng-bind="view.load.socioPersonaNatural.fechaNacimiento | date : 'dd/MM/yyyy'"></dd>
+    <dt>Sexo:</dt>
+    <dd data-ng-bind="view.load.socioPersonaNatural.sexo"></dd>
+    <dt>E.Civil::</dt>
+    <dd data-ng-if="view.load.socioPersonaNatural.estadoCivil" data-ng-bind="view.load.socioPersonaNatural.estadoCivil"></dd>
+    <dd data-ng-if="!view.load.socioPersonaNatural.estadoCivil"><em>No registrado</em></dd>
+</dl>
 <div class="row">
     <div class="col-sm-6">
         <div class="panel panel-default panel-border panel-shadow">
@@ -5,91 +22,23 @@
                 <h3 class="panel-title">Datos principales</h3>
             </div>
             <div class="panel-body">
-                <div style="border-bottom: 1px solid #e5e5e5;margin-bottom: 20px;">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <p>Cod.pais:&nbsp;</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <p><strong data-ng-bind="view.persona.codigoPais"></strong></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <p>Documento:&nbsp;</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <p>
-                                <strong data-ng-bind="view.persona.tipoDocumento"></strong>
-                                <strong data-ng-show="view.persona.tipoDocumento">/</strong>
-                                <strong data-ng-bind="view.persona.numeroDocumento"></strong>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <p>Razon social:&nbsp;</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <p><strong data-ng-bind="view.persona.razonSocial"></strong></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <p>N.comercial:&nbsp;</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <p><strong data-ng-bind="view.persona.nombreComercial"></strong></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <p>Act.principal:&nbsp;</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <p><strong data-ng-bind="view.persona.actividadPrincipal"></strong></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <p>F.const.:&nbsp;</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <p><strong data-ng-bind="view.persona.fechaConstitucion | date : 'dd/MM/yyyy'"></strong></p>
-                        </div>
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <p>T.empresa:&nbsp;</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <p><strong data-ng-bind="view.persona.tipoEmpresa"></strong></p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <div class="form-group">
-                                <p>Fin.lucro:&nbsp;</p>
-                            </div>
-                        </div>
-                        <div class="col-sm-3">
-                            <p><strong data-ng-bind="view.persona.finLucro | si_no | uppercase"></strong></p>
-                        </div>
-                    </div>
-                </div>
-                <button type="button" ui-sref="^.datosPrincipales" class="btn btn-default">Editar</button>
+                <dl class="dl-horizontal">
+                    <dt>Cod.pais:</dt>
+                    <dd data-ng-bind="view.load.socioPersonaNatural.codigoPais"></dd>
+                    <dt>Doc.:</dt>
+                    <dd data-ng-bind-template="{{view.load.socioPersonaNatural.tipoDocumento}}/{{view.load.socioPersonaNatural.numeroDocumento}}"></dd>
+                    <dt>Apellidos:</dt>
+                    <dd data-ng-bind-template="{{view.load.socioPersonaNatural.apellidoPaterno}}&nbsp;{{view.load.socioPersonaNatural.apellidoMaterno}}"></dd>
+                    <dt>Nombres:</dt>
+                    <dd data-ng-bind="view.load.socioPersonaNatural.nombres"></dd>
+                    <dt>F.nac.:</dt>
+                    <dd data-ng-bind="view.load.socioPersonaNatural.fechaNacimiento | date : 'dd/MM/yyyy'"></dd>
+                    <dt>Sexo:</dt>
+                    <dd data-ng-bind="view.load.socioPersonaNatural.sexo"></dd>
+                    <dt>E.Civil::</dt>
+                    <dd data-ng-if="view.load.socioPersonaNatural.estadoCivil" data-ng-bind="view.load.socioPersonaNatural.estadoCivil"></dd>
+                    <dd data-ng-if="!view.load.socioPersonaNatural.estadoCivil"><em>No registrado</em></dd>
+                </dl>
             </div>
         </div>
     </div>
