@@ -29,6 +29,8 @@ angular.module('socio').controller('Socio.Socio.BuscarSocioController',
                 {field: 'tipoPersona', displayName: 'Tipo persona'},
                 {field: 'tipoDocumento', displayName: 'Documento'},
                 {field: 'numeroDocumento', displayName: 'Numero'},
+                {field: 'fechaInicio', displayName: 'F.Inicio'},
+                {field: 'fechaFin', displayName: 'F.Fin'},
                 {field: 'estado', displayName: 'estado', cellFilter: 'si_no : "activo" | uppercase'},
                 {
                     name: 'edit',
@@ -57,7 +59,7 @@ angular.module('socio').controller('Socio.Socio.BuscarSocioController',
 
         $scope.gridActions = {
             edit: function (row) {
-                $state.go('^.editar', {documento: row.abreviatura});
+                $state.go('^.editar', {socio: row.id});
             }
         };
 
