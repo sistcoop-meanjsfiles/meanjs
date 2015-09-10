@@ -1,20 +1,3 @@
-<dl class="dl-horizontal">
-    <dt>Cod.pais:</dt>
-    <dd data-ng-bind="view.load.socioPersonaNatural.codigoPais"></dd>
-    <dt>Doc.:</dt>
-    <dd data-ng-bind-template="{{view.load.socioPersonaNatural.tipoDocumento}}/{{view.load.socioPersonaNatural.numeroDocumento}}"></dd>
-    <dt>Apellidos:</dt>
-    <dd data-ng-bind-template="{{view.load.socioPersonaNatural.apellidoPaterno}}&nbsp;{{view.load.socioPersonaNatural.apellidoMaterno}}"></dd>
-    <dt>Nombres:</dt>
-    <dd data-ng-bind="view.load.socioPersonaNatural.nombres"></dd>
-    <dt>F.nac.:</dt>
-    <dd data-ng-bind="view.load.socioPersonaNatural.fechaNacimiento | date : 'dd/MM/yyyy'"></dd>
-    <dt>Sexo:</dt>
-    <dd data-ng-bind="view.load.socioPersonaNatural.sexo"></dd>
-    <dt>E.Civil::</dt>
-    <dd data-ng-if="view.load.socioPersonaNatural.estadoCivil" data-ng-bind="view.load.socioPersonaNatural.estadoCivil"></dd>
-    <dd data-ng-if="!view.load.socioPersonaNatural.estadoCivil"><em>No registrado</em></dd>
-</dl>
 <div class="row">
     <div class="col-sm-6">
         <div class="panel panel-default panel-border panel-shadow">
@@ -45,72 +28,30 @@
     <div class="col-sm-6">
         <div class="panel panel-default panel-border panel-shadow">
             <div class="panel-heading">
-                <h3 class="panel-title">Datos adicionales</h3>
+                <h3 class="panel-title">Datos de socio</h3>
             </div>
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <p>Direccion:&nbsp;</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <p><strong data-ng-bind="view.persona.direccion"></strong></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <p>Referencia:&nbsp;</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <p><strong data-ng-bind="view.persona.referencia"></strong></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <p>Ubigeo:&nbsp;</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <p><strong data-ng-bind="view.persona.ubigeo"></strong></p>
-                            </div>
-                        </div>
-                        <br/>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <p>Telefono:&nbsp;</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <p><strong data-ng-bind="view.persona.telefono"></strong></p>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <p>Celular:&nbsp;</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <p><strong data-ng-bind="view.persona.celular"></strong></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <p>Email:&nbsp;</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <p><strong data-ng-bind="view.persona.email"></strong></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <h2>Socio</h2>
+                <dl class="dl-horizontal">
+                    <dt>Fecha inicio:</dt>
+                    <dd data-ng-bind="view.socio.fechaInicio | date : 'dd/MM/yyyy'"></dd>
+                    <dt>Fecha fin::</dt>
+                    <dd data-ng-if="view.socio.fechaFin" data-ng-bind="view.socio.fechaFin | date : 'dd/MM/yyyy'"></dd>
+                    <dd data-ng-if="!view.socio.fechaFin"><em>No registrado</em></dd>
+                    <dt>Estado:</dt>
+                    <dd data-ng-bind="view.socio.estado"></dd>
+                </dl>
+                <h2>Cuenta aporte</h2>
+                <dl class="dl-horizontal">
+                    <dt>Numero cuenta:</dt>
+                    <dd data-ng-bind="view.load.cuentaAporte.numeroCuenta"></dd>
+                    <dt>Moneda:</dt>
+                    <dd data-ng-bind="view.load.cuentaAporte.moneda"></dd>
+                    <dt>Saldo:</dt>
+                    <dd data-ng-bind="view.load.cuentaAporte.saldo"></dd>
+                    <dt>Estado:</dt>
+                    <dd data-ng-bind="view.load.cuentaAporte.estado"></dd>
+                </dl>
             </div>
         </div>
     </div>
@@ -191,36 +132,43 @@
     <div class="col-sm-6">
         <div class="panel panel-default panel-border panel-shadow">
             <div class="panel-heading">
-                <h3 class="panel-title">Accionistas</h3>
+                <h3 class="panel-title">Cuentas personales</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-sm-12">
                         <table class="table table-striped table-bordered table-condensed">
-                            <caption data-ng-show="!view.loadObjects.accionistas.length">No se encontraron accionistas.</caption>
-                            <thead data-ng-show="view.loadObjects.accionistas.length">
+                            <caption data-ng-show="!view.load.cuentasPersonales.length">No se encontraron cuentas.</caption>
+                            <thead data-ng-show="view.load.cuentasPersonales.length">
                             <tr>
                                 <th>#</th>
-                                <th>Documento</th>
-                                <th>Nombres</th>
-                                <th>%</th>
-                                <th>Action</th>
+                                <th>Tipo</th>
+                                <th>Numero</th>
+                                <th>Moneda</th>
+                                <th>Saldo</th>
+                                <th>Estado</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr data-ng-repeat="item in view.loadObjects.accionistas">
+                            <tr data-ng-repeat="item in view.load.cuentasPersonales">
                                 <td><span data-ng-bind="$index+1"></span></td>
                                 <td>
-                                    <span data-ng-bind="item.personaNatural.tipoDocumento"></span><span>/</span><span data-ng-bind="item.numeroDocumento"></span>
+                                    <span data-ng-bind="item.tipo"></span>
                                 </td>
                                 <td>
-                                    <span data-ng-bind="item.personaNatural.apellidoPaterno"></span><span>&nbsp;</span><span data-ng-bind="item.personaNatural.apellidoMaterno"></span><span>,&nbsp;</span><span data-ng-bind="item.personaNatural.nombres"></span>
+                                    <span data-ng-bind="item.numero"></span>
                                 </td>
                                 <td>
-                                    <span data-ng-bind="item.porcentajeParticipacion"></span>
+                                    <span data-ng-bind="item.moneda"></span>
+                                </td>
+                                <td>
+                                    <span data-ng-bind="item.saldo"></span>
+                                </td>
+                                <td>
+                                    <span data-ng-bind="item.estado"></span>
                                 </td>
                                 <td style="text-align: center">
-                                    <button type="button" data-ng-click="verPersona(item)" class="btn btn-info btn-xs">Ver</button>
+                                    <button type="button" data-ng-click="vetCuentaPersonal(item)" class="btn btn-info btn-xs">Ver</button>
                                 </td>
                             </tr>
                             </tbody>

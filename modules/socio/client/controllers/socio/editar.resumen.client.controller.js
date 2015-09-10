@@ -38,14 +38,22 @@ angular.module('socio').controller('Socio.Socio.EditarSocio.ResumenController',
         $scope.loadRepresentanteLegal();
 
         $scope.loadCuentaAporte = function () {
-
+            $scope.view.socio.$getCuentaAporte().then(function (response) {
+                $scope.view.load.cuentaAporte = response;
+            });
         };
         $scope.loadCuentaAporte();
 
         $scope.loadCuentasPersonales = function () {
-
+            $scope.view.socio.SGCuentaPersonal().$getAll().then(function (response) {
+                $scope.view.load.cuentasPersonales = response;
+            });
         };
         $scope.loadCuentasPersonales();
+
+        $scope.verCuentaPersonal = function(){
+            alert('no implementado');
+        };
 
     });
 
