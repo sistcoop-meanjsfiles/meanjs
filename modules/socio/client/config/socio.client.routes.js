@@ -111,6 +111,30 @@ angular.module('socio').config(['$stateProvider', '$urlRouterProvider',
                     skip: true // Never display this state in breadcrumb.
                 }
             })
+            .state('socio.app.socio.socio.editar.cuentaPersonal', {
+                url: '/cuentasPersonales',
+                template: '<ui-view></ui-view>',
+                ncyBreadcrumb: {
+                    skip: true // Never display this state in breadcrumb.
+                }
+            })
+            .state('socio.app.socio.socio.editar.cuentaPersonal.buscar', {
+                url: '/buscar',
+                templateUrl: 'modules/socio/client/views/socio/cuentaPersonal/form-buscar-cuentaPersonal.html',
+                controller: 'Socio.Socio.CuentaPersonal.BuscarAgenciaController',
+                ncyBreadcrumb: {
+                    label: 'Cuentas personales'
+                }
+            })
+            .state('socio.app.socio.socio.editar.cuentaPersonal.crear', {
+                url: '/crear',
+                templateUrl: 'modules/socio/client/views/socio/cuentaPersonal/form-crear-cuentaPersonal.html',
+                controller: 'Socio.Socio.CuentaPersonal.CrearCuentaPersonalController',
+                ncyBreadcrumb: {
+                    label: 'Crear cuenta personal',
+                    parent: 'socio.app.socio.socio.editar.cuentaPersonal.buscar'
+                }
+            })
 
             //socios
             .state('socio.app.configuracion.configuracion', {
