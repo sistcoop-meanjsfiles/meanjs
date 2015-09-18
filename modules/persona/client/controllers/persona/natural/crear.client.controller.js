@@ -23,17 +23,17 @@ angular.module('persona').controller('Persona.Natural.CrearPersonaNaturalControl
             estadoCivil: undefined
         };
 
-        $scope.loadCombos = function(){
-            SGCountryCode.$getAll().then(function(response){
+        $scope.loadCombos = function () {
+            SGCountryCode.$getAll().then(function (response) {
                 $scope.combo.pais = response;
             });
-            SGTipoDocumento.$search({tipoPersona: 'natural'}).then(function(response){
+            SGTipoDocumento.$search({tipoPersona: 'natural'}).then(function (response) {
                 $scope.combo.tipoDocumento = response.items;
             });
-            SGSexo.$getAll().then(function(response){
+            SGSexo.$getAll().then(function (response) {
                 $scope.combo.sexo = response;
             });
-            SGEstadoCivil.$getAll().then(function(response){
+            SGEstadoCivil.$getAll().then(function (response) {
                 $scope.combo.estadoCivil = response;
             });
         };
@@ -54,7 +54,10 @@ angular.module('persona').controller('Persona.Natural.CrearPersonaNaturalControl
             if (!angular.isUndefined($event))
                 $event.preventDefault();
             if (!angular.isUndefined($scope.combo.selected.tipoDocumento) && !angular.isUndefined($scope.view.persona.numeroDocumento)) {
-                SGPersonaNatural.$search({documento:$scope.combo.selected.tipoDocumento.abreviatura, numero:$scope.view.persona.numeroDocumento}).then(function (response) {
+                SGPersonaNatural.$search({
+                    tipoDocumento: $scope.combo.selected.tipoDocumento.abreviatura,
+                    numeroDocumento: $scope.view.persona.numeroDocumento
+                }).then(function (response) {
                     if (!response.items.length)
                         toastr.info('Documento de identidad disponible');
                     else
@@ -75,11 +78,14 @@ angular.module('persona').controller('Persona.Natural.CrearPersonaNaturalControl
                         $state.go('^.editar', {personaNatural: response.id});
                     },
                     function error(err) {
-                        toastr.error(err.data.message);
+                        toastr.error(err.data.errorMessage);
                     }
                 );
             };
-            SGPersonaNatural.$search({documento:$scope.view.persona.tipoDocumento, numero:$scope.view.persona.numeroDocumento}).then(function (response) {
+            SGPersonaNatural.$search({
+                tipoDocumento: $scope.view.persona.tipoDocumento,
+                numeroDocumento: $scope.view.persona.numeroDocumento
+            }).then(function (response) {
                 if (response.items.length) {
                     toastr.error('Documento de identidad no disponible', 'Error');
                 } else {

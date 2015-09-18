@@ -42,7 +42,9 @@
     "sg-socio": "https://github.com/sistcoop-restangularfiles/sg-socio.git#master",
     "sg-ubigeo": "https://github.com/sistcoop-restangularfiles/sg-ubigeo.git#master",
     "sg-utils": "https://github.com/sistcoop-angularjsfiles/sg-utils.git#master",
-    "sistcoop": "https://github.com/sistcoop/sistcoop-js-bower.git#master"
+    "sistcoop": "https://github.com/sistcoop/sistcoop-js-bower.git#master",
+    "jquery-ui": "~1.11.4",
+    "jquery": "~2.1.4"
   },
   "resolutions": {
     "angular": "~1.4"

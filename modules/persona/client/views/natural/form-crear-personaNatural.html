@@ -113,7 +113,7 @@
 	<div class="form-group">
 		<label class="col-sm-2 control-label">Estado civil <span class="optional">(opcional)</span>:</label>
 		<div class="col-sm-2">
-			<ui-select data-ng-model="combo.selected.estadoCivil" ng-disabled="!access.administrarPersonas">
+			<ui-select name="estadoCivil" data-ng-model="combo.selected.estadoCivil" ng-disabled="!access.administrarPersonas">
 				<ui-select-match placeholder="Seleccione">{{$select.selected}}</ui-select-match>
 				<ui-select-choices repeat="item in combo.estadoCivil | filter: $select.search">
 					<div data-ng-bind-html="item | highlight: $select.search"></div>
