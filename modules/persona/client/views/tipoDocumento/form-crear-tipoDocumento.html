@@ -9,7 +9,7 @@
         <div class="col-sm-3">
             <ui-select name="tipoPersona" data-ng-model="combo.selected.tipoPersona" ng-disabled="!access.administrarDocumentos" pf-focused="true" autofocus required>
                 <ui-select-match placeholder="Seleccione">{{$select.selected}}</ui-select-match>
-                <ui-select-choices repeat="item in combo.tipoPersona.items | filter: $select.search">
+                <ui-select-choices repeat="item in combo.tipoPersona | filter: $select.search">
                     <div data-ng-bind-html="item | highlight: $select.search"></div>
                 </ui-select-choices>
             </ui-select>
@@ -18,14 +18,15 @@
             </div>
         </div>
     </div>
-    <div class="form-group" data-ng-class="{ 'has-error' : form.abreviatura.$invalid && form.$submitted }">
+    <div class="form-group" data-ng-class="{ 'has-error' : form.abreviatura.$invalid && form.abreviatura.$dirty }">
         <label class="col-sm-2 control-label"><span class="required">*</span> Abreviatura:</label>
         <div class="col-sm-3">
-            <input name="abreviatura" type="text" data-ng-model="view.tipoDocumento.abreviatura" data-ng-minlength="1" data-ng-maxlength="20" class="form-control" required/>
-            <div data-ng-messages="form.abreviatura.$error" data-ng-if="form.$submitted">
+            <input name="abreviatura" type="text" data-ng-model="view.tipoDocumento.abreviatura" sg-abreviatura-tipo-documento-validate data-ng-minlength="1" data-ng-maxlength="20" class="form-control" required/>
+            <div data-ng-messages="form.abreviatura.$error" data-ng-if="form.abreviatura.$dirty">
                 <div class="has-error" data-ng-message="required">Ingrese abreviatura.</div>
                 <div class="has-error" data-ng-message="minlength">Ingrese abreviatura.</div>
                 <div class="has-error" data-ng-message="maxlength">Abreviatura muy extensa, maximo 20 caracteres.</div>
+                <div class="has-error" data-ng-message="disponible">Abreviatura no disponible.</div>
             </div>
         </div>
     </div>
@@ -55,7 +56,6 @@
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button sg-save ng-disabled="working">
-                <i class="pficon pficon-running" ng-show="working"></i>
                 <span ng-show="working">Guardando...</span>
                 <span ng-hide="working">Guardar</span>
             </button>

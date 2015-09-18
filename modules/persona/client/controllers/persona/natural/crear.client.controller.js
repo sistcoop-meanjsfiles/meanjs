@@ -24,17 +24,17 @@ angular.module('persona').controller('Persona.Natural.CrearPersonaNaturalControl
         };
 
         $scope.loadCombos = function(){
-            SGCountryCode.$search().then(function(response){
-                $scope.combo.pais = response.items;
+            SGCountryCode.$getAll().then(function(response){
+                $scope.combo.pais = response;
             });
             SGTipoDocumento.$search({tipoPersona: 'natural'}).then(function(response){
                 $scope.combo.tipoDocumento = response.items;
             });
-            SGSexo.$search().then(function(response){
-                $scope.combo.sexo = response.items;
+            SGSexo.$getAll().then(function(response){
+                $scope.combo.sexo = response;
             });
-            SGEstadoCivil.$search().then(function(response){
-                $scope.combo.estadoCivil = response.items;
+            SGEstadoCivil.$getAll().then(function(response){
+                $scope.combo.estadoCivil = response;
             });
         };
         $scope.loadCombos();

@@ -11,7 +11,7 @@ angular.module('persona').controller('Persona.TipoDocumento.CrearTipoDocumentoCo
         };
 
         $scope.combo = {
-            tipoPersona: SGTipoPersona.$search().$object
+            tipoPersona: SGTipoPersona.$getAll().$object
         };
         $scope.combo.selected = {
             tipoPersona: undefined
@@ -29,7 +29,7 @@ angular.module('persona').controller('Persona.TipoDocumento.CrearTipoDocumentoCo
                     $state.go('^.editar', {documento: $scope.view.tipoDocumento.abreviatura});
                 },
                 function error(err) {
-                    toastr.error(err.data.message);
+                    toastr.error(err.data.errorMessage);
                 }
             );
         };

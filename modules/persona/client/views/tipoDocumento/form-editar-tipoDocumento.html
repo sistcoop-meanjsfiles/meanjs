@@ -32,7 +32,7 @@
         <div class="col-sm-3">
             <ui-select name="tipoPersona" data-ng-model="combo.selected.tipoPersona" data-ng-disabled="!access.administrarDocumentos" pf-focused="true" autofocus required>
                 <ui-select-match placeholder="Seleccione">{{$select.selected}}</ui-select-match>
-                <ui-select-choices repeat="item in combo.tipoPersona.items | filter: $select.search">
+                <ui-select-choices repeat="item in combo.tipoPersona | filter: $select.search">
                     <div data-ng-bind-html="item | highlight: $select.search"></div>
                 </ui-select-choices>
             </ui-select>
@@ -73,7 +73,6 @@
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button sg-save ng-disabled="working">
-                <i class="pficon pficon-running" ng-show="working"></i>
                 <span ng-show="working">Guardando...</span>
                 <span ng-hide="working">Guardar</span>
             </button>

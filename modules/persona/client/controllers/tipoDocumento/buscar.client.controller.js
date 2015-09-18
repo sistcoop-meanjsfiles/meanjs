@@ -30,7 +30,7 @@ angular.module('persona').controller('Persona.TipoDocumento.BuscarTipoDocumentoC
                 {field: 'denominacion', displayName: 'Denominacion'},
                 {field: 'cantidadCaracteres', displayName: 'Num.Caracteres'},
                 {field: 'tipoPersona', displayName: 'T.persona'},
-                {field: 'estado', displayName: 'estado', cellFilter: 'si_no : "activo" | uppercase'},
+                {field: 'estado', displayName: 'Estado', cellFilter: 'si_no : "activo" | uppercase'},
                 {
                     name: 'edit',
                     displayName: 'Edit',
@@ -68,6 +68,12 @@ angular.module('persona').controller('Persona.TipoDocumento.BuscarTipoDocumentoC
                 $scope.gridOptions.totalItems = response.totalSize;
             });
         };
+
+        $scope.$watch('filterOptions.estado', function(newValue, oldValue) {
+            if(newValue !== oldValue) {
+                $scope.search();
+            }
+        }, true);
 
     }
 )

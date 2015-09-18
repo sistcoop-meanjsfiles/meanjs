@@ -11,49 +11,49 @@ angular.module('persona').controller('Persona.TipoDocumento.EditarTipoDocumentoC
         };
 
         $scope.combo = {
-            tipoPersona: SGTipoPersona.$search().$object
+            tipoPersona: SGTipoPersona.$getAll().$object
         };
         $scope.combo.selected = {
             tipoPersona: tipoDocumento.tipoPersona
         };
 
         $scope.enable = function(){
-            SGDialog.confirm('Activar', 'Estas seguro de activar el documento?', function () {
+            SGDialog.confirm('Activar', '¿Estas seguro de activar el documento?', function () {
                 $scope.view.tipoDocumento.$enable().then(
                     function (response) {
                         $scope.view.tipoDocumento.estado = true;
                         toastr.success('Tipo documento activado');
                     },
                     function error(err) {
-                        toastr.error(err.data.message);
+                        toastr.error(err.data.errorMessage);
                     }
                 );
             });
         };
 
         $scope.disable = function(){
-            SGDialog.confirm('Desactivar', 'Estas seguro de desactivar el documento?', function () {
+            SGDialog.confirm('Desactivar', '¿Estas seguro de desactivar el documento?', function () {
                 $scope.view.tipoDocumento.$disable().then(
                     function (response) {
                         $scope.view.tipoDocumento.estado = false;
                         toastr.success('Tipo documento desactivado');
                     },
                     function error(err) {
-                        toastr.error(err.data.message);
+                        toastr.error(err.data.errorMessage);
                     }
                 );
             });
         };
 
         $scope.remove = function(){
-            SGDialog.confirm('Eliminar', 'Estas seguro de eliminar el documento?', function () {
+            SGDialog.confirm('Eliminar', '¿Estas seguro de eliminar el documento?', function () {
                 $scope.view.tipoDocumento.$remove().then(
                     function (response) {
                         toastr.success('Tipo documento eliminado');
                         $state.go('^.buscar');
                     },
                     function error(err) {
-                        toastr.error(err.data.message);
+                        toastr.error(err.data.errorMessage);
                     }
                 );
             });
@@ -68,7 +68,7 @@ angular.module('persona').controller('Persona.TipoDocumento.EditarTipoDocumentoC
                     toastr.success('Tipo documento actualizado');
                 },
                 function error(err) {
-                    toastr.error(err.data.message);
+                    toastr.error(err.data.errorMessage);
                 }
             );
         };
