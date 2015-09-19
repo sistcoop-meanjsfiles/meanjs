@@ -35,6 +35,7 @@ angular.module('persona').controller('Persona.Natural.EditarPersonaNatural.Datos
         $scope.loadCombos();
 
         $scope.save = function () {
+            $scope.view.persona.codigoPais = $scope.combo.selected.pais.alpha3Code;
             $scope.view.persona.sexo = $scope.combo.selected.sexo;
             $scope.view.persona.estadoCivil = $scope.combo.selected.estadoCivil;
             $scope.working = true;

@@ -29,8 +29,8 @@ angular.module('persona').controller('Persona.Juridica.CrearPersonaJuridicaContr
             }
 
             SGPersonaJuridica.$search({
-                documento: $scope.view.persona.tipoDocumento,
-                numero: $scope.view.persona.numeroDocumento
+                tipoDocumento: $scope.view.persona.tipoDocumento,
+                numeroDocumento: $scope.view.persona.numeroDocumento
             }).then(function (response) {
                 if (!response.items.length) {
                     $scope.view.persona.representanteLegal = {
@@ -47,7 +47,7 @@ angular.module('persona').controller('Persona.Juridica.CrearPersonaJuridicaContr
                             $state.go('^.^.editar', {personaJuridica: response.id});
                         },
                         function error(err) {
-                            toastr.error(err.data.message);
+                            toastr.error(err.data.errorMessage);
                         }
                     );
                 } else {

@@ -8,13 +8,13 @@ angular.module('persona').controller('Persona.Juridica.EditarPersonaJuridica.Res
             persona: personaJuridica
         };
 
-        $scope.view.loadObjects = {
+        $scope.view.load = {
             accionistas: []
         };
 
         $scope.loadAccionistas = function () {
-            $scope.view.persona.SGAccionista().$search().then(function (response) {
-                $scope.view.loadObjects.accionistas = response.items;
+            $scope.view.persona.SGAccionista().$getAll().then(function (response) {
+                $scope.view.load.accionistas = response;
             });
         };
         $scope.loadAccionistas();

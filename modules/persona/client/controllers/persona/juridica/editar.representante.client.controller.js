@@ -31,8 +31,8 @@ angular.module('persona').controller('Persona.Juridica.EditarPersonaJuridica.Rep
 
             if (angular.isDefined($scope.combo.selected.tipoDocumento) && angular.isDefined($scope.representante.numeroDocumento)) {
                 SGPersonaNatural.$search({
-                    documento: $scope.combo.selected.tipoDocumento.abreviatura,
-                    numero: $scope.representante.numeroDocumento
+                    tipoDocumento: $scope.combo.selected.tipoDocumento.abreviatura,
+                    numeroDocumento: $scope.representante.numeroDocumento
                 }).then(function (response) {
                     if (response.items.length)
                         $scope.view.persona.representanteLegal = response.items[0];
@@ -50,7 +50,7 @@ angular.module('persona').controller('Persona.Juridica.EditarPersonaJuridica.Rep
                     $scope.working = false;
                 },
                 function error(err) {
-                    toastr.error(err.data.message);
+                    toastr.error(err.data.errorMessage);
                 }
             );
         };

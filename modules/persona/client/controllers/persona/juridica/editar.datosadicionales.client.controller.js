@@ -18,7 +18,7 @@ angular.module('persona').controller('Persona.Juridica.EditarPersonaJuridica.Dat
                     toastr.success('Persona actualizada');
                 },
                 function error(err) {
-                    toastr.error(err.data.message);
+                    toastr.error(err.data.errorMessage);
                 }
             );
         };

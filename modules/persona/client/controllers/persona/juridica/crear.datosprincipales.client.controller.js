@@ -16,14 +16,14 @@ angular.module('persona').controller('Persona.Juridica.CrearPersonaJuridica.Dato
         };
 
         $scope.loadCombo = function () {
-            SGCountryCode.$search().then(function (response) {
-                $scope.combo.pais = response.items;
+            SGCountryCode.$getAll().then(function (response) {
+                $scope.combo.pais = response;
             });
             SGTipoDocumento.$search({tipoPersona: 'juridica'}).then(function (response) {
                 $scope.combo.tipoDocumento = response.items;
             });
-            SGTipoEmpresa.$search().then(function (response) {
-                $scope.combo.tipoEmpresa = response.items;
+            SGTipoEmpresa.$getAll().then(function (response) {
+                $scope.combo.tipoEmpresa = response;
             });
         };
         $scope.loadCombo();
@@ -34,11 +34,11 @@ angular.module('persona').controller('Persona.Juridica.CrearPersonaJuridica.Dato
             }
             if ($scope.combo.selected.tipoDocumento && $scope.view.persona.numeroDocumento) {
                 SGPersonaJuridica.$search({
-                    documento: $scope.combo.selected.tipoDocumento.abreviatura,
-                    numero: $scope.view.persona.numeroDocumento
+                    tipoDocumento: $scope.combo.selected.tipoDocumento.abreviatura,
+                    numeroDocumento: $scope.view.persona.numeroDocumento
                 }).then(function (response) {
                     if (response.items.length) {
-                        toastr.warning('Documento de identidad NO disponible');
+                        toastr.warning('Documento de identidad No disponible');
                     } else {
                         toastr.info('Documento de identidad disponible');
                     }

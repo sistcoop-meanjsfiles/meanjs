@@ -35,8 +35,8 @@ angular.module('persona').controller('Persona.Juridica.CrearPersonaJuridica.Repr
             }
             if ($scope.combo.selected.tipoDocumento && $scope.view.representante.numeroDocumento) {
                 SGPersonaNatural.$search({
-                    documento: $scope.combo.selected.tipoDocumento.abreviatura,
-                    numero: $scope.view.representante.numeroDocumento
+                    tipoDocumento: $scope.combo.selected.tipoDocumento.abreviatura,
+                    numeroDocumento: $scope.view.representante.numeroDocumento
                 }).then(function (response) {
                     if (response.items.length) {
                         $scope.view.representante = response.items[0];

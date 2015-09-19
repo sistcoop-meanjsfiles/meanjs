@@ -69,7 +69,7 @@ angular.module('persona').controller('Persona.Juridica.EditarPersonaJuridica.Acc
                     $scope.loadAccionistas();
                 },
                 function error(err) {
-                    toastr.error(err.data.message);
+                    toastr.error(err.data.errorMessage);
                 }
             );
         };
