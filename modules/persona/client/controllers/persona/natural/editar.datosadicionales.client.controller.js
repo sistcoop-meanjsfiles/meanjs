@@ -18,7 +18,7 @@ angular.module('persona').controller('Persona.Natural.EditarPersonaNatural.Datos
                     toastr.success('Persona actualizada');
                 },
                 function error(err) {
-                    toastr.error(err.data.message, 'Error');
+                    toastr.error(err.data.errorMessage, 'Error');
                 }
             );
         };

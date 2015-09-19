@@ -21,7 +21,7 @@ angular.module('persona').controller('Persona.Util.DateController', ['$scope',
         $scope.toggleMin();
 
         $scope.toggleMax = function() {
-            $scope.maxDate = $scope.maxDate ? null : new Date();
+            $scope.maxDate = $scope.maxDate || new Date();
         };
         $scope.toggleMax();
 

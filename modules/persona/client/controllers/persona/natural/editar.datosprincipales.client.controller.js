@@ -22,14 +22,14 @@ angular.module('persona').controller('Persona.Natural.EditarPersonaNatural.Datos
         };
 
         $scope.loadCombos = function () {
-            SGCountryCode.$search().then(function (response) {
-                $scope.combo.pais = response.items;
+            SGCountryCode.$getAll().then(function (response) {
+                $scope.combo.pais = response;
             });
-            SGSexo.$search().then(function (response) {
-                $scope.combo.sexo = response.items;
+            SGSexo.$getAll().then(function (response) {
+                $scope.combo.sexo = response;
             });
-            SGEstadoCivil.$search().then(function (response) {
-                $scope.combo.estadoCivil = response.items;
+            SGEstadoCivil.$getAll().then(function (response) {
+                $scope.combo.estadoCivil = response;
             });
         };
         $scope.loadCombos();
@@ -44,7 +44,7 @@ angular.module('persona').controller('Persona.Natural.EditarPersonaNatural.Datos
                     toastr.success('Persona actualizada');
                 },
                 function error(err) {
-                    toastr.error(err.data.message, 'Error');
+                    toastr.error(err.data.errorMessage, 'Error');
                 }
             );
         };

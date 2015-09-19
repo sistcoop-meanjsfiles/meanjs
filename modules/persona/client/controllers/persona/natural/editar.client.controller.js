@@ -9,14 +9,14 @@ angular.module('persona').controller('Persona.Natural.EditarPersonaNaturalContro
 		};
 
 		$scope.remove = function(){
-			SGDialog.confirm('Eliminar', 'Estas seguro de eliminar la persona?', function () {
+			SGDialog.confirm('Eliminar', '¿Estas seguro de eliminar la persona?', function () {
 				$scope.view.persona.$remove().then(
 					function (response) {
 						toastr.success('Persona eliminada');
 						$state.go('persona.app.persona.natural.buscar');
 					},
 					function error(err) {
-						toastr.error(err.data.message);
+						toastr.error(err.data.errorMessage);
 					}
 				);
 			});
