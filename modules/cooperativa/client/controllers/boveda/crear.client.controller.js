@@ -22,8 +22,8 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.CrearController',
         };
 
         $scope.loadCombo = function () {
-            SGCurrency.$search().then(function (response) {
-                $scope.combo.moneda = response.items;
+            SGCurrency.$getAll().then(function (response) {
+                $scope.combo.moneda = response;
             });
 
             if ($scope.access.administrarBovedas) {

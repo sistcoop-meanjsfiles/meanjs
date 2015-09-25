@@ -14,13 +14,13 @@ angular.module('rrhh').controller('Rrhh.Trabajador.BuscarTrabajadorController',
         };
 
         $scope.loadCombo = function () {
-            SGSucursal.$search().then(function (response1) {
-                $scope.combo.sucursal = response1.items;
+            SGSucursal.$getAll().then(function (response1) {
+                $scope.combo.sucursal = response1;
 
                 $scope.$watch('combo.selected.sucursal', function () {
                     if (angular.isDefined($scope.combo.selected.sucursal)) {
-                        SGSucursal.$new($scope.combo.selected.sucursal.id).SGAgencia().$search().then(function (response2) {
-                            $scope.combo.agencia = response2.items;
+                        SGSucursal.$new($scope.combo.selected.sucursal.id).SGAgencia().$getAll().then(function (response2) {
+                            $scope.combo.agencia = response2;
                         });
                     }
                 }, true);
