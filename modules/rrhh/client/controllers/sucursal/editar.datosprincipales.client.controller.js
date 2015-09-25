@@ -18,7 +18,7 @@ angular.module('rrhh').controller('Rrhh.Sucursal.EditarSucursal.DatosPrincipales
                     toastr.success('Sucursal actualizada');
                 },
                 function error(err) {
-                    toastr.error(err.data.message);
+                    toastr.error(err.data.errorMessage);
                 }
             );
 

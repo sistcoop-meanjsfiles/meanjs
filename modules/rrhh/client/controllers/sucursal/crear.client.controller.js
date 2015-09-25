@@ -19,7 +19,7 @@ angular.module('rrhh').controller('Rrhh.Sucursal.CrearSucursalController',
                     $state.go('^.editar.resumen', {sucursal: response.id});
                 },
                 function error(err) {
-                    toastr.error(err.data.message);
+                    toastr.error(err.data.errorMessage);
                 }
             );
         };

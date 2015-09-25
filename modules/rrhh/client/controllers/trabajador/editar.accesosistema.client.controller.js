@@ -24,7 +24,7 @@ angular.module('rrhh').controller('Rrhh.Trabajador.EditarTrabajador.AccesoSistem
                         $scope.view.trabajador.usuario = undefined;
                     },
                     function error(err) {
-                        toastr.error(err.data.message);
+                        toastr.error(err.data.errorMessage);
                     }
                 );
             });
@@ -46,7 +46,7 @@ angular.module('rrhh').controller('Rrhh.Trabajador.EditarTrabajador.AccesoSistem
                                     $scope.view.trabajador.usuario = $scope.view.usuario;
                                 },
                                 function error(err) {
-                                    toastr.error(err.data.message);
+                                    toastr.error(err.data.errorMessage);
                                 }
                             );
                         } else {

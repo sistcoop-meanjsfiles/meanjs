@@ -56,8 +56,8 @@ angular.module('rrhh').controller('Rrhh.Trabajador.CrearTrabajadorController',
                 $event.preventDefault();
             }
             SGPersonaNatural.$search({
-                documento: $scope.combo.selected.tipoDocumento.abreviatura,
-                numero: $scope.view.trabajador.numeroDocumento
+                tipoDocumento: $scope.combo.selected.tipoDocumento.abreviatura,
+                numeroDocumento: $scope.view.trabajador.numeroDocumento
             }).then(function (response) {
                 $scope.view.loaded.persona = response.items[0];
                 if ($scope.view.loaded.persona) {
@@ -67,8 +67,8 @@ angular.module('rrhh').controller('Rrhh.Trabajador.CrearTrabajadorController',
                 }
             });
             SGTrabajador.$search({
-                documento: $scope.combo.selected.tipoDocumento.abreviatura,
-                numero: $scope.view.trabajador.numeroDocumento
+                tipoDocumento: $scope.combo.selected.tipoDocumento.abreviatura,
+                numeroDocumento: $scope.view.trabajador.numeroDocumento
             }).then(function (response) {
                 $scope.view.loaded.trabajador = response.items[0];
             });
@@ -103,7 +103,7 @@ angular.module('rrhh').controller('Rrhh.Trabajador.CrearTrabajadorController',
                     $state.go('^.editar.resumen', {trabajador: response.id});
                 },
                 function error(err) {
-                    toastr.error(err.data.message);
+                    toastr.error(err.data.errorMessage);
                 }
             );
 

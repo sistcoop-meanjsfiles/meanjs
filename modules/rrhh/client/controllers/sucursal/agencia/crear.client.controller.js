@@ -8,19 +8,19 @@ angular.module('rrhh').controller('Rrhh.Sucursal.Agencia.CrearAgenciaController'
 
         $scope.view = {
             sucursal: sucursal,
-            agencia: {}
+            agencia: sucursal.SGAgencia().$build()
         };
 
         $scope.save = function () {
             $scope.working = true;
-            $scope.view.sucursal.SGAgencia().$saveSent($scope.view.agencia).then(
+            $scope.view.agencia.$save().then(
                 function (response) {
                     toastr.success('Agencia creada satisfactoriamente');
                     $scope.working = false;
                     $state.go('^.editar', {agencia: response.id});
                 },
                 function error(err) {
-                    toastr.error(err.data.message);
+                    toastr.error(err.data.errorMessage);
                 }
             );
 

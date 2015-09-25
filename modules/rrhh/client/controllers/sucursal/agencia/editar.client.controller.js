@@ -19,7 +19,7 @@ angular.module('rrhh').controller('Rrhh.Sucursal.Agencia.EditarAgenciaController
                     $scope.working = false;
                 },
                 function error(err) {
-                    toastr.error(err.data.message);
+                    toastr.error(err.data.errorMessage);
                 }
             );
 

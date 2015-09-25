@@ -1,178 +1,77 @@
 <div>
     <div class="row">
         <div class="col-sm-6">
-            <div class="panel panel-default panel-border panel-shadow">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Datos principales</h3>
-                </div>
+            <div class="panel panel-default">
                 <div class="panel-body">
-                    <div style="border-bottom: 1px solid #e5e5e5;margin-bottom: 20px;">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <p>T. doc.:&nbsp;</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <p><strong ng-bind="view.trabajador.tipoDocumento"></strong></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <p>Num. doc.:&nbsp;</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <p><strong ng-bind="view.trabajador.numeroDocumento"></strong></p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <p>Apellidos:&nbsp;</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <p>
-                                    <strong ng-bind="view.loaded.persona.apellidoPaterno"></strong>&nbsp;
-                                    <strong ng-bind="view.loaded.persona.apellidoMaterno"></strong>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <p>Nombres:&nbsp;</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <p>
-                                    <strong ng-bind="view.loaded.persona.nombres"></strong>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <p>F.nac.:&nbsp;</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <p>
-                                    <strong ng-bind="view.loaded.persona.fechaNacimiento | date : 'dd/MM/yyyy'"></strong>
-                                </p>
-                            </div>
-                            <div class="col-sm-2">
-                                <div class="form-group">
-                                    <p>Sexo:&nbsp;</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <p>
-                                    <strong ng-bind="view.loaded.persona.sexo"></strong>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <p>Estado:&nbsp;</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <p><strong ng-bind="view.trabajador.estado | si_no:'activo' | uppercase"></strong></p>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="button" ui-sref="^.datosPrincipales" class="btn btn-default">Editar</button>
+                    <fieldset class="border-top">
+                        <legend><span class="text">Datos principales</span></legend>
+                        <dl class="dl-horizontal left">
+                            <dt>Codigo pais:</dt>
+                            <dd data-ng-bind="view.loaded.persona.codigoPais"></dd>
+                            <dt>Documento:</dt>
+                            <dd data-ng-bind="view.loaded.persona.tipoDocumento"></dd>
+                            <dt>Numero:</dt>
+                            <dd data-ng-bind="view.loaded.persona.numeroDocumento"></dd>
+                        </dl>
+                        <dl class="dl-horizontal left">
+                            <dt>Apellido paterno:</dt>
+                            <dd data-ng-bind="view.loaded.persona.apellidoPaterno"></dd>
+                            <dt>Apellido materno:</dt>
+                            <dd data-ng-bind="view.loaded.persona.apellidoMaterno"></dd>
+                            <dt>Nombres:</dt>
+                            <dd data-ng-bind="view.loaded.persona.nombres"></dd>
+                        </dl>
+                        <dl class="dl-horizontal left">
+                            <dt>Fecha nacimiento:</dt>
+                            <dd data-ng-if="view.loaded.persona.fechaNacimiento"
+                                data-ng-bind="view.loaded.persona.fechaNacimiento | date : 'dd/MM/yyyy'"></dd>
+                            <dd data-ng-if="!view.loaded.persona.fechaNacimiento"><em>No registrado</em></dd>
+                            <dt>Sexo:</dt>
+                            <dd data-ng-if="view.loaded.persona.sexo" data-ng-bind="view.loaded.persona.sexo"></dd>
+                            <dd data-ng-if="!view.loaded.persona.sexo"><em>No registrado</em></dd>
+                            <dt>Estado civil:</dt>
+                            <dd data-ng-if="view.loaded.persona.estadoCivil" data-ng-bind="view.loaded.persona.estadoCivil"></dd>
+                            <dd data-ng-if="!view.loaded.persona.estadoCivil"><em>No registrado</em></dd>
+                        </dl>
+                    </fieldset>
                 </div>
             </div>
-
         </div>
         <div class="col-sm-6">
-            <div class="panel panel-default panel-border panel-shadow">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Sucursal</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <p>Denominacion:&nbsp;</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-8">
-                                    <p><strong ng-bind="view.trabajador.agencia.sucursal.denominacion"></strong></p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <br/>
-                <div class="panel-heading">
-                    <h3 class="panel-title">Agencia</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="form-group">
-                                        <p>Denominacion:&nbsp;</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-8">
-                                    <p><strong ng-bind="view.trabajador.agencia.denominacion"></strong></p>
-                                </div>
-                            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <fieldset class="border-top">
+                                <legend><span class="text">Datos adicionales</span></legend>
+                                <dl class="dl-horizontal left">
+                                    <dt>Sucursal:</dt>
+                                    <dd data-ng-if="view.trabajador.agencia.sucursal.denominacion" data-ng-bind="view.trabajador.agencia.sucursal.denominacion"></dd>
+                                    <dd data-ng-if="!view.trabajador.agencia.sucursal.denominacion"><em>No registrado</em></dd>
+                                    <dt>Agencia:</dt>
+                                    <dd data-ng-if="view.trabajador.agencia.denominacion" data-ng-bind="view.trabajador.agencia.denominacion"></dd>
+                                    <dd data-ng-if="!view.trabajador.agencia.denominacion"><em>No registrado</em></dd>
+                                </dl>
+                            </fieldset>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="panel panel-default panel-border panel-shadow">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Acceso al sistema</h3>
-                </div>
-                <div class="panel-body">
-                    <div style="border-bottom: 1px solid #e5e5e5;margin-bottom: 20px;">
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <p>Usuario:&nbsp;</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <p data-ng-if="view.trabajador.usuario">
-									<strong ng-bind="view.trabajador.usuario"></strong>
-								</p>
-								<p data-ng-if="!view.trabajador.usuario">
-									<caption >No asignado</caption>
-								</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-3">
-                                <div class="form-group">
-                                    <p>Roles:&nbsp;</p>
-                                </div>
-                            </div>
-                            <div class="col-sm-9">
-                                <p data-ng-if="view.loaded.userKeycloak.rolesAssigned.length">
-									<strong data-ng-bind="view.loaded.userKeycloak.rolesAssigned.toString()"></strong>
-								</p>
-								<p data-ng-if="!view.loaded.userKeycloak.rolesAssigned.length">
-									<caption>No asignados</caption>
-								</p>
-                            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <fieldset class="border-top">
+                                <legend><span class="text">Acceso al sistema</span></legend>
+                                <dl class="dl-horizontal left">
+                                    <dt>Usuario:</dt>
+                                    <dd data-ng-if="view.trabajador.usuario" data-ng-bind="view.trabajador.usuario"></dd>
+                                    <dd data-ng-if="!view.trabajador.usuario"><em>No registrado</em></dd>
+                                    <dt>Roles:</dt>
+                                    <dd data-ng-if="view.loaded.userKeycloak.rolesAssigned.length" data-ng-bind="view.loaded.userKeycloak.rolesAssigned.toString()"></dd>
+                                    <dd data-ng-if="!view.loaded.userKeycloak.rolesAssigned.length"><em>No registrado</em></dd>
+                                </dl>
+                            </fieldset>
                         </div>
                     </div>
                 </div>

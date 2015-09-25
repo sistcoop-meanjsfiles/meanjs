@@ -31,7 +31,7 @@ angular.module('rrhh').controller('Rrhh.Sucursal.Agencia.BuscarAgenciaController
                         $scope.loadAgencias();
                     },
                     function error(err) {
-                        toastr.error(err.data.message);
+                        toastr.error(err.data.errorMessage);
                     }
                 );
             });

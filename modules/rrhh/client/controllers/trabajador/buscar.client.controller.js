@@ -35,8 +35,8 @@ angular.module('rrhh').controller('Rrhh.Trabajador.BuscarTrabajadorController',
 
         $scope.filterOptions = {
             filterText: undefined,
-            sucursal: undefined,
-            agencia: undefined
+            idSucursal: undefined,
+            idAgencia: undefined
         };
 
         $scope.gridOptions = {
@@ -88,13 +88,13 @@ angular.module('rrhh').controller('Rrhh.Trabajador.BuscarTrabajadorController',
         };
 
         $scope.search = function () {
-            //$scope.filterOptions.sucursal = $scope.combo.selected.sucursal ? $scope.combo.selected.sucursal.id : undefined;
-            $scope.filterOptions.agencia = $scope.combo.selected.agencia ? $scope.combo.selected.agencia.id : undefined;
+            $scope.filterOptions.idSucursal = $scope.combo.selected.sucursal ? $scope.combo.selected.sucursal.id : undefined;
+            $scope.filterOptions.idAgencia = $scope.combo.selected.agencia ? $scope.combo.selected.agencia.id : undefined;
             SGTrabajador.$search(angular.extend($scope.filterOptions, paginationOptions)).then(function (response1) {
                 $scope.gridOptions.data = response1.items;
                 $scope.gridOptions.totalItems = response1.totalSize;
                 angular.forEach($scope.gridOptions.data, function (row) {
-                    SGPersonaNatural.$search({documento: row.tipoDocumento, numero: row.numeroDocumento}).then(function (response2) {
+                    SGPersonaNatural.$search({tipoDocumento: row.tipoDocumento, numeroDocumento: row.numeroDocumento}).then(function (response2) {
                         row.persona = response2.items[0];
                     });
                 });

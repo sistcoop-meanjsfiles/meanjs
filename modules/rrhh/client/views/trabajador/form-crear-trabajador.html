@@ -46,7 +46,7 @@
 
     <fieldset class="border-top">
         <legend><span class="text ng-scope">Trabajador <i class="fa fa-question-circle text-muted ng-scope"
-                                                          tooltip="Defina quien es la persona que será registrada como trabajador."
+                                                          tooltip="Defina quien es la persona que serï¿½ registrada como trabajador."
                                                           tooltip-placement="right"></i></span></legend>
         <div class="form-group"
              data-ng-class="{ 'has-error' : (form.tipoDocumento.$invalid || form.numeroDocumento.$invalid ) && (form.$submitted || form.numeroDocumento.$dirty )}">
@@ -122,7 +122,6 @@
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
             <button sg-save ng-disabled="working">
-                <i class="pficon pficon-running" ng-show="working"></i>
                 <span ng-show="working">Guardando...</span>
                 <span ng-hide="working">Guardar</span>
             </button>

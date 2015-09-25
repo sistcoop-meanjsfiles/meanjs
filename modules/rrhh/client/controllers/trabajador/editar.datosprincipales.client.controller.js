@@ -47,7 +47,10 @@ angular.module('rrhh').controller('Rrhh.Trabajador.EditarTrabajador.DatosPrincip
         $scope.loadPersona = function () {
             var tipoDocumento = $scope.view.trabajador.tipoDocumento;
             var numeroDocumento = $scope.view.trabajador.numeroDocumento;
-            SGPersonaNatural.$search({documento: tipoDocumento, numero: numeroDocumento}).then(function (response) {
+            SGPersonaNatural.$search({
+                tipoDocumento: tipoDocumento,
+                numeroDocumento: numeroDocumento
+            }).then(function (response) {
                 $scope.view.loaded.persona = response.items[0];
             });
         };
@@ -76,7 +79,7 @@ angular.module('rrhh').controller('Rrhh.Trabajador.EditarTrabajador.DatosPrincip
                     toastr.success('Trabajador actualizado satisfactoriamente');
                 },
                 function error(err) {
-                    toastr.error(err.data.message);
+                    toastr.error(err.data.errorMessage);
                 }
             );
 

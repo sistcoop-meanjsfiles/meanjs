@@ -17,7 +17,7 @@ angular.module('rrhh').controller('Rrhh.Sucursal.EditarSucursalController',
                         $state.go('rrhh.app.organizacion.sucursal.buscar');
                     },
                     function error(err) {
-                        toastr.error(err.data.message);
+                        toastr.error(err.data.errorMessage);
                     }
                 );
             });
