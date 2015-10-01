@@ -48,6 +48,13 @@
 				<div class="has-error" ng-message="disponible">Boveda con moneda seleccionada existente.</div>
 			</div>
 		</div>
+		<div class="col-sm-4">
+			<div class="btn-group">
+				<label class="btn btn-default" ng-model="combo.selected.moneda" btn-radio="directAccess.moneda[0]">PEN</label>
+				<label class="btn btn-default" ng-model="combo.selected.moneda" btn-radio="directAccess.moneda[1]">USD</label>
+				<label class="btn btn-default" ng-model="combo.selected.moneda" btn-radio="directAccess.moneda[2]">EUR</label>
+			</div>
+		</div>
 	</div>
 	<div class="form-group" ng-class="{ 'has-error' : form.denominacion.$invalid && form.$submitted}">
 		<label class="col-sm-2 control-label"><span class="required">*</span> Denominacion:</label>

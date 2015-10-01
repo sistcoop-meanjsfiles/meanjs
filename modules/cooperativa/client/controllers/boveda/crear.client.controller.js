@@ -21,18 +21,34 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.CrearController',
             moneda: undefined
         };
 
+        $scope.directAccess = {
+            moneda: [{
+                alphabeticCode: 'PEN',
+                currency: 'Nuevo Sol',
+                entity: 'PERU'
+            }, {
+                alphabeticCode: 'USD',
+                currency: 'US Dollar',
+                entity: 'UNITED STATES'
+            }, {
+                alphabeticCode: 'EUR',
+                currency: 'Euro',
+                entity: 'EUROPEAN UNION'
+            }]
+        };
+
         $scope.loadCombo = function () {
             SGCurrency.$getAll().then(function (response) {
                 $scope.combo.moneda = response;
             });
 
             if ($scope.access.administrarBovedas) {
-                SGSucursal.$search().then(function (response1) {
-                    $scope.combo.sucursal = response1.items;
+                SGSucursal.$getAll().then(function (response1) {
+                    $scope.combo.sucursal = response1;
                     $scope.$watch('combo.selected.sucursal', function () {
                         if (angular.isDefined($scope.combo.selected.sucursal)) {
-                            SGSucursal.$new($scope.combo.selected.sucursal.id).SGAgencia().$search().then(function (response2) {
-                                $scope.combo.agencia = response2.items;
+                            SGSucursal.$new($scope.combo.selected.sucursal.id).SGAgencia().$getAll().then(function (response2) {
+                                $scope.combo.agencia = response2;
                             });
                         }
                     }, true);
@@ -59,7 +75,7 @@ angular.module('cooperativa').controller('Cooperativa.Boveda.CrearController',
                     $state.go('^.editar', {boveda: response.id});
                 },
                 function error(err) {
-                    toastr.error(err.data.message);
+                    toastr.error(err.data.errorMessage);
                 }
             );
 
